@@ -11,6 +11,12 @@ import {
 import { useNavigate, useLocation } from 'react-router-dom';
 import { DRAWER_WIDTH } from './constants';
 
+interface NavDrawerProps {
+  open: boolean;
+  onClose: () => void;
+  isMobile: boolean;
+}
+
 const navSections = [
   {
     subheader: 'Reference',
@@ -33,23 +39,30 @@ const navSections = [
   },
 ];
 
-export default function NavDrawer() {
+export default function NavDrawer({ open, onClose, isMobile }: NavDrawerProps) {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
   const isActive = (path: string) =>
     pathname === path || pathname.startsWith(path + '/');
 
+  const handleNav = (path: string) => {
+    navigate(path);
+    if (isMobile) onClose();
+  };
+
   return (
     <Drawer
-      variant="permanent"
+      variant={isMobile ? 'temporary' : 'permanent'}
+      open={isMobile ? open : undefined}
+      onClose={onClose}
       sx={{
-        width: DRAWER_WIDTH,
+        width: isMobile ? 'auto' : DRAWER_WIDTH,
         flexShrink: 0,
         '& .MuiDrawer-paper': { width: DRAWER_WIDTH, boxSizing: 'border-box' },
       }}
     >
-      <Toolbar />
+      {!isMobile && <Toolbar />}
       <List disablePadding>
         {navSections.map(({ subheader, items }) => (
           <div key={subheader}>
@@ -60,7 +73,7 @@ export default function NavDrawer() {
               <ListItem key={path} disablePadding>
                 <ListItemButton
                   selected={isActive(path)}
-                  onClick={() => navigate(path)}
+                  onClick={() => handleNav(path)}
                   sx={{ pl: 3 }}
                 >
                   <ListItemText primary={label} />

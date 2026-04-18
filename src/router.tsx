@@ -1,5 +1,7 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import AppLayout from './components/layout/AppLayout';
+import ErrorPage from './pages/ErrorPage';
+import NotFoundPage from './pages/NotFoundPage';
 import CareersPage from './pages/reference/CareersPage';
 import CareerDetailPage from './pages/reference/CareerDetailPage';
 import SkillsPage from './pages/reference/SkillsPage';
@@ -16,6 +18,7 @@ export const router = createBrowserRouter([
   {
     path: '/',
     element: <AppLayout />,
+    errorElement: <ErrorPage />,
     children: [
       { index: true, element: <Navigate to="/reference/careers" replace /> },
       { path: 'reference/careers', element: <CareersPage /> },
@@ -29,6 +32,7 @@ export const router = createBrowserRouter([
       { path: 'characters/new', element: <CharacterCreationPage /> },
       { path: 'characters/:id', element: <CharacterSheetPage /> },
       { path: 'dice', element: <DicePage /> },
+      { path: '*', element: <NotFoundPage /> },
     ],
   },
 ]);
