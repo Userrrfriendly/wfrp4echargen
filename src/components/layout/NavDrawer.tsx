@@ -1,0 +1,76 @@
+import {
+  Drawer,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  ListSubheader,
+  Divider,
+  Toolbar,
+} from '@mui/material';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { DRAWER_WIDTH } from './constants';
+
+const navSections = [
+  {
+    subheader: 'Reference',
+    items: [
+      { label: 'Careers', path: '/reference/careers' },
+      { label: 'Skills', path: '/reference/skills' },
+      { label: 'Talents', path: '/reference/talents' },
+      { label: 'Trappings', path: '/reference/trappings' },
+      { label: 'Spells', path: '/reference/spells' },
+      { label: 'Prayers', path: '/reference/prayers' },
+    ],
+  },
+  {
+    subheader: 'Characters',
+    items: [{ label: 'My Characters', path: '/characters' }],
+  },
+  {
+    subheader: 'Tools',
+    items: [{ label: 'Dice Roller', path: '/dice' }],
+  },
+];
+
+export default function NavDrawer() {
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  const isActive = (path: string) =>
+    pathname === path || pathname.startsWith(path + '/');
+
+  return (
+    <Drawer
+      variant="permanent"
+      sx={{
+        width: DRAWER_WIDTH,
+        flexShrink: 0,
+        '& .MuiDrawer-paper': { width: DRAWER_WIDTH, boxSizing: 'border-box' },
+      }}
+    >
+      <Toolbar />
+      <List disablePadding>
+        {navSections.map(({ subheader, items }) => (
+          <div key={subheader}>
+            <ListSubheader disableSticky sx={{ lineHeight: '36px', mt: 1 }}>
+              {subheader}
+            </ListSubheader>
+            {items.map(({ label, path }) => (
+              <ListItem key={path} disablePadding>
+                <ListItemButton
+                  selected={isActive(path)}
+                  onClick={() => navigate(path)}
+                  sx={{ pl: 3 }}
+                >
+                  <ListItemText primary={label} />
+                </ListItemButton>
+              </ListItem>
+            ))}
+            <Divider sx={{ mt: 1 }} />
+          </div>
+        ))}
+      </List>
+    </Drawer>
+  );
+}
