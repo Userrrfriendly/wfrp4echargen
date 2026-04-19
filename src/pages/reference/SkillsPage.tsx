@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
 import {
   Box, Typography, TextField, Select, MenuItem, FormControl, InputLabel,
-  Chip, Pagination, Skeleton, Collapse, ListItemButton, Autocomplete,
+  Chip, Pagination, Skeleton, ListItemButton, Autocomplete,
 } from '@mui/material';
 import { useSkills } from '../../hooks/useSkills';
 import { ATTRIBUTES, SKILL_TYPES, SOURCES } from '../../utils/gameData';
@@ -16,7 +16,6 @@ export default function SkillsPage() {
   const [typeFilter, setTypeFilter] = useState<number | ''>('');
   const [sourceFilter, setSourceFilter] = useState<string | null>(null);
   const [page, setPage] = useState(1);
-  const [expanded, setExpanded] = useState<string | null>(null);
 
   const filtered = useMemo(() => {
     if (!skills) return [];
@@ -88,7 +87,7 @@ export default function SkillsPage() {
       <Box sx={{ border: '1px solid', borderColor: 'divider', borderRadius: 1, overflow: 'hidden' }}>
         {paged.map(skill => (
           <Box key={skill.id} sx={{ borderBottom: '1px solid', borderColor: 'divider', '&:last-child': { borderBottom: 0 } }}>
-            <ListItemButton onClick={() => setExpanded(prev => prev === skill.id ? null : skill.id)}>
+            <ListItemButton >
               <Box sx={{ py: 0.25, width: '100%' }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexWrap: 'wrap' }}>
                   <Typography variant="body1" sx={{ fontWeight: 500 }}>{skill.object.name}</Typography>
@@ -112,13 +111,11 @@ export default function SkillsPage() {
                 </Box>
               </Box>
             </ListItemButton>
-            <Collapse in={expanded === skill.id}>
-              <Box sx={{ px: 2, pb: 2, bgcolor: 'action.hover' }}>
+              <Box sx={{ px: 2, pb: 2,  pt: 2, bgcolor: 'action.hover' }}>
                 <Typography variant="body2" color="text.secondary">
                   {skill.object.description || 'No description available.'}
                 </Typography>
               </Box>
-            </Collapse>
           </Box>
         ))}
       </Box>

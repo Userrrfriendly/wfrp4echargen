@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
 import {
   Box, Typography, TextField, Select, MenuItem, FormControl, InputLabel,
-  Chip, Pagination, Skeleton, Collapse, ListItemButton, Autocomplete,
+  Chip, Pagination, Skeleton,  ListItemButton, Autocomplete,
 } from '@mui/material';
 import { useSpells } from '../../hooks/useSpells';
 import { SPELL_TYPES, MAGIC_LORES, loreName, SOURCES } from '../../utils/gameData';
@@ -17,7 +17,6 @@ export default function SpellsPage() {
   const [loreFilter, setLoreFilter] = useState<number | ''>('');
   const [sourceFilter, setSourceFilter] = useState<string | null>(null);
   const [page, setPage] = useState(1);
-  const [expanded, setExpanded] = useState<string | null>(null);
 
   const availableLores = useMemo(() => {
     if (!spells) return [] as number[];
@@ -115,7 +114,7 @@ export default function SpellsPage() {
             key={spell.id}
             sx={{ borderBottom: '1px solid', borderColor: 'divider', '&:last-child': { borderBottom: 0 } }}
           >
-            <ListItemButton onClick={() => setExpanded(prev => prev === spell.id ? null : spell.id)}>
+            <ListItemButton >
               <Box sx={{ py: 0.25, width: '100%' }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 1, flexWrap: 'wrap' }}>
                   <Typography variant="body1" sx={{ fontWeight: 500 }}>{spell.object.name}</Typography>
@@ -147,13 +146,11 @@ export default function SpellsPage() {
                 </Box>
               </Box>
             </ListItemButton>
-            <Collapse in={expanded === spell.id}>
-              <Box sx={{ px: 2, pb: 2, bgcolor: 'action.hover' }}>
+              <Box sx={{ px: 2, pb: 2, pt: 2,  bgcolor: 'action.hover' }}>
                 <Typography variant="body2" color="text.secondary">
                   {spell.object.description || 'No description available.'}
                 </Typography>
               </Box>
-            </Collapse>
           </Box>
         ))}
       </Box>

@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import {
-  Box, Typography, TextField, Chip, Pagination, Skeleton, Collapse, ListItemButton, Autocomplete,
+  Box, Typography, TextField, Chip, Pagination, Skeleton,  ListItemButton, Autocomplete,
 } from '@mui/material';
 import { useTalents } from '../../hooks/useTalents';
 import { ATTRIBUTES, SOURCES } from '../../utils/gameData';
@@ -14,7 +14,6 @@ export default function TalentsPage() {
   const [search, setSearch] = useState('');
   const [sourceFilter, setSourceFilter] = useState<string | null>(null);
   const [page, setPage] = useState(1);
-  const [expanded, setExpanded] = useState<string | null>(null);
 
   const filtered = useMemo(() => {
     if (!talents) return [];
@@ -75,7 +74,7 @@ export default function TalentsPage() {
             key={talent.id}
             sx={{ borderBottom: '1px solid', borderColor: 'divider', '&:last-child': { borderBottom: 0 } }}
           >
-            <ListItemButton onClick={() => setExpanded(prev => prev === talent.id ? null : talent.id)}>
+            <ListItemButton >
               <Box sx={{ py: 0.25, width: '100%' }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexWrap: 'wrap' }}>
                   <Typography variant="body1" sx={{ fontWeight: 500 }}>{talent.object.name}</Typography>
@@ -108,13 +107,11 @@ export default function TalentsPage() {
                 </Box>
               </Box>
             </ListItemButton>
-            <Collapse in={expanded === talent.id}>
-              <Box sx={{ px: 2, pb: 2, bgcolor: 'action.hover' }}>
+              <Box sx={{ px: 2, pb: 2, pt: 2,  bgcolor: 'action.hover' }}>
                 <Typography variant="body2" color="text.secondary">
                   {talent.object.description || 'No description available.'}
                 </Typography>
               </Box>
-            </Collapse>
           </Box>
         ))}
       </Box>

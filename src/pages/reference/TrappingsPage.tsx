@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
 import {
   Box, Typography, TextField, Select, MenuItem, FormControl, InputLabel,
-  Chip, Pagination, Skeleton, Collapse, ListItemButton, Autocomplete,
+  Chip, Pagination, Skeleton, ListItemButton, Autocomplete,
 } from '@mui/material';
 import { useTrappings } from '../../hooks/useTrappings';
 import {
@@ -71,7 +71,6 @@ export default function TrappingsPage() {
   const [typeFilter, setTypeFilter] = useState<number | ''>('');
   const [sourceFilter, setSourceFilter] = useState<string | null>(null);
   const [page, setPage] = useState(1);
-  const [expanded, setExpanded] = useState<string | null>(null);
 
   const filtered = useMemo(() => {
     if (!trappings) return [];
@@ -146,7 +145,7 @@ export default function TrappingsPage() {
             key={item.id}
             sx={{ borderBottom: '1px solid', borderColor: 'divider', '&:last-child': { borderBottom: 0 } }}
           >
-            <ListItemButton onClick={() => setExpanded(prev => prev === item.id ? null : item.id)}>
+            <ListItemButton  >
               <Box sx={{ py: 0.25, width: '100%' }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 1, flexWrap: 'wrap' }}>
                   <Typography variant="body1" sx={{ fontWeight: 500 }}>{item.object.name}</Typography>
@@ -180,13 +179,11 @@ export default function TrappingsPage() {
                 <TrappingStats type={item.object.type} object={item.object} />
               </Box>
             </ListItemButton>
-            <Collapse in={expanded === item.id}>
-              <Box sx={{ px: 2, pb: 2, bgcolor: 'action.hover' }}>
+              <Box sx={{ px: 2, pb: 2, pt: 2, bgcolor: 'action.hover' }}>
                 <Typography variant="body2" color="text.secondary">
                   {item.object.description || 'No description available.'}
                 </Typography>
               </Box>
-            </Collapse>
           </Box>
         ))}
       </Box>

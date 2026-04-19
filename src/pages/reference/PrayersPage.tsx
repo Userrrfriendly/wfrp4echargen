@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import {
-  Box, Typography, TextField, Chip, Pagination, Skeleton, Collapse, ListItemButton, Autocomplete,
+  Box, Typography, TextField, Chip, Pagination, Skeleton,  ListItemButton, Autocomplete,
 } from '@mui/material';
 import { usePrayers } from '../../hooks/usePrayers';
 import { SOURCES } from '../../utils/gameData';
@@ -20,7 +20,6 @@ export default function PrayersPage() {
   const [deityFilter, setDeityFilter] = useState('');
   const [sourceFilter, setSourceFilter] = useState<string | null>(null);
   const [page, setPage] = useState(1);
-  const [expanded, setExpanded] = useState<string | null>(null);
 
   const deities = useMemo(() => {
     if (!prayers) return [] as string[];
@@ -122,7 +121,7 @@ export default function PrayersPage() {
               key={prayer.id}
               sx={{ borderBottom: '1px solid', borderColor: 'divider', '&:last-child': { borderBottom: 0 } }}
             >
-              <ListItemButton onClick={() => setExpanded(prev => prev === prayer.id ? null : prayer.id)}>
+              <ListItemButton  >
                 <Box sx={{ py: 0.25, width: '100%' }}>
                   <Typography variant="body1" sx={{ fontWeight: 500 }}>{prayer.object.name}</Typography>
                   <Box sx={{ display: 'flex', gap: 0.5, mt: 0.5, flexWrap: 'wrap', alignItems: 'center' }}>
@@ -135,13 +134,11 @@ export default function PrayersPage() {
                   </Box>
                 </Box>
               </ListItemButton>
-              <Collapse in={expanded === prayer.id}>
-                <Box sx={{ px: 2, pb: 2, bgcolor: 'action.hover' }}>
+                <Box sx={{ px: 2, pb: 2,  pt: 2, bgcolor: 'action.hover' }}>
                   <Typography variant="body2" color="text.secondary">
                     {prayer.object.description || 'No description available.'}
                   </Typography>
                 </Box>
-              </Collapse>
             </Box>
           );
         })}
