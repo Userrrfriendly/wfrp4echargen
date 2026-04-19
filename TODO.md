@@ -1,0 +1,3 @@
+- add pretier autoformat, 
+- add prettier before commiting
+- 

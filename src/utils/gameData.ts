@@ -25,6 +25,31 @@ export const CAREER_CLASSES: Record<number, string> = {
   8: 'Seafarers',
 };
 
+export const SOURCES: Record<string, string> = {
+  1: 'Core Rulebook',
+  2: 'Rought Nights and Hard Days',
+  3: 'Archives of the Empire Vol I',
+  4: 'Archives of the Empire Vol II',
+  5: 'Archives of the Empire Vol III',
+  6: 'Up in Arms',
+  7: 'Winds of Magic',
+  8: 'Midenheim: City of the White Wolf',
+  9: 'Salzenmund, City of Salt and Silver',
+  10: 'Sea of Claws',
+  11: 'Lustria',
+  12: 'Enemy in Shadows (Companion)',
+  13: 'Death on the Reik (Companion)',
+
+  19: 'The Horned Rat (Companion)',
+
+  38: "Dwarf Player's Guide",
+  39: 'Deft Steps, Light Fingers',
+  40: "High Elves Player's Guide",
+
+  47: 'Power Behind the Throne (Companion)',
+
+
+};  
 export const SPECIES: Record<number, string> = {
   0: 'Human',
   1: 'Halfling',
