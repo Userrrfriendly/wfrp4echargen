@@ -1,8 +1,11 @@
 import { useState, useMemo } from 'react';
 import {
-  Box, Typography, TextField, Chip, Pagination, Skeleton, Collapse, ListItemButton,
+  Box, Typography, TextField, Chip, Pagination, Skeleton, Collapse, ListItemButton, Autocomplete,
 } from '@mui/material';
 import { usePrayers } from '../../hooks/usePrayers';
+import { SOURCES } from '../../utils/gameData';
+
+const SOURCE_OPTIONS = Object.entries(SOURCES).map(([id, label]) => ({ id, label }));
 
 const ITEMS_PER_PAGE = 30;
 
@@ -15,6 +18,7 @@ export default function PrayersPage() {
   const { data: prayers, isLoading, error } = usePrayers();
   const [search, setSearch] = useState('');
   const [deityFilter, setDeityFilter] = useState('');
+  const [sourceFilter, setSourceFilter] = useState<string | null>(null);
   const [page, setPage] = useState(1);
   const [expanded, setExpanded] = useState<string | null>(null);
 
@@ -37,10 +41,11 @@ export default function PrayersPage() {
           const d = extractDeity(p.object.description);
           if (d !== deityFilter) return false;
         }
+        if (sourceFilter && !Object.keys(p.object.source).includes(sourceFilter)) return false;
         return true;
       })
       .sort((a, b) => a.object.name.localeCompare(b.object.name));
-  }, [prayers, search, deityFilter]);
+  }, [prayers, search, deityFilter, sourceFilter]);
 
   const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
   const paged = filtered.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
@@ -95,6 +100,15 @@ export default function PrayersPage() {
             <option key={d} value={d}>{d}</option>
           ))}
         </Box>
+        <Autocomplete
+          size="small"
+          options={SOURCE_OPTIONS}
+          value={SOURCE_OPTIONS.find(o => o.id === sourceFilter) ?? null}
+          onChange={(_, val) => { setSourceFilter(val?.id ?? null); resetPage(); }}
+          renderInput={params => <TextField {...params} label="Source" />}
+          isOptionEqualToValue={(a, b) => a.id === b.id}
+          sx={{ minWidth: 220 }}
+        />
         <Typography variant="body2" color="text.secondary" sx={{ ml: 'auto' }}>
           {filtered.length} {filtered.length === 1 ? 'prayer' : 'prayers'}
         </Typography>

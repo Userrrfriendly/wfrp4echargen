@@ -1,10 +1,12 @@
 import { useState, useMemo } from 'react';
 import {
   Box, Typography, TextField, Select, MenuItem, FormControl, InputLabel,
-  Chip, Pagination, Skeleton, Collapse, ListItemButton,
+  Chip, Pagination, Skeleton, Collapse, ListItemButton, Autocomplete,
 } from '@mui/material';
 import { useSkills } from '../../hooks/useSkills';
-import { ATTRIBUTES, SKILL_TYPES } from '../../utils/gameData';
+import { ATTRIBUTES, SKILL_TYPES, SOURCES } from '../../utils/gameData';
+
+const SOURCE_OPTIONS = Object.entries(SOURCES).map(([id, label]) => ({ id, label }));
 
 const ITEMS_PER_PAGE = 30;
 
@@ -12,6 +14,7 @@ export default function SkillsPage() {
   const { data: skills, isLoading, error } = useSkills();
   const [search, setSearch] = useState('');
   const [typeFilter, setTypeFilter] = useState<number | ''>('');
+  const [sourceFilter, setSourceFilter] = useState<string | null>(null);
   const [page, setPage] = useState(1);
   const [expanded, setExpanded] = useState<string | null>(null);
 
@@ -21,10 +24,11 @@ export default function SkillsPage() {
       .filter(s => {
         if (search && !s.object.name.toLowerCase().includes(search.toLowerCase())) return false;
         if (typeFilter !== '' && s.object.type !== typeFilter) return false;
+        if (sourceFilter && !Object.keys(s.object.source).includes(sourceFilter)) return false;
         return true;
       })
       .sort((a, b) => a.object.name.localeCompare(b.object.name));
-  }, [skills, search, typeFilter]);
+  }, [skills, search, typeFilter, sourceFilter]);
 
   const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
   const paged = filtered.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
@@ -67,6 +71,15 @@ export default function SkillsPage() {
             ))}
           </Select>
         </FormControl>
+        <Autocomplete
+          size="small"
+          options={SOURCE_OPTIONS}
+          value={SOURCE_OPTIONS.find(o => o.id === sourceFilter) ?? null}
+          onChange={(_, val) => { setSourceFilter(val?.id ?? null); setPage(1); }}
+          renderInput={params => <TextField {...params} label="Source" />}
+          isOptionEqualToValue={(a, b) => a.id === b.id}
+          sx={{ minWidth: 220 }}
+        />
         <Typography variant="body2" color="text.secondary" sx={{ ml: 'auto' }}>
           {filtered.length} {filtered.length === 1 ? 'skill' : 'skills'}
         </Typography>

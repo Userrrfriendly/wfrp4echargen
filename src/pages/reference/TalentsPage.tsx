@@ -1,24 +1,31 @@
 import { useState, useMemo } from 'react';
 import {
-  Box, Typography, TextField, Chip, Pagination, Skeleton, Collapse, ListItemButton,
+  Box, Typography, TextField, Chip, Pagination, Skeleton, Collapse, ListItemButton, Autocomplete,
 } from '@mui/material';
 import { useTalents } from '../../hooks/useTalents';
-import { ATTRIBUTES } from '../../utils/gameData';
+import { ATTRIBUTES, SOURCES } from '../../utils/gameData';
+
+const SOURCE_OPTIONS = Object.entries(SOURCES).map(([id, label]) => ({ id, label }));
 
 const ITEMS_PER_PAGE = 30;
 
 export default function TalentsPage() {
   const { data: talents, isLoading, error } = useTalents();
   const [search, setSearch] = useState('');
+  const [sourceFilter, setSourceFilter] = useState<string | null>(null);
   const [page, setPage] = useState(1);
   const [expanded, setExpanded] = useState<string | null>(null);
 
   const filtered = useMemo(() => {
     if (!talents) return [];
     return talents
-      .filter(t => !search || t.object.name.toLowerCase().includes(search.toLowerCase()))
+      .filter(t => {
+        if (search && !t.object.name.toLowerCase().includes(search.toLowerCase())) return false;
+        if (sourceFilter && !Object.keys(t.object.source).includes(sourceFilter)) return false;
+        return true;
+      })
       .sort((a, b) => a.object.name.localeCompare(b.object.name));
-  }, [talents, search]);
+  }, [talents, search, sourceFilter]);
 
   const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
   const paged = filtered.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
@@ -46,6 +53,15 @@ export default function TalentsPage() {
           placeholder="Search talents…"
           value={search}
           onChange={e => { setSearch(e.target.value); setPage(1); }}
+          sx={{ minWidth: 220 }}
+        />
+        <Autocomplete
+          size="small"
+          options={SOURCE_OPTIONS}
+          value={SOURCE_OPTIONS.find(o => o.id === sourceFilter) ?? null}
+          onChange={(_, val) => { setSourceFilter(val?.id ?? null); setPage(1); }}
+          renderInput={params => <TextField {...params} label="Source" />}
+          isOptionEqualToValue={(a, b) => a.id === b.id}
           sx={{ minWidth: 220 }}
         />
         <Typography variant="body2" color="text.secondary" sx={{ ml: 'auto' }}>

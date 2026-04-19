@@ -1,13 +1,14 @@
 import { useState, useMemo } from 'react';
 import {
   Box, Typography, TextField, Select, MenuItem, FormControl, InputLabel,
-  Chip, Pagination, Skeleton, ListItemButton,
+  Chip, Pagination, Skeleton, ListItemButton, Autocomplete,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useCareers } from '../../hooks/useCareers';
-import { CAREER_CLASSES, SPECIES } from '../../utils/gameData';
+import { CAREER_CLASSES, SPECIES, SOURCES } from '../../utils/gameData';
 
 const ITEMS_PER_PAGE = 25;
+const SOURCE_OPTIONS = Object.entries(SOURCES).map(([id, label]) => ({ id, label }));
 
 export default function CareersPage() {
   const navigate = useNavigate();
@@ -16,6 +17,7 @@ export default function CareersPage() {
   const [search, setSearch] = useState('');
   const [classFilter, setClassFilter] = useState<number | ''>('');
   const [speciesFilter, setSpeciesFilter] = useState<number | ''>('');
+  const [sourceFilter, setSourceFilter] = useState<string | null>(null);
   const [page, setPage] = useState(1);
 
   const resetPage = () => setPage(1);
@@ -27,10 +29,11 @@ export default function CareersPage() {
         if (search && !c.object.name.toLowerCase().includes(search.toLowerCase())) return false;
         if (classFilter !== '' && c.object.class !== classFilter) return false;
         if (speciesFilter !== '' && !c.object.species.includes(speciesFilter as number)) return false;
+        if (sourceFilter && !Object.keys(c.object.source).includes(sourceFilter)) return false;
         return true;
       })
       .sort((a, b) => a.object.name.localeCompare(b.object.name));
-  }, [careers, search, classFilter, speciesFilter]);
+  }, [careers, search, classFilter, speciesFilter, sourceFilter]);
 
   const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
   const paged = filtered.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
@@ -86,6 +89,15 @@ export default function CareersPage() {
             ))}
           </Select>
         </FormControl>
+        <Autocomplete
+          size="small"
+          options={SOURCE_OPTIONS}
+          value={SOURCE_OPTIONS.find(o => o.id === sourceFilter) ?? null}
+          onChange={(_, val) => { setSourceFilter(val?.id ?? null); resetPage(); }}
+          renderInput={params => <TextField {...params} label="Source" />}
+          isOptionEqualToValue={(a, b) => a.id === b.id}
+          sx={{ minWidth: 220 }}
+        />
         <Typography variant="body2" color="text.secondary" sx={{ ml: 'auto' }}>
           {filtered.length} {filtered.length === 1 ? 'career' : 'careers'}
         </Typography>
