@@ -129,7 +129,7 @@ export default function PrayersPage() {
                       <Chip label={deity} size="small" color="secondary" variant="outlined" />
                     )}
                     <Typography variant="caption" color="text.secondary">
-                      {prayer.object.range} · {prayer.object.target} · {prayer.object.duration}
+                      Range: {prayer.object.range} · Target: {prayer.object.target} · Duration: {prayer.object.duration}
                     </Typography>
                   </Box>
                 </Box>

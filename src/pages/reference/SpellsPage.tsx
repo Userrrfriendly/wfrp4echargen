@@ -141,7 +141,7 @@ export default function SpellsPage() {
                     />
                   )}
                   <Typography variant="caption" color="text.secondary" sx={{ alignSelf: 'center' }}>
-                    {spell.object.range} · {spell.object.target} · {spell.object.duration}
+                    Range: {spell.object.range} · Target: {spell.object.target} · Duration: {spell.object.duration}
                   </Typography>
                 </Box>
               </Box>
