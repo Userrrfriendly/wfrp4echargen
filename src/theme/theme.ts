@@ -1,4 +1,16 @@
 import { createTheme } from '@mui/material/styles';
+import type React from 'react';
+import diabloFont from '../assets/fonts/diablo.ttf';
+
+declare module '@mui/material/styles' {
+  interface TypographyVariants { diablo: React.CSSProperties; }
+  interface TypographyVariantsOptions { diablo?: React.CSSProperties; }
+}
+declare module '@mui/material/Typography' {
+  interface TypographyPropsVariantOverrides { diablo: true; }
+}
+
+export const DIABLO_FONT_FAMILY = '"Diablo", serif';
 
 export const theme = createTheme({
   palette: {
@@ -15,11 +27,26 @@ export const theme = createTheme({
     },
   },
   typography: {
-    h4: { fontWeight: 600 },
+    h1: { fontFamily: DIABLO_FONT_FAMILY },
+    h2: { fontFamily: DIABLO_FONT_FAMILY },
+    h3: { fontFamily: DIABLO_FONT_FAMILY },
+    h4: { fontFamily: DIABLO_FONT_FAMILY, fontWeight: 600 },
     h5: { fontWeight: 600 },
     h6: { fontWeight: 600 },
+    diablo: { fontFamily: DIABLO_FONT_FAMILY, fontWeight: 'normal' },
   },
   components: {
+    MuiCssBaseline: {
+      styleOverrides: `
+        @font-face {
+          font-family: 'Diablo';
+          src: url(${diabloFont}) format('truetype');
+          font-weight: normal;
+          font-style: normal;
+          font-display: swap;
+        }
+      `,
+    },
     MuiDrawer: {
       styleOverrides: {
         paper: {

@@ -31,7 +31,7 @@ export default function AppLayout() {
               <HamburgerIcon />
             </IconButton>
           )}
-          <Typography variant="h6" noWrap>
+          <Typography variant="h2" noWrap>
             WFRP4e Character Generator
           </Typography>
         </Toolbar>
