@@ -25,6 +25,14 @@ See [COMPONENT_RULES.md](./COMPONENT_RULES.md) for component-specific convention
 - `npm run format` — format all files with Prettier
 - `npm run format:check` — check formatting without writing (CI)
 
+## First-time Setup
+
+After cloning, run this once so `git blame` skips the bulk-formatting commit:
+
+```bash
+git config blame.ignoreRevsFile .git-blame-ignore-revs
+```
+
 ## Architecture
 
 - **Components** live in `src/components/` with logical subfolders (`common`, `layout`, etc.)
