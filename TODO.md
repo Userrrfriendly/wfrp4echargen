@@ -1,7 +1,3 @@
-- add pretier autoformat,
-- add prettier before commiting
--
-
 //TODOs
 -in the career lots of changes...
 
@@ -24,5 +20,3 @@
 - For skills and trappings there could be a reusable component, also it should be linkable, so we will need proper routing, also maybe add some constant for routes.
 
 RULES:
-
-- when righting code focus on readability and maintenability,

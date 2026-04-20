@@ -73,6 +73,7 @@ See [TESTING.md](./TESTING.md) for the full guide — stack, patterns, examples,
 
 ## Conventions
 
+- Prioritise readability and maintainability — write code for the next developer, not just the compiler
 - Functional components only — no class components
 - PascalCase for components and files, camelCase for everything else
 - `export default` for components; named exports for utilities and types
