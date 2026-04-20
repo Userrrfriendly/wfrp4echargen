@@ -4,15 +4,18 @@
 
 
 //TODOs 
+----
+- Let's create some reusable components , but first we need to plan it and think it out properly
+- in some cases they can be something very simple like a mui button with fixed styles
+- in some other cases they will be complex custom components.
+- I need you to lay out a plan for custom components and also we need some rules so you can create rules for claude code that will apply to the whole project.
+-----
 -in the career lots of changes...
 
 - For Skills, Talents, Trappings, Spells and Prayers add the source (if the value does not map with the SOURCES constant it should fallback to whatever the value is) 
 - for careers main page there should be the career discription
 
-- Let's create some reusable components , but first we need to plan it and think it out properly
-- in some cases they can be something very simple like a mui button with fixed styles
-- in some other cases they will be complex custom components.
-- I need you to lay out a plan for custom components and also we need some rules so you can create rules for claude code that will apply to the whole project.
+
 + Reusable component for displayeing skills, talents and all non expandable things 
     - for trappings it should color Brass, Silver, Gold 
     - for trappings (and others) add mouse over tooltip
@@ -22,6 +25,8 @@
     - REACT THREE FIBER FOR DICE ROLLER!!! WOW 
 - QUALITIES AND FLOWS ALONG WITH MUTIATIONS ARE MISSING (ALSO ROUTING FOR THEM)
 - Add proper accesibility just for shits and giggles
+- theme -> change font size
+- Also all tables should be proper scrollable (filters on top, pagination at the bottom)
 
 - For skills and trappings there could be a reusable component, also it should be linkable, so we will need proper routing, also maybe add some constant for routes.
 

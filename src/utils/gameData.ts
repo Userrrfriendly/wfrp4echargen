@@ -1,6 +1,6 @@
 // 1-based; 0 = no governing attribute
 export const ATTRIBUTES: Record<number, string> = {
-  0: '—',
+  0: '—',// No governing attribute
   1: 'WS',
   2: 'BS',
   3: 'S',
@@ -76,10 +76,9 @@ export const TRAPPING_TYPES: Record<number, string> = {
 };
 
 export const STATUS_TIERS: Record<number, string> = {
-  0: '—',
-  1: 'Brass',
-  2: 'Silver',
-  3: 'Gold',
+  0: 'Brass',
+  1: 'Silver',
+  2: 'Gold',
 };
 
 export const AVAILABILITY: Record<number, string> = {
