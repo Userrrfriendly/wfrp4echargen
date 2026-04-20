@@ -57,6 +57,7 @@ export const SPECIES: Record<number, string> = {
   3: 'High Elf',
   4: 'Wood Elf',
   5: 'Gnome',
+  6: 'Ogre',
 };
 
 export const SKILL_TYPES: Record<number, string> = {

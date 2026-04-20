@@ -95,7 +95,7 @@ export default function SkillsPage() {
                     <Chip label="Group" size="small" variant="outlined" sx={{ opacity: 0.5 }} />
                   )}
                 </Box>
-                <Box sx={{ display: 'flex', gap: 0.5, mt: 0.5 }}>
+                <Box sx={{ display: 'flex', gap: 0.5, mt: 0.5, flexWrap: 'wrap' }}>
                   <Chip
                     label={ATTRIBUTES[skill.object.attribute] ?? `Attr ${skill.object.attribute}`}
                     size="small"
@@ -108,6 +108,9 @@ export default function SkillsPage() {
                     variant="outlined"
                     sx={{ opacity: 0.6 }}
                   />
+                  {Object.entries(skill.object.source).map(([key, page]) => (
+                    <Chip key={key} label={`${SOURCES[key] ?? key}${page ? ` ${page}` : ''}`} size="small" variant="outlined" sx={{ opacity: 0.45 }} />
+                  ))}
                 </Box>
               </Box>
             </ListItemButton>

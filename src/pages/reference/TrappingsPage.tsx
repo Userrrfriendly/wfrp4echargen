@@ -175,6 +175,9 @@ export default function TrappingsPage() {
                       sx={{ opacity: 0.6 }}
                     />
                   )}
+                  {Object.entries(item.object.source).map(([key, page]) => (
+                    <Chip key={key} label={`${SOURCES[key] ?? key}${page ? ` ${page}` : ''}`} size="small" variant="outlined" sx={{ opacity: 0.45 }} />
+                  ))}
                 </Box>
                 <TrappingStats type={item.object.type} object={item.object} />
               </Box>

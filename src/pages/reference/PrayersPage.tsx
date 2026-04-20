@@ -128,6 +128,9 @@ export default function PrayersPage() {
                     {deity && (
                       <Chip label={deity} size="small" color="secondary" variant="outlined" />
                     )}
+                    {Object.entries(prayer.object.source).map(([key, page]) => (
+                      <Chip key={key} label={`${SOURCES[key] ?? key}${page ? ` ${page}` : ''}`} size="small" variant="outlined" sx={{ opacity: 0.45 }} />
+                    ))}
                     <Typography variant="caption" color="text.secondary">
                       Range: {prayer.object.range} · Target: {prayer.object.target} · Duration: {prayer.object.duration}
                     </Typography>

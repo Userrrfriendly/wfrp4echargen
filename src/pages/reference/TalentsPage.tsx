@@ -104,6 +104,9 @@ export default function TalentsPage() {
                       {talent.object.tests}
                     </Typography>
                   )}
+                  {Object.entries(talent.object.source).map(([key, page]) => (
+                    <Chip key={key} label={`${SOURCES[key] ?? key}${page ? ` ${page}` : ''}`} size="small" variant="outlined" sx={{ opacity: 0.45 }} />
+                  ))}
                 </Box>
               </Box>
             </ListItemButton>

@@ -140,6 +140,9 @@ export default function SpellsPage() {
                       color="secondary"
                     />
                   )}
+                  {Object.entries(spell.object.source).map(([key, page]) => (
+                    <Chip key={key} label={`${SOURCES[key] ?? key}${page ? ` ${page}` : ''}`} size="small" variant="outlined" sx={{ opacity: 0.45 }} />
+                  ))}
                   <Typography variant="caption" color="text.secondary" sx={{ alignSelf: 'center' }}>
                     Range: {spell.object.range} · Target: {spell.object.target} · Duration: {spell.object.duration}
                   </Typography>
