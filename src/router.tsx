@@ -13,6 +13,7 @@ import CharactersPage from './pages/characters/CharactersPage';
 import CharacterCreationPage from './pages/characters/CharacterCreationPage';
 import CharacterSheetPage from './pages/characters/CharacterSheetPage';
 import DicePage from './pages/DicePage';
+import SettingsPage from './pages/SettingsPage';
 
 export const router = createBrowserRouter([
   {
@@ -32,6 +33,7 @@ export const router = createBrowserRouter([
       { path: 'characters/new', element: <CharacterCreationPage /> },
       { path: 'characters/:id', element: <CharacterSheetPage /> },
       { path: 'dice', element: <DicePage /> },
+      { path: 'settings', element: <SettingsPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },
