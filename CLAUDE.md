@@ -22,6 +22,8 @@ See [COMPONENT_RULES.md](./COMPONENT_RULES.md) for component-specific convention
 - `npm test` — run tests in watch mode
 - `npm run build` — type-check and build
 - `npm run lint` — lint with ESLint
+- `npm run format` — format all files with Prettier
+- `npm run format:check` — check formatting without writing (CI)
 
 ## Architecture
 
