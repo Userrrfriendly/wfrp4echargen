@@ -1,0 +1,11 @@
+node_modules
+dist
+build
+coverage
+*.log
+*.tmp
+.vscode
+.env
+.env.*
+package-lock.json
+public/data

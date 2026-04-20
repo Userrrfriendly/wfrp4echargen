@@ -3,11 +3,17 @@ import type React from 'react';
 import diabloFont from '../assets/fonts/diablo.ttf';
 
 declare module '@mui/material/styles' {
-  interface TypographyVariants { diablo: React.CSSProperties; }
-  interface TypographyVariantsOptions { diablo?: React.CSSProperties; }
+  interface TypographyVariants {
+    diablo: React.CSSProperties;
+  }
+  interface TypographyVariantsOptions {
+    diablo?: React.CSSProperties;
+  }
 }
 declare module '@mui/material/Typography' {
-  interface TypographyPropsVariantOverrides { diablo: true; }
+  interface TypographyPropsVariantOverrides {
+    diablo: true;
+  }
 }
 
 export const DIABLO_FONT_FAMILY = '"Diablo", serif';
