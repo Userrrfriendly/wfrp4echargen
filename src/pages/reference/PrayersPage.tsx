@@ -108,7 +108,7 @@ export default function PrayersPage() {
           isOptionEqualToValue={(a, b) => a.id === b.id}
           sx={{ minWidth: 220 }}
         />
-        <Typography variant="body2" color="text.secondary" sx={{ ml: 'auto' }}>
+        <Typography variant="body1" color="text.secondary" sx={{ ml: 'auto' }}>
           {filtered.length} {filtered.length === 1 ? 'prayer' : 'prayers'}
         </Typography>
       </Box>
@@ -138,7 +138,7 @@ export default function PrayersPage() {
                 </Box>
               </ListItemButton>
                 <Box sx={{ px: 2, pb: 2,  pt: 2, bgcolor: 'action.hover' }}>
-                  <Typography variant="body2" color="text.secondary">
+                  <Typography variant="body1" color="text.secondary">
                     {prayer.object.description || 'No description available.'}
                   </Typography>
                 </Box>

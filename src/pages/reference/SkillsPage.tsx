@@ -1,12 +1,26 @@
 import { useState, useMemo } from 'react';
 import {
-  Box, Typography, TextField, Select, MenuItem, FormControl, InputLabel,
-  Chip, Pagination, Skeleton, ListItemButton, Autocomplete,
+  Box,
+  Typography,
+  TextField,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel,
+  Chip,
+  Pagination,
+  Skeleton,
+  ListItemButton,
+  Autocomplete,
 } from '@mui/material';
 import { useSkills } from '../../hooks/useSkills';
 import { ATTRIBUTES, SKILL_TYPES, SOURCES } from '../../utils/gameData';
+import { useTheme } from '@mui/material/styles';
 
-const SOURCE_OPTIONS = Object.entries(SOURCES).map(([id, label]) => ({ id, label }));
+const SOURCE_OPTIONS = Object.entries(SOURCES).map(([id, label]) => ({
+  id,
+  label,
+}));
 
 const ITEMS_PER_PAGE = 30;
 
@@ -17,44 +31,78 @@ export default function SkillsPage() {
   const [sourceFilter, setSourceFilter] = useState<string | null>(null);
   const [page, setPage] = useState(1);
 
+  const theme = useTheme();
+  console.log('Loaded theme:', theme);
   const filtered = useMemo(() => {
     if (!skills) return [];
     return skills
-      .filter(s => {
-        if (search && !s.object.name.toLowerCase().includes(search.toLowerCase())) return false;
+      .filter((s) => {
+        if (
+          search &&
+          !s.object.name.toLowerCase().includes(search.toLowerCase())
+        )
+          return false;
         if (typeFilter !== '' && s.object.type !== typeFilter) return false;
-        if (sourceFilter && !Object.keys(s.object.source).includes(sourceFilter)) return false;
+        if (
+          sourceFilter &&
+          !Object.keys(s.object.source).includes(sourceFilter)
+        )
+          return false;
         return true;
       })
       .sort((a, b) => a.object.name.localeCompare(b.object.name));
   }, [skills, search, typeFilter, sourceFilter]);
 
   const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
-  const paged = filtered.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
+  const paged = filtered.slice(
+    (page - 1) * ITEMS_PER_PAGE,
+    page * ITEMS_PER_PAGE,
+  );
 
   if (isLoading) {
     return (
       <Box>
-        <Typography variant="h4" gutterBottom>Skills</Typography>
-        {Array.from({ length: 12 }).map((_, i) => <Skeleton key={i} height={56} sx={{ mb: 0.5 }} />)}
+        <Typography variant="h4" gutterBottom>
+          Skills
+        </Typography>
+        {Array.from({ length: 12 }).map((_, i) => (
+          <Skeleton key={i} height={56} sx={{ mb: 0.5 }} />
+        ))}
       </Box>
     );
   }
 
   if (error) {
-    return <Typography color="error">Failed to load skills: {(error as Error).message}</Typography>;
+    return (
+      <Typography color="error">
+        Failed to load skills: {(error as Error).message}
+      </Typography>
+    );
   }
 
   return (
     <Box>
-      <Typography variant="h4" gutterBottom>Skills</Typography>
+      <Typography variant="h4" gutterBottom>
+        Skills
+      </Typography>
 
-      <Box sx={{ display: 'flex', gap: 2, mb: 2, flexWrap: 'wrap', alignItems: 'center' }}>
+      <Box
+        sx={{
+          display: 'flex',
+          gap: 2,
+          mb: 2,
+          flexWrap: 'wrap',
+          alignItems: 'center',
+        }}
+      >
         <TextField
           size="small"
           placeholder="Search skills…"
           value={search}
-          onChange={e => { setSearch(e.target.value); setPage(1); }}
+          onChange={(e) => {
+            setSearch(e.target.value);
+            setPage(1);
+          }}
           sx={{ minWidth: 220 }}
         />
         <FormControl size="small" sx={{ minWidth: 140 }}>
@@ -62,70 +110,125 @@ export default function SkillsPage() {
           <Select
             value={typeFilter}
             label="Type"
-            onChange={e => { setTypeFilter(e.target.value as number | ''); setPage(1); }}
+            onChange={(e) => {
+              setTypeFilter(e.target.value as number | '');
+              setPage(1);
+            }}
           >
             <MenuItem value="">All Types</MenuItem>
             {Object.entries(SKILL_TYPES).map(([num, name]) => (
-              <MenuItem key={num} value={Number(num)}>{name}</MenuItem>
+              <MenuItem key={num} value={Number(num)}>
+                {name}
+              </MenuItem>
             ))}
           </Select>
         </FormControl>
         <Autocomplete
           size="small"
           options={SOURCE_OPTIONS}
-          value={SOURCE_OPTIONS.find(o => o.id === sourceFilter) ?? null}
-          onChange={(_, val) => { setSourceFilter(val?.id ?? null); setPage(1); }}
-          renderInput={params => <TextField {...params} label="Source" />}
+          value={SOURCE_OPTIONS.find((o) => o.id === sourceFilter) ?? null}
+          onChange={(_, val) => {
+            setSourceFilter(val?.id ?? null);
+            setPage(1);
+          }}
+          renderInput={(params) => <TextField {...params} label="Source" />}
           isOptionEqualToValue={(a, b) => a.id === b.id}
           sx={{ minWidth: 220 }}
         />
-        <Typography variant="body2" color="text.secondary" sx={{ ml: 'auto' }}>
+        <Typography variant="body1" color="text.secondary" sx={{ ml: 'auto' }}>
           {filtered.length} {filtered.length === 1 ? 'skill' : 'skills'}
         </Typography>
       </Box>
 
-      <Box sx={{ border: '1px solid', borderColor: 'divider', borderRadius: 1, overflow: 'hidden' }}>
-        {paged.map(skill => (
-          <Box key={skill.id} sx={{ borderBottom: '1px solid', borderColor: 'divider', '&:last-child': { borderBottom: 0 } }}>
-            <ListItemButton >
+      <Box
+        sx={{
+          border: '1px solid',
+          borderColor: 'divider',
+          borderRadius: 1,
+          overflow: 'hidden',
+        }}
+      >
+        {paged.map((skill) => (
+          <Box
+            key={skill.id}
+            sx={{
+              borderBottom: '1px solid',
+              borderColor: 'divider',
+              '&:last-child': { borderBottom: 0 },
+            }}
+          >
+            <ListItemButton>
               <Box sx={{ py: 0.25, width: '100%' }}>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexWrap: 'wrap' }}>
-                  <Typography variant="body1" sx={{ fontWeight: 500 }}>{skill.object.name}</Typography>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 1,
+                    flexWrap: 'wrap',
+                  }}
+                >
+                  <Typography variant="body1" sx={{ fontWeight: 500 }}>
+                    {skill.object.name}
+                  </Typography>
                   {skill.object.isGroup && (
-                    <Chip label="Group" size="small" variant="outlined" sx={{ opacity: 0.5 }} />
+                    <Chip
+                      label="Group"
+                      size="small"
+                      variant="outlined"
+                      sx={{ opacity: 0.5 }}
+                    />
                   )}
                 </Box>
-                <Box sx={{ display: 'flex', gap: 0.5, mt: 0.5, flexWrap: 'wrap' }}>
+                <Box
+                  sx={{ display: 'flex', gap: 0.5, mt: 0.5, flexWrap: 'wrap' }}
+                >
                   <Chip
-                    label={ATTRIBUTES[skill.object.attribute] ?? `Attr ${skill.object.attribute}`}
+                    label={
+                      ATTRIBUTES[skill.object.attribute] ??
+                      `Attr ${skill.object.attribute}`
+                    }
                     size="small"
                     color="primary"
                     variant="outlined"
                   />
                   <Chip
-                    label={SKILL_TYPES[skill.object.type] ?? `Type ${skill.object.type}`}
+                    label={
+                      SKILL_TYPES[skill.object.type] ??
+                      `Type ${skill.object.type}`
+                    }
                     size="small"
                     variant="outlined"
                     sx={{ opacity: 0.6 }}
                   />
                   {Object.entries(skill.object.source).map(([key, page]) => (
-                    <Chip key={key} label={`${SOURCES[key] ?? key}${page ? ` ${page}` : ''}`} size="small" variant="outlined" sx={{ opacity: 0.45 }} />
+                    <Chip
+                      key={key}
+                      label={`${SOURCES[key] ?? key}${page ? ` ${page}` : ''}`}
+                      size="small"
+                      variant="outlined"
+                      sx={{ opacity: 0.45 }}
+                    />
                   ))}
                 </Box>
               </Box>
             </ListItemButton>
-              <Box sx={{ px: 2, pb: 2,  pt: 2, bgcolor: 'action.hover' }}>
-                <Typography variant="body2" color="text.secondary">
-                  {skill.object.description || 'No description available.'}
-                </Typography>
-              </Box>
+            <Box sx={{ px: 2, pb: 2, pt: 2, bgcolor: 'action.hover' }}>
+              <Typography variant="body1" color="text.secondary">
+                {skill.object.description || 'No description available.'}
+              </Typography>
+            </Box>
           </Box>
         ))}
       </Box>
 
       {totalPages > 1 && (
         <Box sx={{ display: 'flex', justifyContent: 'center', mt: 3 }}>
-          <Pagination count={totalPages} page={page} onChange={(_, p) => setPage(p)} color="primary" />
+          <Pagination
+            count={totalPages}
+            page={page}
+            onChange={(_, p) => setPage(p)}
+            color="primary"
+          />
         </Box>
       )}
     </Box>

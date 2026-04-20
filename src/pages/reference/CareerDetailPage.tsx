@@ -68,7 +68,7 @@ function LevelPanel({ level, skillMap, talentMap }: LevelPanelProps) {
 
       {level.items && (
         <Section title="Starting Trappings">
-          <Typography variant="body2" color="text.secondary">{level.items}</Typography>
+          <Typography variant="body1" color="text.secondary">{level.items}</Typography>
         </Section>
       )}
     </Box>

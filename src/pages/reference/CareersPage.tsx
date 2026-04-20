@@ -98,7 +98,7 @@ export default function CareersPage() {
           isOptionEqualToValue={(a, b) => a.id === b.id}
           sx={{ minWidth: 220 }}
         />
-        <Typography variant="body2" color="text.secondary" sx={{ ml: 'auto' }}>
+        <Typography variant="body1" color="text.secondary" sx={{ ml: 'auto' }}>
           {filtered.length} {filtered.length === 1 ? 'career' : 'careers'}
         </Typography>
       </Box>

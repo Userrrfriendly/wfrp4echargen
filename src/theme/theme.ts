@@ -11,6 +11,7 @@ declare module '@mui/material/Typography' {
 }
 
 export const DIABLO_FONT_FAMILY = '"Diablo", serif';
+export const RALEWAY_FONT_FAMILY = '"Raleway", sans-serif';
 
 export const theme = createTheme({
   palette: {
@@ -27,6 +28,7 @@ export const theme = createTheme({
     },
   },
   typography: {
+    fontFamily: RALEWAY_FONT_FAMILY,
     h1: { fontFamily: DIABLO_FONT_FAMILY },
     h2: { fontFamily: DIABLO_FONT_FAMILY },
     h3: { fontFamily: DIABLO_FONT_FAMILY },

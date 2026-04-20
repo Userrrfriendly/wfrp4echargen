@@ -46,8 +46,11 @@ See [COMPONENT_RULES.md](./COMPONENT_RULES.md) for component-specific convention
 ## Styling
 
 - Use MUI `sx` prop or theme overrides — no inline `style` props, no CSS modules, no Tailwind
-- The Diablo font is available via `DIABLO_FONT_FAMILY` exported from `src/theme/theme.ts`
+- **Diablo** (`DIABLO_FONT_FAMILY`) — display/heading font, used for h1–h4. Self-hosted from `src/assets/fonts/`.
+- **Raleway** (`RALEWAY_FONT_FAMILY`) — secondary font, used for all body text and UI. Loaded from Google Fonts.
+- Both constants are exported from `src/theme/theme.ts`
 - All spacing, colours, and typography should reference the MUI theme
+- Always use `variant="body1"` for body text — never `variant="body2"`
 
 ## Testing
 

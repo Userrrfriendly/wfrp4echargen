@@ -22,14 +22,14 @@ function TrappingStats({ type, object }: { type: number; object: ReturnType<type
     ].filter(Boolean).join(' ') || '+0';
     return (
       <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', mt: 1 }}>
-        <Typography variant="body2" color="text.secondary">Dmg: {dmgStr}</Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body1" color="text.secondary">Dmg: {dmgStr}</Typography>
+        <Typography variant="body1" color="text.secondary">
           Reach: {MELEE_REACH[object.melee.reach] ?? object.melee.reach}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body1" color="text.secondary">
           Group: {MELEE_GROUPS[object.melee.group] ?? `G${object.melee.group}`}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body1" color="text.secondary">
           Hands: {object.melee.hands === 2 ? 'Two-handed' : object.melee.hands === 1 ? 'One-handed' : '—'}
         </Typography>
       </Box>
@@ -42,12 +42,12 @@ function TrappingStats({ type, object }: { type: number; object: ReturnType<type
     ].filter(Boolean).join(' ') || '+0';
     return (
       <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', mt: 1 }}>
-        <Typography variant="body2" color="text.secondary">Dmg: {dmgStr}</Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body1" color="text.secondary">Dmg: {dmgStr}</Typography>
+        <Typography variant="body1" color="text.secondary">
           Rng: {object.ranged.rng > 0 ? `${object.ranged.rng}` : '—'}
           {object.ranged.rngSbMult > 0 ? ` (+${object.ranged.rngSbMult}×SB)` : ''}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body1" color="text.secondary">
           Group: {RANGED_GROUPS[object.ranged.group] ?? `G${object.ranged.group}`}
         </Typography>
       </Box>
@@ -57,8 +57,8 @@ function TrappingStats({ type, object }: { type: number; object: ReturnType<type
     const locs = object.armour.location.map(l => ARMOUR_LOCATIONS[l] ?? `Loc${l}`).join(', ');
     return (
       <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', mt: 1 }}>
-        <Typography variant="body2" color="text.secondary">AP: {object.armour.points}</Typography>
-        {locs && <Typography variant="body2" color="text.secondary">Covers: {locs}</Typography>}
+        <Typography variant="body1" color="text.secondary">AP: {object.armour.points}</Typography>
+        {locs && <Typography variant="body1" color="text.secondary">Covers: {locs}</Typography>}
       </Box>
     );
   }
@@ -134,7 +134,7 @@ export default function TrappingsPage() {
           isOptionEqualToValue={(a, b) => a.id === b.id}
           sx={{ minWidth: 220 }}
         />
-        <Typography variant="body2" color="text.secondary" sx={{ ml: 'auto' }}>
+        <Typography variant="body1" color="text.secondary" sx={{ ml: 'auto' }}>
           {filtered.length} {filtered.length === 1 ? 'item' : 'items'}
         </Typography>
       </Box>
@@ -150,11 +150,11 @@ export default function TrappingsPage() {
                 <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 1, flexWrap: 'wrap' }}>
                   <Typography variant="body1" sx={{ fontWeight: 500 }}>{item.object.name}</Typography>
                   <Box sx={{ display: 'flex', gap: 0.5, alignItems: 'center' }}>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography variant="body1" color="text.secondary">
                       {formatPrice(item.object.price)}
                     </Typography>
                     {item.object.enc > 0 && (
-                      <Typography variant="body2" color="text.secondary">
+                      <Typography variant="body1" color="text.secondary">
                         Enc {item.object.enc}
                       </Typography>
                     )}
@@ -183,7 +183,7 @@ export default function TrappingsPage() {
               </Box>
             </ListItemButton>
               <Box sx={{ px: 2, pb: 2, pt: 2, bgcolor: 'action.hover' }}>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body1" color="text.secondary">
                   {item.object.description || 'No description available.'}
                 </Typography>
               </Box>
