@@ -1,6 +1,6 @@
 // 1-based; 0 = no governing attribute
 export const ATTRIBUTES: Record<number, string> = {
-  0: '—',// No governing attribute
+  0: '—', // No governing attribute
   1: 'WS',
   2: 'BS',
   3: 'S',
@@ -47,9 +47,7 @@ export const SOURCES: Record<string, string> = {
   40: "High Elves Player's Guide",
 
   47: 'Power Behind the Throne (Companion)',
-
-
-};  
+};
 export const SPECIES: Record<number, string> = {
   0: 'Human',
   1: 'Halfling',
@@ -168,7 +166,7 @@ export const MAGIC_LORES: Record<number, string> = {
 
 export function loreName(labels: number[]): string {
   if (labels.length === 0) return '—';
-  return labels.map(l => MAGIC_LORES[l] ?? `Lore ${l}`).join(' / ');
+  return labels.map((l) => MAGIC_LORES[l] ?? `Lore ${l}`).join(' / ');
 }
 
 export function formatPrice(brass: number): string {

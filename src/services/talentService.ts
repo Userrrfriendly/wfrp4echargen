@@ -10,10 +10,10 @@ export async function fetchTalents(): Promise<Talent[]> {
 
 export async function fetchTalentById(id: string): Promise<Talent | undefined> {
   const talents = await fetchTalents();
-  return talents.find(t => t.id === id);
+  return talents.find((t) => t.id === id);
 }
 
 export async function fetchTalentsByIds(ids: string[]): Promise<Talent[]> {
   const talents = await fetchTalents();
-  return talents.filter(t => ids.includes(t.id));
+  return talents.filter((t) => ids.includes(t.id));
 }

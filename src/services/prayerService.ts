@@ -10,5 +10,5 @@ export async function fetchPrayers(): Promise<Prayer[]> {
 
 export async function fetchPrayerById(id: string): Promise<Prayer | undefined> {
   const prayers = await fetchPrayers();
-  return prayers.find(p => p.id === id);
+  return prayers.find((p) => p.id === id);
 }

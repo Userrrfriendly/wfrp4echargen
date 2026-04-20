@@ -1,5 +1,13 @@
 import { useState } from 'react';
-import { AppBar, Box, IconButton, Toolbar, Typography, useMediaQuery, useTheme } from '@mui/material';
+import {
+  AppBar,
+  Box,
+  IconButton,
+  Toolbar,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material';
 import { Outlet } from 'react-router-dom';
 import NavDrawer from './NavDrawer';
 
@@ -18,7 +26,11 @@ export default function AppLayout() {
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <AppBar position="fixed" elevation={0} sx={{ zIndex: (t) => t.zIndex.drawer + 1 }}>
+      <AppBar
+        position="fixed"
+        elevation={0}
+        sx={{ zIndex: (t) => t.zIndex.drawer + 1 }}
+      >
         <Toolbar>
           {isMobile && (
             <IconButton

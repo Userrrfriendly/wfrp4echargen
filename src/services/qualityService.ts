@@ -8,7 +8,9 @@ export async function fetchQualities(): Promise<Quality[]> {
   return json.data;
 }
 
-export async function fetchQualityById(id: string): Promise<Quality | undefined> {
+export async function fetchQualityById(
+  id: string,
+): Promise<Quality | undefined> {
   const qualities = await fetchQualities();
-  return qualities.find(q => q.id === id);
+  return qualities.find((q) => q.id === id);
 }

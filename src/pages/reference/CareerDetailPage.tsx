@@ -1,12 +1,24 @@
 import { useState, useMemo } from 'react';
 import {
-  Box, Typography, Chip, Button, Tabs, Tab, Skeleton, Divider,
+  Box,
+  Typography,
+  Chip,
+  Button,
+  Tabs,
+  Tab,
+  Skeleton,
+  Divider,
 } from '@mui/material';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useCareer } from '../../hooks/useCareers';
 import { useSkills } from '../../hooks/useSkills';
 import { useTalents } from '../../hooks/useTalents';
-import { CAREER_CLASSES, SPECIES, ATTRIBUTES, STATUS_TIERS } from '../../utils/gameData';
+import {
+  CAREER_CLASSES,
+  SPECIES,
+  ATTRIBUTES,
+  STATUS_TIERS,
+} from '../../utils/gameData';
 import type { CareerLevelData } from '../../types';
 
 interface LevelPanelProps {
@@ -15,10 +27,20 @@ interface LevelPanelProps {
   talentMap: Record<string, string>;
 }
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
+function Section({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
   return (
     <Box sx={{ mb: 2.5 }}>
-      <Typography variant="overline" color="text.secondary" sx={{ letterSpacing: 1 }}>
+      <Typography
+        variant="overline"
+        color="text.secondary"
+        sx={{ letterSpacing: 1 }}
+      >
         {title}
       </Typography>
       <Box sx={{ mt: 0.5 }}>{children}</Box>
@@ -40,7 +62,13 @@ function LevelPanel({ level, skillMap, talentMap }: LevelPanelProps) {
         <Section title="Characteristic Advances">
           <Box sx={{ display: 'flex', gap: 0.5, flexWrap: 'wrap' }}>
             {level.attributes.map((a, i) => (
-              <Chip key={i} label={ATTRIBUTES[a] ?? String(a)} size="small" color="primary" variant="outlined" />
+              <Chip
+                key={i}
+                label={ATTRIBUTES[a] ?? String(a)}
+                size="small"
+                color="primary"
+                variant="outlined"
+              />
             ))}
           </Box>
         </Section>
@@ -49,7 +77,7 @@ function LevelPanel({ level, skillMap, talentMap }: LevelPanelProps) {
       {level.skills.length > 0 && (
         <Section title="Skills">
           <Box sx={{ display: 'flex', gap: 0.5, flexWrap: 'wrap' }}>
-            {level.skills.map(id => (
+            {level.skills.map((id) => (
               <Chip key={id} label={skillMap[id] ?? id} size="small" />
             ))}
           </Box>
@@ -59,8 +87,14 @@ function LevelPanel({ level, skillMap, talentMap }: LevelPanelProps) {
       {level.talents.length > 0 && (
         <Section title="Talents">
           <Box sx={{ display: 'flex', gap: 0.5, flexWrap: 'wrap' }}>
-            {level.talents.map(id => (
-              <Chip key={id} label={talentMap[id] ?? id} size="small" color="secondary" variant="outlined" />
+            {level.talents.map((id) => (
+              <Chip
+                key={id}
+                label={talentMap[id] ?? id}
+                size="small"
+                color="secondary"
+                variant="outlined"
+              />
             ))}
           </Box>
         </Section>
@@ -68,7 +102,9 @@ function LevelPanel({ level, skillMap, talentMap }: LevelPanelProps) {
 
       {level.items && (
         <Section title="Starting Trappings">
-          <Typography variant="body1" color="text.secondary">{level.items}</Typography>
+          <Typography variant="body1" color="text.secondary">
+            {level.items}
+          </Typography>
         </Section>
       )}
     </Box>
@@ -88,12 +124,12 @@ export default function CareerDetailPage() {
 
   const skillMap = useMemo<Record<string, string>>(() => {
     if (!allSkills) return {};
-    return Object.fromEntries(allSkills.map(s => [s.id, s.object.name]));
+    return Object.fromEntries(allSkills.map((s) => [s.id, s.object.name]));
   }, [allSkills]);
 
   const talentMap = useMemo<Record<string, string>>(() => {
     if (!allTalents) return {};
-    return Object.fromEntries(allTalents.map(t => [t.id, t.object.name]));
+    return Object.fromEntries(allTalents.map((t) => [t.id, t.object.name]));
   }, [allTalents]);
 
   if (isLoading) {
@@ -111,21 +147,30 @@ export default function CareerDetailPage() {
     return (
       <Box>
         <Typography gutterBottom>Career not found.</Typography>
-        <Button onClick={() => navigate('/reference/careers')}>← Back to Careers</Button>
+        <Button onClick={() => navigate('/reference/careers')}>
+          ← Back to Careers
+        </Button>
       </Box>
     );
   }
 
   const { object: data } = career;
-  const levels = [data.level1, data.level2, data.level3, data.level4].filter(l => l.exists);
+  const levels = [data.level1, data.level2, data.level3, data.level4].filter(
+    (l) => l.exists,
+  );
 
   return (
     <Box sx={{ maxWidth: 800 }}>
-      <Button onClick={() => navigate('/reference/careers')} sx={{ mb: 2, px: 0 }}>
+      <Button
+        onClick={() => navigate('/reference/careers')}
+        sx={{ mb: 2, px: 0 }}
+      >
         ← Careers
       </Button>
 
-      <Typography variant="h4" gutterBottom>{data.name}</Typography>
+      <Typography variant="h4" gutterBottom>
+        {data.name}
+      </Typography>
 
       <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', mb: 1.5 }}>
         <Chip
@@ -133,8 +178,13 @@ export default function CareerDetailPage() {
           color="primary"
           size="small"
         />
-        {data.species.map(s => (
-          <Chip key={s} label={SPECIES[s] ?? `Species ${s}`} size="small" variant="outlined" />
+        {data.species.map((s) => (
+          <Chip
+            key={s}
+            label={SPECIES[s] ?? `Species ${s}`}
+            size="small"
+            variant="outlined"
+          />
         ))}
       </Box>
 
@@ -161,7 +211,11 @@ export default function CareerDetailPage() {
       {levels.map((level, i) => (
         <Box key={i} role="tabpanel" hidden={tab !== i}>
           {tab === i && (
-            <LevelPanel level={level} skillMap={skillMap} talentMap={talentMap} />
+            <LevelPanel
+              level={level}
+              skillMap={skillMap}
+              talentMap={talentMap}
+            />
           )}
         </Box>
       ))}

@@ -10,5 +10,5 @@ export async function fetchTraits(): Promise<Trait[]> {
 
 export async function fetchTraitById(id: string): Promise<Trait | undefined> {
   const traits = await fetchTraits();
-  return traits.find(t => t.id === id);
+  return traits.find((t) => t.id === id);
 }

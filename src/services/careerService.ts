@@ -10,5 +10,5 @@ export async function fetchCareers(): Promise<Career[]> {
 
 export async function fetchCareerById(id: string): Promise<Career | undefined> {
   const careers = await fetchCareers();
-  return careers.find(c => c.id === id);
+  return careers.find((c) => c.id === id);
 }

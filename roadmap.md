@@ -2,17 +2,18 @@
 
 ## Tech Stack
 
-| Concern | Choice | Notes |
-|---|---|---|
-| Framework | React 19 + TypeScript + Vite | Already configured |
-| UI | MUI v9 | Already installed |
-| Routing | React Router v7 | Nested routes, lazy loading |
-| Server state | TanStack Query v5 | Caching, loading/error states; trivial swap from JSON files to real API |
-| Client state | Zustand | Character sheet, session, dice state |
-| Forms | React Hook Form | Character creation wizards |
-| Testing | Vitest + React Testing Library | Co-located with Vite |
+| Concern      | Choice                         | Notes                                                                   |
+| ------------ | ------------------------------ | ----------------------------------------------------------------------- |
+| Framework    | React 19 + TypeScript + Vite   | Already configured                                                      |
+| UI           | MUI v9                         | Already installed                                                       |
+| Routing      | React Router v7                | Nested routes, lazy loading                                             |
+| Server state | TanStack Query v5              | Caching, loading/error states; trivial swap from JSON files to real API |
+| Client state | Zustand                        | Character sheet, session, dice state                                    |
+| Forms        | React Hook Form                | Character creation wizards                                              |
+| Testing      | Vitest + React Testing Library | Co-located with Vite                                                    |
 
 ### API-readiness pattern
+
 All data is loaded through service functions in `src/services/`. Each function does one `fetch()` call. The **only** change needed when a real backend exists is the URL inside that function — all hooks and components are unaffected.
 
 ---

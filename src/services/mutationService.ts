@@ -8,7 +8,9 @@ export async function fetchMutations(): Promise<Mutation[]> {
   return json.data;
 }
 
-export async function fetchMutationById(id: string): Promise<Mutation | undefined> {
+export async function fetchMutationById(
+  id: string,
+): Promise<Mutation | undefined> {
   const mutations = await fetchMutations();
-  return mutations.find(m => m.id === id);
+  return mutations.find((m) => m.id === id);
 }

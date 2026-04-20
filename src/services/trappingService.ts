@@ -8,12 +8,14 @@ export async function fetchTrappings(): Promise<Trapping[]> {
   return json.data;
 }
 
-export async function fetchTrappingById(id: string): Promise<Trapping | undefined> {
+export async function fetchTrappingById(
+  id: string,
+): Promise<Trapping | undefined> {
   const trappings = await fetchTrappings();
-  return trappings.find(t => t.id === id);
+  return trappings.find((t) => t.id === id);
 }
 
 export async function fetchTrappingsByIds(ids: string[]): Promise<Trapping[]> {
   const trappings = await fetchTrappings();
-  return trappings.filter(t => ids.includes(t.id));
+  return trappings.filter((t) => ids.includes(t.id));
 }

@@ -1,5 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchTalents, fetchTalentById, fetchTalentsByIds } from '../services/talentService';
+import {
+  fetchTalents,
+  fetchTalentById,
+  fetchTalentsByIds,
+} from '../services/talentService';
 
 export const talentKeys = {
   all: ['talents'] as const,

@@ -1,5 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchTrappings, fetchTrappingById, fetchTrappingsByIds } from '../services/trappingService';
+import {
+  fetchTrappings,
+  fetchTrappingById,
+  fetchTrappingsByIds,
+} from '../services/trappingService';
 
 export const trappingKeys = {
   all: ['trappings'] as const,

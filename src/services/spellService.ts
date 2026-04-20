@@ -10,5 +10,5 @@ export async function fetchSpells(): Promise<Spell[]> {
 
 export async function fetchSpellById(id: string): Promise<Spell | undefined> {
   const spells = await fetchSpells();
-  return spells.find(s => s.id === id);
+  return spells.find((s) => s.id === id);
 }

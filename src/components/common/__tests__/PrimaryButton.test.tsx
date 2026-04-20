@@ -8,7 +8,9 @@ describe('PrimaryButton', () => {
 
     // getByRole finds the element by its ARIA role — buttons have role="button"
     // This is the preferred query: it tests what a screen reader would see
-    expect(screen.getByRole('button', { name: 'Click me' })).toBeInTheDocument();
+    expect(
+      screen.getByRole('button', { name: 'Click me' }),
+    ).toBeInTheDocument();
   });
 
   it('calls onClick when clicked', async () => {
@@ -34,6 +36,8 @@ describe('PrimaryButton', () => {
     // Useful when the button has an icon but no visible text
     render(<PrimaryButton aria-label="Close dialog" />);
 
-    expect(screen.getByRole('button', { name: 'Close dialog' })).toBeInTheDocument();
+    expect(
+      screen.getByRole('button', { name: 'Close dialog' }),
+    ).toBeInTheDocument();
   });
 });

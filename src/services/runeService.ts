@@ -10,5 +10,5 @@ export async function fetchRunes(): Promise<Rune[]> {
 
 export async function fetchRuneById(id: string): Promise<Rune | undefined> {
   const runes = await fetchRunes();
-  return runes.find(r => r.id === id);
+  return runes.find((r) => r.id === id);
 }

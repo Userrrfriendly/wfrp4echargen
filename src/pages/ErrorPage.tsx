@@ -27,8 +27,12 @@ export default function ErrorPage() {
         textAlign: 'center',
       }}
     >
-      <Typography variant="h2" color="primary">{status}</Typography>
-      <Typography variant="h6" color="text.secondary">{message}</Typography>
+      <Typography variant="h2" color="primary">
+        {status}
+      </Typography>
+      <Typography variant="h6" color="text.secondary">
+        {message}
+      </Typography>
       <Button component={Link as React.ElementType} to="/" variant="contained">
         Back to Home
       </Button>

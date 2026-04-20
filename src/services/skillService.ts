@@ -10,10 +10,10 @@ export async function fetchSkills(): Promise<Skill[]> {
 
 export async function fetchSkillById(id: string): Promise<Skill | undefined> {
   const skills = await fetchSkills();
-  return skills.find(s => s.id === id);
+  return skills.find((s) => s.id === id);
 }
 
 export async function fetchSkillsByIds(ids: string[]): Promise<Skill[]> {
   const skills = await fetchSkills();
-  return skills.filter(s => ids.includes(s.id));
+  return skills.filter((s) => ids.includes(s.id));
 }

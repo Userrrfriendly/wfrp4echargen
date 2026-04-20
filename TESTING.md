@@ -2,12 +2,12 @@
 
 ## Stack
 
-| Package | Role |
-|---|---|
-| **Vitest** | Test runner. Reuses `vite.config.ts` — no separate Babel/transform setup needed. Jest-compatible API. |
-| **happy-dom** | Simulates a browser (DOM, `document`, `window`) inside Node.js so React components can be rendered and queried. |
-| **@testing-library/react** | Renders components and provides query helpers (`getByRole`, `getByText`, etc.). Tests from the user's perspective, not implementation details. |
-| **@testing-library/jest-dom** | Adds readable DOM matchers: `toBeInTheDocument()`, `toBeDisabled()`, `toHaveTextContent()`, etc. |
+| Package                         | Role                                                                                                                                                                         |
+| ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Vitest**                      | Test runner. Reuses `vite.config.ts` — no separate Babel/transform setup needed. Jest-compatible API.                                                                        |
+| **happy-dom**                   | Simulates a browser (DOM, `document`, `window`) inside Node.js so React components can be rendered and queried.                                                              |
+| **@testing-library/react**      | Renders components and provides query helpers (`getByRole`, `getByText`, etc.). Tests from the user's perspective, not implementation details.                               |
+| **@testing-library/jest-dom**   | Adds readable DOM matchers: `toBeInTheDocument()`, `toBeDisabled()`, `toHaveTextContent()`, etc.                                                                             |
 | **@testing-library/user-event** | Simulates real user interactions (click, type, keyboard). More accurate than the basic `fireEvent` — fires focus, pointer, and keyboard events in the correct browser order. |
 
 > **Why happy-dom and not jsdom?** `jsdom@27` introduced ESM-only CSS dependencies that break in Vitest's worker process. `happy-dom` is faster and has no ESM compatibility issues.
@@ -48,11 +48,13 @@ Vitest automatically finds any file matching `**/*.{test,spec}.{ts,tsx}`.
 ## What to Test
 
 **Do test:**
+
 - Interactive components (render, user events, accessibility attributes)
 - Hooks with non-trivial logic (data transformation, derived state)
 - Service/utility functions with conditional logic or edge cases
 
 **Don't test:**
+
 - Simple wrappers that just forward props (no logic = no test value)
 - MUI internals or third-party library behaviour
 - Implementation details (internal state, private methods)
@@ -67,13 +69,13 @@ Always prefer `getByRole` — it targets elements the same way a screen reader w
 
 ```tsx
 // Good — tests what the user and screen reader see
-screen.getByRole('button', { name: 'Save' })
-screen.getByRole('heading', { name: 'Character Sheet' })
-screen.getByRole('textbox', { name: 'Character Name' })
+screen.getByRole('button', { name: 'Save' });
+screen.getByRole('heading', { name: 'Character Sheet' });
+screen.getByRole('textbox', { name: 'Character Name' });
 
 // Avoid — couples tests to implementation details
-screen.getByTestId('save-button')
-screen.getByClassName('MuiButton-root')
+screen.getByTestId('save-button');
+screen.getByClassName('MuiButton-root');
 ```
 
 ### Simulating User Interactions
@@ -106,7 +108,7 @@ expect(handleClick).not.toHaveBeenCalled();
 
 ### Testing Disabled State
 
-MUI applies `pointer-events: none` to disabled buttons. `userEvent` correctly refuses to click them (matching real browser behaviour), so test the disabled *attribute* rather than trying to click:
+MUI applies `pointer-events: none` to disabled buttons. `userEvent` correctly refuses to click them (matching real browser behaviour), so test the disabled _attribute_ rather than trying to click:
 
 ```tsx
 // Correct
