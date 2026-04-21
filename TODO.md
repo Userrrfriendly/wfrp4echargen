@@ -9,6 +9,7 @@
 -in the career Details lots of changes...
 
 - for trappings (and others) add mouse over tooltip
+- The mutations have stat bonus/penalty chip BUT THE TALENTS DONT HAVE IT
 - try emojis eg for trappings encoubrance could have a str emoji, also add somewhere an option to hide emojis (First global store implementation -> UI store)
 - The Autocomplete with the sources should only show the relevant options
   - Alternatively just filter out all items that end with '???' (the unnamed ones)

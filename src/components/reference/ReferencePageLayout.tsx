@@ -18,6 +18,44 @@ import { SOURCE_OPTIONS } from '../../utils/gameData';
 
 type ReferenceItem = { id: string; object: { description: string } };
 
+interface SearchInputProps {
+  committedValue: string;
+  onChange: (value: string) => void;
+  placeholder: string;
+  ariaLabel: string;
+}
+
+function SearchInput({
+  committedValue,
+  onChange,
+  placeholder,
+  ariaLabel,
+}: SearchInputProps) {
+  const [inputValue, setInputValue] = useState(committedValue);
+  const onChangeRef = useRef(onChange);
+  onChangeRef.current = onChange;
+
+  useEffect(() => {
+    setInputValue(committedValue);
+  }, [committedValue]);
+
+  useEffect(() => {
+    const id = setTimeout(() => onChangeRef.current(inputValue.trim()), 300);
+    return () => clearTimeout(id);
+  }, [inputValue]);
+
+  return (
+    <TextField
+      size="small"
+      placeholder={placeholder}
+      value={inputValue}
+      onChange={(e) => setInputValue(e.target.value)}
+      slotProps={{ htmlInput: { 'aria-label': ariaLabel } }}
+      sx={{ minWidth: 220 }}
+    />
+  );
+}
+
 interface ReferencePageLayoutProps<T extends ReferenceItem> {
   title: string;
   /** Pre-filtered, pre-paginated items for the current page. */
@@ -91,24 +129,6 @@ export default function ReferencePageLayout<T extends ReferenceItem>({
   renderItem,
   onItemClick,
 }: ReferencePageLayoutProps<T>) {
-  const [inputValue, setInputValue] = useState(search);
-  const onSearchChangeRef = useRef(onSearchChange);
-  onSearchChangeRef.current = onSearchChange;
-
-  // Sync display value if the parent resets search externally (e.g. clearing all filters)
-  useEffect(() => {
-    setInputValue(search);
-  }, [search]);
-
-  // Debounce: wait 300ms after the user stops typing before filtering
-  useEffect(() => {
-    const id = setTimeout(
-      () => onSearchChangeRef.current(inputValue.trim()),
-      300,
-    );
-    return () => clearTimeout(id);
-  }, [inputValue]);
-
   if (isLoading) {
     return (
       <Box
@@ -149,15 +169,11 @@ export default function ReferencePageLayout<T extends ReferenceItem>({
           alignItems: 'center',
         }}
       >
-        <TextField
-          size="small"
+        <SearchInput
+          committedValue={search}
+          onChange={onSearchChange}
           placeholder={`Search ${title.toLowerCase()}…`}
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          slotProps={{
-            htmlInput: { 'aria-label': `Search ${title.toLowerCase()}` },
-          }}
-          sx={{ minWidth: 220 }}
+          ariaLabel={`Search ${title.toLowerCase()}`}
         />
         {extraFilters}
         <Autocomplete
