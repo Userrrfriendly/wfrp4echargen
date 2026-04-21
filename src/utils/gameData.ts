@@ -75,8 +75,8 @@ export const SPECIES: Record<number, string> = {
 };
 
 export const SKILL_TYPES: Record<number, string> = {
-  0: 'Advanced',
-  1: 'Basic',
+  0: 'Basic',
+  1: 'Advanced',
 };
 
 export const TRAPPING_TYPES: Record<number, string> = {
