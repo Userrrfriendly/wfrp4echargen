@@ -25,4 +25,7 @@
 - - If unsure about a convention, ask for clarification or add a TODO comment.
 - - All new components must be reviewed for rule compliance.
 - - Chip's text must always have opacity 0.95
+- - Page components whose content can overflow the viewport must set `height: '100%'` and
+    `overflowY: 'auto'` on their root element — the main layout container is `overflow: hidden`.
+    See the **App-shell scroll pattern** section in CLAUDE.md.
     \*/

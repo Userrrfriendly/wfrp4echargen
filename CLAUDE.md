@@ -41,6 +41,22 @@ git config blame.ignoreRevsFile .git-blame-ignore-revs
 - **Services** in `src/services/` handle data access logic (not "repository pattern")
 - Keep business logic out of components — put it in services or hooks
 
+### App-shell scroll pattern
+
+`<Box component="main">` in `AppLayout` uses the **app-shell pattern**: it is fixed-height
+(`height: calc(100dvh - APP_BAR_HEIGHT)`) with `overflow: hidden`. The page itself never
+scrolls — only explicit inner containers do.
+
+**Rule:** Any page whose content can exceed the viewport height **must** opt in to scrolling
+by setting `height: '100%'` and `overflowY: 'auto'` on its root element.
+
+Reference pages are handled automatically by `ReferencePageLayout` (its `#scrollable-container`
+list has `flex: 1, overflowY: auto`). All other pages (character sheets, forms, long detail
+pages) must manage this themselves.
+
+`APP_BAR_HEIGHT` is exported from `src/components/layout/constants.ts` — use it instead of
+hardcoding `64px`.
+
 ## State Management
 
 - Use **Zustand** for UI and client-only state
@@ -80,3 +96,4 @@ See [TESTING.md](./TESTING.md) for the full guide — stack, patterns, examples,
 - Avoid magic strings and numbers — use constants or enums
 - No direct DOM manipulation — use React patterns
 - All code must pass ESLint and Prettier before committing
+- Debouncing belongs to the component that owns the input — never debounce a callback in the parent

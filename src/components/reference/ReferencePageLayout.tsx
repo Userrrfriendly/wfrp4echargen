@@ -41,6 +41,12 @@ interface ReferencePageLayoutProps<T extends ReferenceItem> {
  * item list container, description area, and pagination.
  * Each page owns its own filtering logic and passes pre-filtered items.
  *
+ * ## Search debouncing
+ * The search input is debounced internally (300 ms). `onSearchChange` is called
+ * only after the user stops typing — do NOT add a debounce in the parent.
+ * The `search` prop holds the last committed (debounced) value; if the parent
+ * resets it externally (e.g. clearing all filters) the input syncs automatically.
+ *
  * @example
  * <ReferencePageLayout
  *   title="Skills"
@@ -99,7 +105,11 @@ export default function ReferencePageLayout<T extends ReferenceItem>({
 
   if (isLoading) {
     return (
-      <Box aria-busy="true" aria-label={`Loading ${title.toLowerCase()}`}>
+      <Box
+        aria-busy="true"
+        aria-label={`Loading ${title.toLowerCase()}`}
+        sx={{ height: '100%', overflowY: 'auto' }}
+      >
         <Typography variant="h4" gutterBottom>
           {title}
         </Typography>
@@ -119,7 +129,7 @@ export default function ReferencePageLayout<T extends ReferenceItem>({
   }
 
   return (
-    <Box>
+    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
       <Typography variant="h4" gutterBottom>
         {title}
       </Typography>
@@ -138,7 +148,9 @@ export default function ReferencePageLayout<T extends ReferenceItem>({
           placeholder={`Search ${title.toLowerCase()}…`}
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          slotProps={{ htmlInput: { 'aria-label': `Search ${title.toLowerCase()}` } }}
+          slotProps={{
+            htmlInput: { 'aria-label': `Search ${title.toLowerCase()}` },
+          }}
           sx={{ minWidth: 220 }}
         />
         {extraFilters}
@@ -162,17 +174,22 @@ export default function ReferencePageLayout<T extends ReferenceItem>({
       </Box>
 
       <Box
+        id="scrollable-container"
         component="ul"
         sx={{
+          flex: 1,
+          overflowY: 'auto',
           listStyle: 'none',
           p: 0,
           m: 0,
           borderRadius: 1,
-          overflow: 'hidden',
         }}
       >
         {items.length === 0 ? (
-          <Box component="li" sx={{ listStyle: 'none', py: 4, textAlign: 'center' }}>
+          <Box
+            component="li"
+            sx={{ listStyle: 'none', py: 4, textAlign: 'center' }}
+          >
             <Typography variant="body1" color="text.secondary">
               No {resultLabel}s found.
             </Typography>

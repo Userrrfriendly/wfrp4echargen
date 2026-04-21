@@ -10,6 +10,7 @@ import {
 } from '@mui/material';
 import { Outlet } from 'react-router-dom';
 import NavDrawer from './NavDrawer';
+import { APP_BAR_HEIGHT } from './constants';
 import { useUiStore } from '../../stores/uiStore';
 
 function HamburgerIcon() {
@@ -92,9 +93,11 @@ export default function AppLayout() {
         sx={{
           flexGrow: 1,
           p: { xs: 2, sm: 3 },
-          minHeight: '100vh',
-          mt: '64px',
-          overflow: 'auto',
+          // App-shell pattern: fixed-height viewport so only page internals scroll.
+          // 100dvh (dynamic viewport height) correctly excludes the iOS Safari address bar.
+          height: `calc(100dvh - ${APP_BAR_HEIGHT}px)`,
+          mt: `${APP_BAR_HEIGHT}px`,
+          overflow: 'hidden',
           minWidth: 0,
         }}
       >

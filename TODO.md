@@ -2,6 +2,8 @@
 
 ---- Active ----
 
+1. order VC
+
 ---
 
 -in the career lots of changes...
@@ -16,7 +18,3 @@
 - For skills and trappings there could be a reusable component, also it should be linkable, so we will need proper routing, also maybe add some constant for routes.
 
 RULES:
-
-//for source search:
-"source": {
-"28":
