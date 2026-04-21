@@ -7,7 +7,6 @@ import {
   Skeleton,
   TextField,
   Typography,
-  useTheme,
 } from '@mui/material';
 import { SOURCE_OPTIONS } from '../../utils/gameData';
 
@@ -77,8 +76,6 @@ export default function ReferencePageLayout<T extends ReferenceItem>({
   extraFilters,
   renderItem,
 }: ReferencePageLayoutProps<T>) {
-  const theme = useTheme();
-  console.log(theme);
   if (isLoading) {
     return (
       <Box>
@@ -147,7 +144,7 @@ export default function ReferencePageLayout<T extends ReferenceItem>({
         {items.map((item) => (
           <Paper
             key={item.id}
-            sx={{
+            sx={(theme) => ({
               boxShadow: 2,
               margin: '0.5rem 0',
               '&:first-of-type': { mt: 0 },
@@ -160,14 +157,13 @@ export default function ReferencePageLayout<T extends ReferenceItem>({
                 border: `1px solid ${theme.palette.divider}`,
               },
               '&:last-child': { borderBottom: 0 },
-            }}
+            })}
           >
             <Box
-              sx={(theme) => ({
+              sx={{
                 px: 2,
                 py: 1.5,
-                // backgroundColor: theme.palette.grey[900],
-              })}
+              }}
             >
               {renderItem(item)}
             </Box>

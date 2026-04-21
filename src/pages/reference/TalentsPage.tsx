@@ -2,6 +2,13 @@ import { useState, useMemo } from 'react';
 import { Box, Chip, Typography } from '@mui/material';
 import { useTalents } from '../../hooks/useTalents';
 import { ATTRIBUTES, ITEMS_PER_PAGE } from '../../utils/gameData';
+
+function resolveMaxRank(attribute: number, maxRank: number): string | null {
+  if (attribute > 0) return `${ATTRIBUTES[attribute] ?? `Attr ${attribute}`} Bonus`;
+  if (maxRank === 0) return null;
+  if (maxRank >= 99) return '∞';
+  return String(maxRank);
+}
 import ReferencePageLayout from '../../components/reference/ReferencePageLayout';
 import SourceChips from '../../components/reference/SourceChips';
 
@@ -88,25 +95,17 @@ export default function TalentsPage() {
               alignItems: 'center',
             }}
           >
-            {talent.object.attribute > 0 && (
-              <Chip
-                label={
-                  ATTRIBUTES[talent.object.attribute] ??
-                  `Attr ${talent.object.attribute}`
-                }
-                size="small"
-                color="primary"
-                variant="outlined"
-              />
-            )}
-            {talent.object.maxRank > 0 && (
-              <Chip
-                label={`Max ${talent.object.maxRank === 999 ? '∞' : talent.object.maxRank}`}
-                size="small"
-                variant="outlined"
-                sx={{ opacity: 0.95 }}
-              />
-            )}
+            {(() => {
+              const label = resolveMaxRank(talent.object.attribute, talent.object.maxRank);
+              return label ? (
+                <Chip
+                  label={`Max rank: ${label}`}
+                  size="small"
+                  color="primary"
+                  variant="outlined"
+                />
+              ) : null;
+            })()}
             {talent.object.tests && (
               <Typography
                 variant="caption"
