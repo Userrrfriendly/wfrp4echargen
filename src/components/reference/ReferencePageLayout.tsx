@@ -1,4 +1,10 @@
-import { type KeyboardEvent, type ReactNode, useEffect, useRef, useState } from 'react';
+import {
+  type KeyboardEvent,
+  type ReactNode,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import {
   Autocomplete,
   Box,
@@ -88,20 +94,14 @@ export default function ReferencePageLayout<T extends ReferenceItem>({
   const [inputValue, setInputValue] = useState(search);
   const onSearchChangeRef = useRef(onSearchChange);
   onSearchChangeRef.current = onSearchChange;
-  const externalSync = useRef(false);
 
   // Sync display value if the parent resets search externally (e.g. clearing all filters)
   useEffect(() => {
-    externalSync.current = true;
     setInputValue(search);
   }, [search]);
 
   // Debounce: wait 300ms after the user stops typing before filtering
   useEffect(() => {
-    if (externalSync.current) {
-      externalSync.current = false;
-      return;
-    }
     const id = setTimeout(() => onSearchChangeRef.current(inputValue), 300);
     return () => clearTimeout(id);
   }, [inputValue]);

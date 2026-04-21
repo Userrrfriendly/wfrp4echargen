@@ -6,9 +6,8 @@
 
 ---
 
--in the career lots of changes...
+-in the career Details lots of changes...
 
-- for careers main page there should be the career discription
 - for trappings (and others) add mouse over tooltip
 - try emojis eg for trappings encoubrance could have a str emoji, also add somewhere an option to hide emojis (First global store implementation -> UI store)
 - The Autocomplete with the sources should only show the relevant options
