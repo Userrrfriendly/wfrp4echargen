@@ -102,7 +102,10 @@ export default function ReferencePageLayout<T extends ReferenceItem>({
 
   // Debounce: wait 300ms after the user stops typing before filtering
   useEffect(() => {
-    const id = setTimeout(() => onSearchChangeRef.current(inputValue), 300);
+    const id = setTimeout(
+      () => onSearchChangeRef.current(inputValue.trim()),
+      300,
+    );
     return () => clearTimeout(id);
   }, [inputValue]);
 

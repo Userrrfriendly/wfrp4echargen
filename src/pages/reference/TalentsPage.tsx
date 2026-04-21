@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
 import { Box, Chip, Typography } from '@mui/material';
+import type { EntityModifiers } from '../../types';
 import { useTalents } from '../../hooks/useTalents';
 import { ATTRIBUTES, ITEMS_PER_PAGE } from '../../utils/gameData';
 
@@ -8,6 +9,16 @@ function resolveMaxRank(attribute: number, maxRank: number): string | null {
   if (maxRank === 0) return null;
   if (maxRank >= 99) return '∞';
   return String(maxRank);
+}
+
+function formatModifiers(modifiers: EntityModifiers): string | null {
+  const parts: string[] = [];
+  for (const [attr, val] of Object.entries(modifiers.attributes)) {
+    if (val !== 0) parts.push(`${val > 0 ? '+' : ''}${val}${attr}`);
+  }
+  if (modifiers.movement !== 0)
+    parts.push(`${modifiers.movement > 0 ? '+' : ''}${modifiers.movement}Mov`);
+  return parts.length > 0 ? parts.join(', ') : null;
 }
 import ReferencePageLayout from '../../components/reference/ReferencePageLayout';
 import SourceChips from '../../components/reference/SourceChips';
@@ -114,6 +125,17 @@ export default function TalentsPage() {
                 sx={{ opacity: 0.95 }}
               />
             )}
+            {(() => {
+              const modLabel = formatModifiers(talent.object.modifiers);
+              return modLabel ? (
+                <Chip
+                  label={modLabel}
+                  size="small"
+                  variant="outlined"
+                  sx={{ opacity: 0.95 }}
+                />
+              ) : null;
+            })()}
             <SourceChips source={talent.object.source} />
           </Box>
         </Box>
