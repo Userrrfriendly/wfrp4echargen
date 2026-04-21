@@ -41,14 +41,20 @@ export const SOURCES: Record<string, string> = {
   11: 'Lustria',
   12: 'Enemy in Shadows (Companion)',
   13: 'Death on the Reik (Companion)',
-
+  14: 'Enemy in Shadows',
   15: 'Death on the Reik',
-
+  16: 'Power Behind the Throne',
   17: 'Power Behind the Throne (Companion)',
-
+  18: 'The Horned Rat',
   19: 'The Horned Rat (Companion)',
-
+  20: 'Empire in Ruins',
+  21: 'Empire in Ruins (Companion)',
   22: 'The Imperial Zoo',
+  23: 'Altdorf Crown of the Empire',
+  24: 'Ubersreik Adventures',
+  25: '???',
+  26: 'Guide to Ubersreik (Starter Set)',
+  27: 'Adventure Book (Starter Set)',
 
   29: 'Tribes and Tribulations',
   30: 'Blood And Bramble',
@@ -57,8 +63,6 @@ export const SOURCES: Record<string, string> = {
   39: 'Deft Steps, Light Fingers',
   40: "High Elves Player's Guide",
   41: 'Lords of Stone and Steel',
-
-  47: 'Power Behind the Throne',
 };
 export const SPECIES: Record<number, string> = {
   0: 'Human',
