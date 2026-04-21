@@ -52,13 +52,19 @@ export const SOURCES: Record<string, string> = {
   22: 'The Imperial Zoo',
   23: 'Altdorf Crown of the Empire',
   24: 'Ubersreik Adventures',
-  25: '???',
+  25: '25-???',
   26: 'Guide to Ubersreik (Starter Set)',
   27: 'Adventure Book (Starter Set)',
-
+  28: 'Ubersreik Adventures 3',
   29: 'Tribes and Tribulations',
   30: 'Blood And Bramble',
-
+  31: '31-???',
+  32: '32-???',
+  33: '33-???',
+  34: '34-???',
+  35: '35-???',
+  36: '36-???',
+  37: '37-???',
   38: "Dwarf Player's Guide",
   39: 'Deft Steps, Light Fingers',
   40: "High Elves Player's Guide",
@@ -77,6 +83,16 @@ export const SPECIES: Record<number, string> = {
 export const SKILL_TYPES: Record<number, string> = {
   0: 'Basic',
   1: 'Advanced',
+};
+
+export const QUALITY_TYPES: Record<number, string> = {
+  0: 'Quality',
+  1: 'Flaw',
+};
+
+export const MUTATION_TYPES: Record<number, string> = {
+  0: 'Physical',
+  1: 'Mental',
 };
 
 export const TRAPPING_TYPES: Record<number, string> = {

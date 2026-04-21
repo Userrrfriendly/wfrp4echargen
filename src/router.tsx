@@ -32,6 +32,8 @@ export const router = createBrowserRouter([
       { path: 'reference/trappings', lazy: () => lazy(() => import('./pages/reference/TrappingsPage')) },
       { path: 'reference/spells', lazy: () => lazy(() => import('./pages/reference/SpellsPage')) },
       { path: 'reference/prayers', lazy: () => lazy(() => import('./pages/reference/PrayersPage')) },
+      { path: 'reference/qualities', lazy: () => lazy(() => import('./pages/reference/QualitiesPage')) },
+      { path: 'reference/mutations', lazy: () => lazy(() => import('./pages/reference/MutationsPage')) },
       { path: 'characters', lazy: () => lazy(() => import('./pages/characters/CharactersPage')) },
       { path: 'characters/new', lazy: () => lazy(() => import('./pages/characters/CharacterCreationPage')) },
       { path: 'characters/:id', lazy: () => lazy(() => import('./pages/characters/CharacterSheetPage')) },

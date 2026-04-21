@@ -27,6 +27,8 @@ const navSections = [
       { label: 'Trappings', path: '/reference/trappings' },
       { label: 'Spells', path: '/reference/spells' },
       { label: 'Prayers', path: '/reference/prayers' },
+      { label: 'Qualities & Flaws', path: '/reference/qualities' },
+      { label: 'Mutations', path: '/reference/mutations' },
     ],
   },
   {
