@@ -25,6 +25,8 @@ export const CAREER_CLASSES: Record<number, string> = {
   8: 'Seafarers',
 };
 
+export const ITEMS_PER_PAGE = 30;
+
 export const SOURCES: Record<string, string> = {
   1: 'Core Rulebook',
   2: 'Rought Nights and Hard Days',
@@ -163,6 +165,11 @@ export const MAGIC_LORES: Record<number, string> = {
   1006: 'High Elf Sea Magic',
   1007: 'Magic of Hoeth',
 };
+
+export const SOURCE_OPTIONS = Object.entries(SOURCES).map(([id, label]) => ({
+  id,
+  label,
+}));
 
 export function loreName(labels: number[]): string {
   if (labels.length === 0) return '—';
