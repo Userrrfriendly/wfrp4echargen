@@ -14,6 +14,7 @@ import CharacterCreationPage from './pages/characters/CharacterCreationPage';
 import CharacterSheetPage from './pages/characters/CharacterSheetPage';
 import DicePage from './pages/DicePage';
 import SettingsPage from './pages/SettingsPage';
+import ThemePreviewPage from './pages/ThemePreviewPage';
 
 export const router = createBrowserRouter([
   {
@@ -34,6 +35,7 @@ export const router = createBrowserRouter([
       { path: 'characters/:id', element: <CharacterSheetPage /> },
       { path: 'dice', element: <DicePage /> },
       { path: 'settings', element: <SettingsPage /> },
+      { path: 'theme-preview', element: <ThemePreviewPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
   },

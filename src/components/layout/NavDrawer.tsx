@@ -37,6 +37,7 @@ const navSections = [
     subheader: 'Tools',
     items: [
       { label: 'Dice Roller', path: '/dice' },
+      { label: 'Theme Preview', path: '/theme-preview' },
       { label: 'Settings', path: '/settings' },
     ],
   },

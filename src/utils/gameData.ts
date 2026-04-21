@@ -42,13 +42,23 @@ export const SOURCES: Record<string, string> = {
   12: 'Enemy in Shadows (Companion)',
   13: 'Death on the Reik (Companion)',
 
+  15: 'Death on the Reik',
+
+  17: 'Power Behind the Throne (Companion)',
+
   19: 'The Horned Rat (Companion)',
+
+  22: 'The Imperial Zoo',
+
+  29: 'Tribes and Tribulations',
+  30: 'Blood And Bramble',
 
   38: "Dwarf Player's Guide",
   39: 'Deft Steps, Light Fingers',
   40: "High Elves Player's Guide",
+  41: 'Lords of Stone and Steel',
 
-  47: 'Power Behind the Throne (Companion)',
+  47: 'Power Behind the Throne',
 };
 export const SPECIES: Record<number, string> = {
   0: 'Human',
