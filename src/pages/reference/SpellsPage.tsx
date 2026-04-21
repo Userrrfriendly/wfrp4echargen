@@ -1,8 +1,21 @@
 import { useState, useMemo } from 'react';
-import { Box, Chip, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
+import {
+  Box,
+  Chip,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  Typography,
+} from '@mui/material';
 import type { SelectChangeEvent } from '@mui/material';
 import { useSpells } from '../../hooks/useSpells';
-import { ITEMS_PER_PAGE, MAGIC_LORES, SPELL_TYPES, loreName } from '../../utils/gameData';
+import {
+  ITEMS_PER_PAGE,
+  MAGIC_LORES,
+  SPELL_TYPES,
+  loreName,
+} from '../../utils/gameData';
 import ReferencePageLayout from '../../components/reference/ReferencePageLayout';
 import SourceChips from '../../components/reference/SourceChips';
 
@@ -17,7 +30,9 @@ export default function SpellsPage() {
   const availableLores = useMemo(() => {
     if (!spells) return [] as number[];
     const set = new Set<number>();
-    spells.forEach((s) => s.object.classification.labels.forEach((l) => set.add(l)));
+    spells.forEach((s) =>
+      s.object.classification.labels.forEach((l) => set.add(l)),
+    );
     return Array.from(set).sort((a, b) => a - b);
   }, [spells]);
 
@@ -25,12 +40,22 @@ export default function SpellsPage() {
     if (!spells) return [];
     return spells
       .filter((s) => {
-        if (search && !s.object.name.toLowerCase().includes(search.toLowerCase()))
+        if (
+          search &&
+          !s.object.name.toLowerCase().includes(search.toLowerCase())
+        )
           return false;
-        if (typeFilter !== '' && s.object.classification.type !== typeFilter) return false;
-        if (loreFilter !== '' && !s.object.classification.labels.includes(loreFilter as number))
+        if (typeFilter !== '' && s.object.classification.type !== typeFilter)
           return false;
-        if (sourceFilter && !Object.keys(s.object.source).includes(sourceFilter))
+        if (
+          loreFilter !== '' &&
+          !s.object.classification.labels.includes(loreFilter as number)
+        )
+          return false;
+        if (
+          sourceFilter &&
+          !Object.keys(s.object.source).includes(sourceFilter)
+        )
           return false;
         return true;
       })
@@ -38,7 +63,10 @@ export default function SpellsPage() {
   }, [spells, search, typeFilter, loreFilter, sourceFilter]);
 
   const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
-  const paged = filtered.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
+  const paged = filtered.slice(
+    (page - 1) * ITEMS_PER_PAGE,
+    page * ITEMS_PER_PAGE,
+  );
 
   const resetPage = () => setPage(1);
 
@@ -49,9 +77,15 @@ export default function SpellsPage() {
       isLoading={isLoading}
       error={error as Error | null}
       search={search}
-      onSearchChange={(v) => { setSearch(v); resetPage(); }}
+      onSearchChange={(v) => {
+        setSearch(v);
+        resetPage();
+      }}
       selectedSource={sourceFilter}
-      onSourceChange={(v) => { setSourceFilter(v); resetPage(); }}
+      onSourceChange={(v) => {
+        setSourceFilter(v);
+        resetPage();
+      }}
       page={page}
       onPageChange={setPage}
       totalPages={totalPages}
@@ -71,7 +105,9 @@ export default function SpellsPage() {
             >
               <MenuItem value="">All Types</MenuItem>
               {Object.entries(SPELL_TYPES).map(([num, name]) => (
-                <MenuItem key={num} value={Number(num)}>{name}</MenuItem>
+                <MenuItem key={num} value={Number(num)}>
+                  {name}
+                </MenuItem>
               ))}
             </Select>
           </FormControl>
@@ -87,7 +123,9 @@ export default function SpellsPage() {
             >
               <MenuItem value="">All Lores</MenuItem>
               {availableLores.map((l) => (
-                <MenuItem key={l} value={l}>{MAGIC_LORES[l] ?? `Lore ${l}`}</MenuItem>
+                <MenuItem key={l} value={l}>
+                  {MAGIC_LORES[l] ?? `Lore ${l}`}
+                </MenuItem>
               ))}
             </Select>
           </FormControl>
@@ -107,14 +145,30 @@ export default function SpellsPage() {
             <Typography variant="body1" sx={{ fontWeight: 500 }}>
               {spell.object.name}
             </Typography>
-            <Chip label={`CN ${spell.object.cn}`} size="small" color="primary" variant="outlined" />
-          </Box>
-          <Box sx={{ display: 'flex', gap: 0.5, mt: 0.5, flexWrap: 'wrap', alignItems: 'center' }}>
             <Chip
-              label={SPELL_TYPES[spell.object.classification.type] ?? `Type ${spell.object.classification.type}`}
+              label={`CN ${spell.object.cn}`}
+              size="small"
+              color="primary"
+              variant="outlined"
+            />
+          </Box>
+          <Box
+            sx={{
+              display: 'flex',
+              gap: 0.5,
+              mt: 0.5,
+              flexWrap: 'wrap',
+              alignItems: 'center',
+            }}
+          >
+            <Chip
+              label={
+                SPELL_TYPES[spell.object.classification.type] ??
+                `Type ${spell.object.classification.type}`
+              }
               size="small"
               variant="outlined"
-              sx={{ opacity: 0.7 }}
+              sx={{ opacity: 0.95 }}
             />
             {spell.object.classification.labels.length > 0 && (
               <Chip
@@ -125,9 +179,13 @@ export default function SpellsPage() {
               />
             )}
             <SourceChips source={spell.object.source} />
-            <Typography variant="caption" color="text.secondary" sx={{ alignSelf: 'center' }}>
-              Range: {spell.object.range} · Target: {spell.object.target} · Duration:{' '}
-              {spell.object.duration}
+            <Typography
+              variant="caption"
+              color="text.secondary"
+              sx={{ alignSelf: 'center' }}
+            >
+              Range: {spell.object.range} · Target: {spell.object.target} ·
+              Duration: {spell.object.duration}
             </Typography>
           </Box>
         </Box>

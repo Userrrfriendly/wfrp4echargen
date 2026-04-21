@@ -1,5 +1,13 @@
 import { useState, useMemo } from 'react';
-import { Box, Chip, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
+import {
+  Box,
+  Chip,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  Typography,
+} from '@mui/material';
 import type { SelectChangeEvent } from '@mui/material';
 import { useTrappings } from '../../hooks/useTrappings';
 import {
@@ -19,14 +27,23 @@ import type { Trapping } from '../../types';
 function TrappingStats({ item }: { item: Trapping }) {
   const { type, melee, ranged, armour } = item.object;
 
-  if (type === 0 && melee.group >= 0 && (melee.dmg > 0 || melee.dmgSbMult > 0)) {
+  if (
+    type === 0 &&
+    melee.group >= 0 &&
+    (melee.dmg > 0 || melee.dmgSbMult > 0)
+  ) {
     const dmgStr =
-      [melee.dmg ? `+${melee.dmg}` : '', melee.dmgSbMult ? `+${melee.dmgSbMult}SB` : '']
+      [
+        melee.dmg ? `+${melee.dmg}` : '',
+        melee.dmgSbMult ? `+${melee.dmgSbMult}SB` : '',
+      ]
         .filter(Boolean)
         .join(' ') || '+0';
     return (
       <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', mt: 1 }}>
-        <Typography variant="body1" color="text.secondary">Dmg: {dmgStr}</Typography>
+        <Typography variant="body1" color="text.secondary">
+          Dmg: {dmgStr}
+        </Typography>
         <Typography variant="body1" color="text.secondary">
           Reach: {MELEE_REACH[melee.reach] ?? melee.reach}
         </Typography>
@@ -34,20 +51,33 @@ function TrappingStats({ item }: { item: Trapping }) {
           Group: {MELEE_GROUPS[melee.group] ?? `G${melee.group}`}
         </Typography>
         <Typography variant="body1" color="text.secondary">
-          Hands: {melee.hands === 2 ? 'Two-handed' : melee.hands === 1 ? 'One-handed' : '—'}
+          Hands:{' '}
+          {melee.hands === 2
+            ? 'Two-handed'
+            : melee.hands === 1
+              ? 'One-handed'
+              : '—'}
         </Typography>
       </Box>
     );
   }
 
-  if (type === 1 && (ranged.dmg > 0 || ranged.dmgSbMult > 0 || ranged.rng > 0)) {
+  if (
+    type === 1 &&
+    (ranged.dmg > 0 || ranged.dmgSbMult > 0 || ranged.rng > 0)
+  ) {
     const dmgStr =
-      [ranged.dmg ? `+${ranged.dmg}` : '', ranged.dmgSbMult ? `+${ranged.dmgSbMult}SB` : '']
+      [
+        ranged.dmg ? `+${ranged.dmg}` : '',
+        ranged.dmgSbMult ? `+${ranged.dmgSbMult}SB` : '',
+      ]
         .filter(Boolean)
         .join(' ') || '+0';
     return (
       <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', mt: 1 }}>
-        <Typography variant="body1" color="text.secondary">Dmg: {dmgStr}</Typography>
+        <Typography variant="body1" color="text.secondary">
+          Dmg: {dmgStr}
+        </Typography>
         <Typography variant="body1" color="text.secondary">
           Rng: {ranged.rng > 0 ? `${ranged.rng}` : '—'}
           {ranged.rngSbMult > 0 ? ` (+${ranged.rngSbMult}×SB)` : ''}
@@ -60,12 +90,18 @@ function TrappingStats({ item }: { item: Trapping }) {
   }
 
   if (type === 3 && armour.points > 0) {
-    const locs = armour.location.map((l) => ARMOUR_LOCATIONS[l] ?? `Loc${l}`).join(', ');
+    const locs = armour.location
+      .map((l) => ARMOUR_LOCATIONS[l] ?? `Loc${l}`)
+      .join(', ');
     return (
       <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', mt: 1 }}>
-        <Typography variant="body1" color="text.secondary">AP: {armour.points}</Typography>
+        <Typography variant="body1" color="text.secondary">
+          AP: {armour.points}
+        </Typography>
         {locs && (
-          <Typography variant="body1" color="text.secondary">Covers: {locs}</Typography>
+          <Typography variant="body1" color="text.secondary">
+            Covers: {locs}
+          </Typography>
         )}
       </Box>
     );
@@ -85,10 +121,16 @@ export default function TrappingsPage() {
     if (!trappings) return [];
     return trappings
       .filter((t) => {
-        if (search && !t.object.name.toLowerCase().includes(search.toLowerCase()))
+        if (
+          search &&
+          !t.object.name.toLowerCase().includes(search.toLowerCase())
+        )
           return false;
         if (typeFilter !== '' && t.object.type !== typeFilter) return false;
-        if (sourceFilter && !Object.keys(t.object.source).includes(sourceFilter))
+        if (
+          sourceFilter &&
+          !Object.keys(t.object.source).includes(sourceFilter)
+        )
           return false;
         return true;
       })
@@ -96,7 +138,10 @@ export default function TrappingsPage() {
   }, [trappings, search, typeFilter, sourceFilter]);
 
   const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
-  const paged = filtered.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
+  const paged = filtered.slice(
+    (page - 1) * ITEMS_PER_PAGE,
+    page * ITEMS_PER_PAGE,
+  );
 
   return (
     <ReferencePageLayout
@@ -105,9 +150,15 @@ export default function TrappingsPage() {
       isLoading={isLoading}
       error={error as Error | null}
       search={search}
-      onSearchChange={(v) => { setSearch(v); setPage(1); }}
+      onSearchChange={(v) => {
+        setSearch(v);
+        setPage(1);
+      }}
       selectedSource={sourceFilter}
-      onSourceChange={(v) => { setSourceFilter(v); setPage(1); }}
+      onSourceChange={(v) => {
+        setSourceFilter(v);
+        setPage(1);
+      }}
       page={page}
       onPageChange={setPage}
       totalPages={totalPages}
@@ -126,7 +177,9 @@ export default function TrappingsPage() {
           >
             <MenuItem value="">All Types</MenuItem>
             {Object.entries(TRAPPING_TYPES).map(([num, name]) => (
-              <MenuItem key={num} value={Number(num)}>{name}</MenuItem>
+              <MenuItem key={num} value={Number(num)}>
+                {name}
+              </MenuItem>
             ))}
           </Select>
         </FormControl>
@@ -158,17 +211,22 @@ export default function TrappingsPage() {
           </Box>
           <Box sx={{ display: 'flex', gap: 0.5, mt: 0.5, flexWrap: 'wrap' }}>
             <Chip
-              label={TRAPPING_TYPES[item.object.type] ?? `Type ${item.object.type}`}
+              label={
+                TRAPPING_TYPES[item.object.type] ?? `Type ${item.object.type}`
+              }
               size="small"
               variant="outlined"
-              sx={{ opacity: 0.7 }}
+              sx={{ opacity: 0.95 }}
             />
             {item.object.availability !== undefined && (
               <Chip
-                label={AVAILABILITY[item.object.availability] ?? `Av ${item.object.availability}`}
+                label={
+                  AVAILABILITY[item.object.availability] ??
+                  `Av ${item.object.availability}`
+                }
                 size="small"
                 variant="outlined"
-                sx={{ opacity: 0.6 }}
+                sx={{ opacity: 0.95 }}
               />
             )}
             <SourceChips source={item.object.source} />

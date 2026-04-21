@@ -24,4 +24,5 @@
 - - Document all reusable code.
 - - If unsure about a convention, ask for clarification or add a TODO comment.
 - - All new components must be reviewed for rule compliance.
+- - Chip's text must always have opacity 0.95
     \*/

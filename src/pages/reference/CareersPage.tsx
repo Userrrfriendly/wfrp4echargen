@@ -205,7 +205,7 @@ export default function CareersPage() {
                     label={SPECIES[s] ?? `Species ${s}`}
                     size="small"
                     variant="outlined"
-                    sx={{ opacity: 0.6 }}
+                    sx={{ opacity: 0.95 }}
                   />
                 ))}
               </Box>

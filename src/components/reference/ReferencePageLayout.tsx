@@ -7,6 +7,7 @@ import {
   Skeleton,
   TextField,
   Typography,
+  useTheme,
 } from '@mui/material';
 import { SOURCE_OPTIONS } from '../../utils/gameData';
 
@@ -76,6 +77,8 @@ export default function ReferencePageLayout<T extends ReferenceItem>({
   extraFilters,
   renderItem,
 }: ReferencePageLayoutProps<T>) {
+  const theme = useTheme();
+  console.log(theme);
   if (isLoading) {
     return (
       <Box>
@@ -145,14 +148,29 @@ export default function ReferencePageLayout<T extends ReferenceItem>({
           <Paper
             key={item.id}
             sx={{
-              boxShadow: 3,
-              margin: '0.25rem 0',
+              boxShadow: 2,
+              margin: '0.5rem 0',
+              '&:first-of-type': { mt: 0 },
               borderBottom: '1px solid',
               borderColor: 'divider',
+              transition: 'box-shadow 0.2s',
+              border: `1px solid transparent`,
+              '&:hover': {
+                boxShadow: 6,
+                border: `1px solid ${theme.palette.divider}`,
+              },
               '&:last-child': { borderBottom: 0 },
             }}
           >
-            <Box sx={{ px: 2, py: 1.5 }}>{renderItem(item)}</Box>
+            <Box
+              sx={(theme) => ({
+                px: 2,
+                py: 1.5,
+                // backgroundColor: theme.palette.grey[900],
+              })}
+            >
+              {renderItem(item)}
+            </Box>
             <Box sx={{ px: 2, pb: 2, pt: 2, bgcolor: 'action.hover' }}>
               <Typography variant="body1" color="text.secondary">
                 {item.object.description || 'No description available.'}
