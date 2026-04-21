@@ -1,4 +1,5 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
+import { Box, CircularProgress } from '@mui/material';
 import AppLayout from './components/layout/AppLayout';
 import ErrorPage from './pages/ErrorPage';
 import NotFoundPage from './pages/NotFoundPage';
@@ -23,6 +24,14 @@ export const router = createBrowserRouter([
     path: '/',
     element: <AppLayout />,
     errorElement: <ErrorPage />,
+    // All child routes use lazy:, so on a hard-refresh React Router v7 must
+    // resolve the matched route module before it can render. HydrateFallback
+    // fills that window — without it the page is blank and the console warns.
+    HydrateFallback: () => (
+      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+        <CircularProgress />
+      </Box>
+    ),
     children: [
       { index: true, element: <Navigate to="/reference/careers" replace /> },
       { path: 'reference/careers', lazy: () => lazy(() => import('./pages/reference/CareersPage')) },
