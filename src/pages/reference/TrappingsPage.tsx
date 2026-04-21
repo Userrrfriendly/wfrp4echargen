@@ -18,11 +18,51 @@ import {
   MELEE_REACH,
   RANGED_GROUPS,
   TRAPPING_TYPES,
-  formatPrice,
 } from '../../utils/gameData';
 import ReferencePageLayout from '../../components/reference/ReferencePageLayout';
 import SourceChips from '../../components/reference/SourceChips';
 import type { Trapping } from '../../types';
+
+const CURRENCY_COLORS = {
+  GC: '#c8960c', // gold crown
+  SS: '#a8a9b4', // silver shilling
+  BP: '#b87333', // brass penny
+} as const;
+
+function PriceDisplay({ brass }: { brass: number }) {
+  const gold = Math.floor(brass / 240);
+  const silver = Math.floor((brass % 240) / 12);
+  const bp = brass % 12;
+
+  const parts = [
+    gold > 0 && { value: gold, unit: 'GC' as const },
+    silver > 0 && { value: silver, unit: 'SS' as const },
+    bp > 0 && { value: bp, unit: 'BP' as const },
+  ].filter(Boolean) as { value: number; unit: keyof typeof CURRENCY_COLORS }[];
+
+  if (parts.length === 0) {
+    return (
+      <Typography variant="body1" color="text.secondary">
+        —
+      </Typography>
+    );
+  }
+
+  return (
+    <Box component="span" sx={{ display: 'flex', gap: 0.5, alignItems: 'center' }}>
+      {parts.map(({ value, unit }) => (
+        <Typography
+          key={unit}
+          component="span"
+          variant="body1"
+          sx={{ color: CURRENCY_COLORS[unit], fontWeight: 500 }}
+        >
+          {value}{unit}
+        </Typography>
+      ))}
+    </Box>
+  );
+}
 
 function TrappingStats({ item }: { item: Trapping }) {
   const { type, melee, ranged, armour } = item.object;
@@ -199,9 +239,7 @@ export default function TrappingsPage() {
               {item.object.name}
             </Typography>
             <Box sx={{ display: 'flex', gap: 0.5, alignItems: 'center' }}>
-              <Typography variant="body1" color="text.secondary">
-                {formatPrice(item.object.price)}
-              </Typography>
+              <PriceDisplay brass={item.object.price} />
               {item.object.enc > 0 && (
                 <Typography variant="body1" color="text.secondary">
                   Enc {item.object.enc}

@@ -133,25 +133,9 @@ export default function SpellsPage() {
       }
       renderItem={(spell) => (
         <Box sx={{ py: 0.25, width: '100%' }}>
-          <Box
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              gap: 1,
-              flexWrap: 'wrap',
-            }}
-          >
-            <Typography variant="body1" sx={{ fontWeight: 500 }}>
-              {spell.object.name}
-            </Typography>
-            <Chip
-              label={`CN ${spell.object.cn}`}
-              size="small"
-              color="primary"
-              variant="outlined"
-            />
-          </Box>
+          <Typography variant="body1" sx={{ fontWeight: 500 }}>
+            {spell.object.name}
+          </Typography>
           <Box
             sx={{
               display: 'flex',
@@ -162,30 +146,41 @@ export default function SpellsPage() {
             }}
           >
             <Chip
-              label={
+              label={[
                 SPELL_TYPES[spell.object.classification.type] ??
-                `Type ${spell.object.classification.type}`
-              }
+                  `Type ${spell.object.classification.type}`,
+                spell.object.classification.labels.length > 0
+                  ? loreName(spell.object.classification.labels)
+                  : null,
+              ]
+                .filter(Boolean)
+                .join(' ● ')}
               size="small"
               variant="outlined"
               sx={{ opacity: 0.95 }}
             />
-            {spell.object.classification.labels.length > 0 && (
-              <Chip
-                label={loreName(spell.object.classification.labels)}
-                size="small"
-                variant="outlined"
-                color="secondary"
-              />
-            )}
             <SourceChips source={spell.object.source} />
-            <Typography
-              variant="caption"
-              color="text.secondary"
-              sx={{ alignSelf: 'center' }}
-            >
-              Range: {spell.object.range} · Target: {spell.object.target} ·
-              Duration: {spell.object.duration}
+          </Box>
+          <Box
+            sx={{
+              display: 'flex',
+              gap: 2,
+              mt: 0.75,
+              flexWrap: 'wrap',
+              alignItems: 'center',
+            }}
+          >
+            <Typography variant="body1" color="text.secondary">
+              Range: <strong>{spell.object.range}</strong>
+            </Typography>
+            <Typography variant="body1" color="text.secondary">
+              Target: <strong>{spell.object.target}</strong>
+            </Typography>
+            <Typography variant="body1" color="text.secondary">
+              Duration: <strong>{spell.object.duration}</strong>
+            </Typography>
+            <Typography variant="body1" color="text.secondary">
+              CN: <strong>{spell.object.cn}</strong>
             </Typography>
           </Box>
         </Box>

@@ -107,13 +107,12 @@ export default function TalentsPage() {
               ) : null;
             })()}
             {talent.object.tests && (
-              <Typography
-                variant="caption"
-                color="text.secondary"
-                sx={{ alignSelf: 'center' }}
-              >
-                {talent.object.tests}
-              </Typography>
+              <Chip
+                label={talent.object.tests}
+                size="small"
+                variant="outlined"
+                sx={{ opacity: 0.95 }}
+              />
             )}
             <SourceChips source={talent.object.source} />
           </Box>
