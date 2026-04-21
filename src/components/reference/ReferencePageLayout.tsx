@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { type ReactNode, useEffect, useRef, useState } from 'react';
 import {
   Autocomplete,
   Box,
@@ -31,7 +31,7 @@ interface ReferencePageLayoutProps<T extends ReferenceItem> {
   resultLabel: string;
   /** Optional page-specific filters rendered between search and source fields. */
   extraFilters?: ReactNode;
-  /** Renders the content inside each item's ListItemButton. */
+  /** Renders the content inside each item's card. */
   renderItem: (item: T) => ReactNode;
 }
 
@@ -76,9 +76,30 @@ export default function ReferencePageLayout<T extends ReferenceItem>({
   extraFilters,
   renderItem,
 }: ReferencePageLayoutProps<T>) {
+  const [inputValue, setInputValue] = useState(search);
+  const onSearchChangeRef = useRef(onSearchChange);
+  onSearchChangeRef.current = onSearchChange;
+  const externalSync = useRef(false);
+
+  // Sync display value if the parent resets search externally (e.g. clearing all filters)
+  useEffect(() => {
+    externalSync.current = true;
+    setInputValue(search);
+  }, [search]);
+
+  // Debounce: wait 300ms after the user stops typing before filtering
+  useEffect(() => {
+    if (externalSync.current) {
+      externalSync.current = false;
+      return;
+    }
+    const id = setTimeout(() => onSearchChangeRef.current(inputValue), 300);
+    return () => clearTimeout(id);
+  }, [inputValue]);
+
   if (isLoading) {
     return (
-      <Box>
+      <Box aria-busy="true" aria-label={`Loading ${title.toLowerCase()}`}>
         <Typography variant="h4" gutterBottom>
           {title}
         </Typography>
@@ -91,7 +112,7 @@ export default function ReferencePageLayout<T extends ReferenceItem>({
 
   if (error) {
     return (
-      <Typography color="error">
+      <Typography role="alert" color="error">
         Failed to load {title.toLowerCase()}: {error.message}
       </Typography>
     );
@@ -115,8 +136,9 @@ export default function ReferencePageLayout<T extends ReferenceItem>({
         <TextField
           size="small"
           placeholder={`Search ${title.toLowerCase()}…`}
-          value={search}
-          onChange={(e) => onSearchChange(e.target.value)}
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          slotProps={{ htmlInput: { 'aria-label': `Search ${title.toLowerCase()}` } }}
           sx={{ minWidth: 220 }}
         />
         {extraFilters}
@@ -129,51 +151,59 @@ export default function ReferencePageLayout<T extends ReferenceItem>({
           isOptionEqualToValue={(a, b) => a.id === b.id}
           sx={{ minWidth: 220 }}
         />
-        <Typography variant="body1" color="text.secondary" sx={{ ml: 'auto' }}>
+        <Typography
+          variant="body1"
+          color="text.secondary"
+          aria-live="polite"
+          sx={{ ml: 'auto' }}
+        >
           {resultCount} {resultCount === 1 ? resultLabel : `${resultLabel}s`}
         </Typography>
       </Box>
 
       <Box
+        component="ul"
         sx={{
-          borderColor: 'divider',
+          listStyle: 'none',
+          p: 0,
+          m: 0,
           borderRadius: 1,
           overflow: 'hidden',
         }}
       >
-        {items.map((item) => (
-          <Paper
-            key={item.id}
-            sx={(theme) => ({
-              boxShadow: 2,
-              margin: '0.5rem 0',
-              '&:first-of-type': { mt: 0 },
-              borderBottom: '1px solid',
-              borderColor: 'divider',
-              transition: 'box-shadow 0.2s',
-              border: `1px solid transparent`,
-              '&:hover': {
-                boxShadow: 6,
-                border: `1px solid ${theme.palette.divider}`,
-              },
-              '&:last-child': { borderBottom: 0 },
-            })}
-          >
-            <Box
-              sx={{
-                px: 2,
-                py: 1.5,
-              }}
+        {items.length === 0 ? (
+          <Box component="li" sx={{ listStyle: 'none', py: 4, textAlign: 'center' }}>
+            <Typography variant="body1" color="text.secondary">
+              No {resultLabel}s found.
+            </Typography>
+          </Box>
+        ) : (
+          items.map((item) => (
+            <Paper
+              key={item.id}
+              component="li"
+              sx={(theme) => ({
+                boxShadow: 2,
+                my: 1,
+                '&:first-of-type': { mt: 0 },
+                border: '1px solid transparent',
+                transition: 'box-shadow 0.2s',
+                '&:hover': {
+                  boxShadow: 6,
+                  border: `1px solid ${theme.palette.divider}`,
+                },
+                '&:last-child': { borderBottom: 0 },
+              })}
             >
-              {renderItem(item)}
-            </Box>
-            <Box sx={{ px: 2, pb: 2, pt: 2, bgcolor: 'action.hover' }}>
-              <Typography variant="body1" color="text.secondary">
-                {item.object.description || 'No description available.'}
-              </Typography>
-            </Box>
-          </Paper>
-        ))}
+              <Box sx={{ px: 2, py: 1.5 }}>{renderItem(item)}</Box>
+              <Box sx={{ px: 2, py: 2, bgcolor: 'action.hover' }}>
+                <Typography variant="body1" color="text.secondary">
+                  {item.object.description || 'No description available.'}
+                </Typography>
+              </Box>
+            </Paper>
+          ))
+        )}
       </Box>
 
       {totalPages > 1 && (

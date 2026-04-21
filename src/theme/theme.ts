@@ -38,6 +38,8 @@ const sharedTypography = {
   h4: { fontFamily: DIABLO_FONT_FAMILY, fontWeight: 600 },
   h5: { fontWeight: 600 },
   h6: { fontWeight: 600 },
+  body1: { fontSize: '1.0625rem' },
+  body2: { fontSize: '1rem' },
   diablo: { fontFamily: DIABLO_FONT_FAMILY, fontWeight: 'normal' as const },
 };
 

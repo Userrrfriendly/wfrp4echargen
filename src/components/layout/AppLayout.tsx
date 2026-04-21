@@ -65,13 +65,15 @@ export default function AppLayout() {
             </IconButton>
           )}
           <Typography variant="h2" noWrap sx={{ flexGrow: 1 }}>
-            WFRP4e Character Generator
+            Oleg's Hammer
           </Typography>
           <IconButton
             color="inherit"
             onClick={toggleTheme}
             aria-label={
-              themeMode === 'dark' ? 'switch to light theme' : 'switch to dark theme'
+              themeMode === 'dark'
+                ? 'switch to light theme'
+                : 'switch to dark theme'
             }
           >
             {themeMode === 'dark' ? <SunIcon /> : <MoonIcon />}
