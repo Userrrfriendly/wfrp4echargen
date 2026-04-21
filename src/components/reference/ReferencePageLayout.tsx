@@ -1,4 +1,4 @@
-import { type ReactNode, useEffect, useRef, useState } from 'react';
+import { type KeyboardEvent, type ReactNode, useEffect, useRef, useState } from 'react';
 import {
   Autocomplete,
   Box,
@@ -33,6 +33,8 @@ interface ReferencePageLayoutProps<T extends ReferenceItem> {
   extraFilters?: ReactNode;
   /** Renders the content inside each item's card. */
   renderItem: (item: T) => ReactNode;
+  /** When provided the entire card becomes clickable and navigates to the item's detail page. */
+  onItemClick?: (item: T) => void;
 }
 
 /**
@@ -81,6 +83,7 @@ export default function ReferencePageLayout<T extends ReferenceItem>({
   resultLabel,
   extraFilters,
   renderItem,
+  onItemClick,
 }: ReferencePageLayoutProps<T>) {
   const [inputValue, setInputValue] = useState(search);
   const onSearchChangeRef = useRef(onSearchChange);
@@ -199,12 +202,26 @@ export default function ReferencePageLayout<T extends ReferenceItem>({
             <Paper
               key={item.id}
               component="li"
+              role={onItemClick ? 'link' : undefined}
+              tabIndex={onItemClick ? 0 : undefined}
+              onClick={onItemClick ? () => onItemClick(item) : undefined}
+              onKeyDown={
+                onItemClick
+                  ? (e: KeyboardEvent) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        onItemClick(item);
+                      }
+                    }
+                  : undefined
+              }
               sx={(theme) => ({
                 boxShadow: 2,
                 my: 1,
                 '&:first-of-type': { mt: 0 },
                 border: '1px solid transparent',
                 transition: 'box-shadow 0.2s',
+                cursor: onItemClick ? 'pointer' : 'default',
                 '&:hover': {
                   boxShadow: 6,
                   border: `1px solid ${theme.palette.divider}`,
