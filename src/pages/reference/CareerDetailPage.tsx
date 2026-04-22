@@ -7,6 +7,7 @@ import {
   Skeleton,
   Divider,
 } from '@mui/material';
+import ArrowBackRounded from '@mui/icons-material/ArrowBackRounded';
 import ThemedTooltip from '../../components/common/ThemedTooltip';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useCareer } from '../../hooks/useCareers';
@@ -236,8 +237,8 @@ export default function CareerDetailPage() {
     return (
       <Box>
         <Typography gutterBottom>Career not found.</Typography>
-        <Button onClick={() => navigate('/reference/careers')}>
-          ← Back to Careers
+        <Button onClick={() => navigate(-1)}>
+          <ArrowBackRounded fontSize="small" /> Back
         </Button>
       </Box>
     );
@@ -252,10 +253,10 @@ export default function CareerDetailPage() {
     <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
       <Box sx={{ flexShrink: 0 }}>
         <Button
-          onClick={() => navigate('/reference/careers')}
+          onClick={() => navigate(-1)}
           sx={{ mb: 2, px: 0 }}
         >
-          ← Careers
+          <ArrowBackRounded fontSize="small" /> Back
         </Button>
 
         <Typography variant="h4" gutterBottom>

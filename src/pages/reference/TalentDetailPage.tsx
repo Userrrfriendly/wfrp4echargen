@@ -7,6 +7,7 @@ import {
   Skeleton,
   Typography,
 } from '@mui/material';
+import ArrowBackRounded from '@mui/icons-material/ArrowBackRounded';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTalent, useTalents } from '../../hooks/useTalents';
 import { ATTRIBUTES, SOURCES } from '../../utils/gameData';
@@ -75,7 +76,7 @@ export default function TalentDetailPage() {
         <Typography variant="body1" gutterBottom>
           Talent not found.
         </Typography>
-        <Button onClick={() => navigate(-1)}>← Back</Button>
+        <Button onClick={() => navigate(-1)}><ArrowBackRounded fontSize="small" /> Back</Button>
       </Box>
     );
   }
@@ -95,7 +96,7 @@ export default function TalentDetailPage() {
     <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
       <Box sx={{ flexShrink: 0 }}>
         <Button onClick={() => navigate(-1)} sx={{ mb: 2, px: 0 }}>
-          ← Back
+          <ArrowBackRounded fontSize="small" /> Back
         </Button>
       </Box>
 

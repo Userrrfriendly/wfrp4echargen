@@ -7,6 +7,7 @@ import {
   Skeleton,
   Typography,
 } from '@mui/material';
+import ArrowBackRounded from '@mui/icons-material/ArrowBackRounded';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSkill, useSkills } from '../../hooks/useSkills';
 import { ATTRIBUTES, SKILL_TYPES, SOURCES } from '../../utils/gameData';
@@ -56,7 +57,7 @@ export default function SkillDetailPage() {
         <Typography variant="body1" gutterBottom>
           Skill not found.
         </Typography>
-        <Button onClick={() => navigate(-1)}>← Back</Button>
+        <Button onClick={() => navigate(-1)}><ArrowBackRounded fontSize="small" /> Back</Button>
       </Box>
     );
   }
@@ -71,7 +72,7 @@ export default function SkillDetailPage() {
     <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
       <Box sx={{ flexShrink: 0 }}>
         <Button onClick={() => navigate(-1)} sx={{ mb: 2, px: 0 }}>
-          ← Back
+          <ArrowBackRounded fontSize="small" /> Back
         </Button>
       </Box>
 
