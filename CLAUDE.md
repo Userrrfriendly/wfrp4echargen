@@ -41,6 +41,22 @@ git config blame.ignoreRevsFile .git-blame-ignore-revs
 - **Services** in `src/services/` handle data access logic (not "repository pattern")
 - Keep business logic out of components — put it in services or hooks
 
+## Quality Requirements
+
+- Always include error handling (error boundaries, route error elements, try/catch for async)
+- Always implement mobile/responsive support (MUI breakpoints, responsive typography, touch targets)
+- Run type-check after multi-file changes and before declaring completion
+- When editing files, verify linter did not revert changes by re-reading the file after edits
+  Add as a ## Tech Stack section near the top of CLAUDE.md\n\n## Tech Stack
+- TypeScript + MUI (Material UI) — prefer MUI components and Material icons over custom/text equivalents
+- Always run `tsc --noEmit` (or project type-check script) after edits to verify types
+
+## Workflow Conventions
+
+- Preserve UI state across navigation where reasonable (e.g., search filters, sort order)
+- Follow existing project conventions — reference similar components before creating new ones
+- For new features, propose a phased plan via ExitPlanMode before writing code
+
 ### App-shell scroll pattern
 
 `<Box component="main">` in `AppLayout` uses the **app-shell pattern**: it is fixed-height
@@ -68,6 +84,7 @@ hardcoding `64px`.
 - Enable all strict flags — `noUnusedLocals`, `noUnusedParameters`, `noFallthroughCasesInSwitch` are already on
 - Prefer `type` imports (`import type`) for type-only imports
 - No `any` — use `unknown` and narrow where needed
+- Always run `tsc --noEmit` (or project type-check script) after edits to verify types
 
 ## Styling
 
@@ -97,3 +114,9 @@ See [TESTING.md](./TESTING.md) for the full guide — stack, patterns, examples,
 - No direct DOM manipulation — use React patterns
 - All code must pass ESLint and Prettier before committing
 - Debouncing belongs to the component that owns the input — never debounce a callback in the parent
+
+## General
+
+Before you write any code, confirm your plan includes: (1) route/error boundaries, (2) mobile breakpoints via MUI sx responsive syntax, (3) loading & empty states, (4) TypeScript strict types. Then run through ExitPlanMode.
+
+After all edits, re-read each modified file to confirm changes persisted, then run the project's type-check and lint commands. Report any diffs or errors before marking complete.
