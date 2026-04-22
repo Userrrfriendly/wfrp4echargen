@@ -67,9 +67,11 @@ interface LevelPanelProps {
   index: number;
   skillMap: Record<string, Skill>;
   talentMap: Record<string, Talent>;
+  previousAttributes: number[];
 }
 
-function LevelPanel({ level, index, skillMap, talentMap }: LevelPanelProps) {
+function LevelPanel({ level, index, skillMap, talentMap, previousAttributes }: LevelPanelProps) {
+  const navigate = useNavigate();
   return (
     <Box sx={{ py: 2 }}>
       <Box
@@ -95,12 +97,14 @@ function LevelPanel({ level, index, skillMap, talentMap }: LevelPanelProps) {
         <Box sx={{ display: 'flex', gap: 0.5, flexWrap: 'wrap' }}>
           {ALL_CHAR_INDICES.map((idx) => {
             const active = level.attributes.includes(idx);
+            const inherited = !active && previousAttributes.includes(idx);
+            const color = active ? 'primary' : inherited ? 'success' : 'default';
             return (
               <Chip
                 key={idx}
                 label={ATTRIBUTES[idx]}
                 size="small"
-                color={active ? 'primary' : 'default'}
+                color={color}
                 variant="outlined"
                 sx={{ opacity: 0.95 }}
               />
@@ -137,7 +141,8 @@ function LevelPanel({ level, index, skillMap, talentMap }: LevelPanelProps) {
                     label={label}
                     size="small"
                     variant="outlined"
-                    sx={{ opacity: 0.95 }}
+                    onClick={() => navigate(`/reference/skills/${id}`)}
+                    sx={{ opacity: 0.95, cursor: 'pointer' }}
                   />
                 </ThemedTooltip>
               );
@@ -175,7 +180,8 @@ function LevelPanel({ level, index, skillMap, talentMap }: LevelPanelProps) {
                     label={label}
                     size="small"
                     variant="outlined"
-                    sx={{ opacity: 0.95 }}
+                    onClick={() => navigate(`/reference/talents/${id}`)}
+                    sx={{ opacity: 0.95, cursor: 'pointer' }}
                   />
                 </ThemedTooltip>
               );
@@ -304,6 +310,7 @@ export default function CareerDetailPage() {
               index={i}
               skillMap={skillMap}
               talentMap={talentMap}
+              previousAttributes={levels.slice(0, i).flatMap((l) => l.attributes)}
             />
             {i < levels.length - 1 && <Divider sx={{ my: 1 }} />}
           </Box>

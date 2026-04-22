@@ -9,12 +9,14 @@ import {
   Typography,
 } from '@mui/material';
 import type { SelectChangeEvent } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import { useSkills } from '../../hooks/useSkills';
 import { ATTRIBUTES, ITEMS_PER_PAGE, SKILL_TYPES } from '../../utils/gameData';
 import ReferencePageLayout from '../../components/reference/ReferencePageLayout';
 import SourceChips from '../../components/reference/SourceChips';
 
 export default function SkillsPage() {
+  const navigate = useNavigate();
   const { data: skills, isLoading, error } = useSkills();
   const [search, setSearch] = useState('');
   const [typeFilter, setTypeFilter] = useState<number | ''>('');
@@ -68,6 +70,7 @@ export default function SkillsPage() {
       totalPages={totalPages}
       resultCount={filtered.length}
       resultLabel="skill"
+      onItemClick={(skill) => navigate(`/reference/skills/${skill.id}`)}
       extraFilters={
         <FormControl size="small" sx={{ minWidth: 140 }}>
           <InputLabel>Type</InputLabel>

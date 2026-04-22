@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
 import { Box, Chip, Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import type { EntityModifiers } from '../../types';
 import { useTalents } from '../../hooks/useTalents';
 import { ATTRIBUTES, ITEMS_PER_PAGE } from '../../utils/gameData';
@@ -24,6 +25,7 @@ import ReferencePageLayout from '../../components/reference/ReferencePageLayout'
 import SourceChips from '../../components/reference/SourceChips';
 
 export default function TalentsPage() {
+  const navigate = useNavigate();
   const { data: talents, isLoading, error } = useTalents();
   const [search, setSearch] = useState('');
   const [sourceFilter, setSourceFilter] = useState<string | null>(null);
@@ -75,6 +77,7 @@ export default function TalentsPage() {
       totalPages={totalPages}
       resultCount={filtered.length}
       resultLabel="talent"
+      onItemClick={(talent) => navigate(`/reference/talents/${talent.id}`)}
       renderItem={(talent) => (
         <Box sx={{ py: 0.25, width: '100%' }}>
           <Box
