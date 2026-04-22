@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useMemo } from 'react';
 import {
   Box,
   Chip,
@@ -10,6 +10,7 @@ import {
 } from '@mui/material';
 import type { SelectChangeEvent } from '@mui/material';
 import { useTrappings } from '../../hooks/useTrappings';
+import { useReferenceFilters } from '../../hooks/useReferenceFilters';
 import {
   ARMOUR_LOCATIONS,
   AVAILABILITY,
@@ -152,10 +153,9 @@ function TrappingStats({ item }: { item: Trapping }) {
 
 export default function TrappingsPage() {
   const { data: trappings, isLoading, error } = useTrappings();
-  const [search, setSearch] = useState('');
-  const [typeFilter, setTypeFilter] = useState<number | ''>('');
-  const [sourceFilter, setSourceFilter] = useState<string | null>(null);
-  const [page, setPage] = useState(1);
+  const { search, source: sourceFilter, page, searchParams, setSearch, setSource, setPage, setExtraParam } = useReferenceFilters();
+
+  const typeFilter: number | '' = searchParams.has('type') ? Number(searchParams.get('type')) : '';
 
   const filtered = useMemo(() => {
     if (!trappings) return [];
@@ -190,15 +190,9 @@ export default function TrappingsPage() {
       isLoading={isLoading}
       error={error as Error | null}
       search={search}
-      onSearchChange={(v) => {
-        setSearch(v);
-        setPage(1);
-      }}
+      onSearchChange={setSearch}
       selectedSource={sourceFilter}
-      onSourceChange={(v) => {
-        setSourceFilter(v);
-        setPage(1);
-      }}
+      onSourceChange={setSource}
       page={page}
       onPageChange={setPage}
       totalPages={totalPages}
@@ -211,8 +205,8 @@ export default function TrappingsPage() {
             value={typeFilter}
             label="Type"
             onChange={(e: SelectChangeEvent<number | ''>) => {
-              setTypeFilter(e.target.value as number | '');
-              setPage(1);
+              const val = e.target.value as number | '';
+              setExtraParam('type', val !== '' ? String(val) : null);
             }}
           >
             <MenuItem value="">All Types</MenuItem>

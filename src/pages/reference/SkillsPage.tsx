@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useMemo } from 'react';
 import {
   Box,
   Chip,
@@ -11,6 +11,7 @@ import {
 import type { SelectChangeEvent } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useSkills } from '../../hooks/useSkills';
+import { useReferenceFilters } from '../../hooks/useReferenceFilters';
 import { ATTRIBUTES, ITEMS_PER_PAGE, SKILL_TYPES } from '../../utils/gameData';
 import ReferencePageLayout from '../../components/reference/ReferencePageLayout';
 import SourceChips from '../../components/reference/SourceChips';
@@ -18,10 +19,9 @@ import SourceChips from '../../components/reference/SourceChips';
 export default function SkillsPage() {
   const navigate = useNavigate();
   const { data: skills, isLoading, error } = useSkills();
-  const [search, setSearch] = useState('');
-  const [typeFilter, setTypeFilter] = useState<number | ''>('');
-  const [sourceFilter, setSourceFilter] = useState<string | null>(null);
-  const [page, setPage] = useState(1);
+  const { search, source: sourceFilter, page, searchParams, setSearch, setSource, setPage, setExtraParam } = useReferenceFilters();
+
+  const typeFilter: number | '' = searchParams.has('type') ? Number(searchParams.get('type')) : '';
 
   const filtered = useMemo(() => {
     if (!skills) return [];
@@ -56,15 +56,9 @@ export default function SkillsPage() {
       isLoading={isLoading}
       error={error as Error | null}
       search={search}
-      onSearchChange={(v) => {
-        setSearch(v);
-        setPage(1);
-      }}
+      onSearchChange={setSearch}
       selectedSource={sourceFilter}
-      onSourceChange={(v) => {
-        setSourceFilter(v);
-        setPage(1);
-      }}
+      onSourceChange={setSource}
       page={page}
       onPageChange={setPage}
       totalPages={totalPages}
@@ -78,8 +72,8 @@ export default function SkillsPage() {
             value={typeFilter}
             label="Type"
             onChange={(e: SelectChangeEvent<number | ''>) => {
-              setTypeFilter(e.target.value as number | '');
-              setPage(1);
+              const val = e.target.value as number | '';
+              setExtraParam('type', val !== '' ? String(val) : null);
             }}
           >
             <MenuItem value="">All Types</MenuItem>

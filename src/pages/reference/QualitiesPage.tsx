@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useMemo } from 'react';
 import {
   Box,
   Chip,
@@ -10,6 +10,7 @@ import {
 } from '@mui/material';
 import type { SelectChangeEvent } from '@mui/material';
 import { useQualities } from '../../hooks/useQualities';
+import { useReferenceFilters } from '../../hooks/useReferenceFilters';
 import { ITEMS_PER_PAGE, QUALITY_TYPES, TRAPPING_TYPES } from '../../utils/gameData';
 import ReferencePageLayout from '../../components/reference/ReferencePageLayout';
 import SourceChips from '../../components/reference/SourceChips';
@@ -22,10 +23,9 @@ function applicableToLabel(applicableTo: number[]): string {
 
 export default function QualitiesPage() {
   const { data: qualities, isLoading, error } = useQualities();
-  const [search, setSearch] = useState('');
-  const [typeFilter, setTypeFilter] = useState<number | ''>('');
-  const [sourceFilter, setSourceFilter] = useState<string | null>(null);
-  const [page, setPage] = useState(1);
+  const { search, source: sourceFilter, page, searchParams, setSearch, setSource, setPage, setExtraParam } = useReferenceFilters();
+
+  const typeFilter: number | '' = searchParams.has('type') ? Number(searchParams.get('type')) : '';
 
   const filtered = useMemo(() => {
     if (!qualities) return [];
@@ -51,15 +51,9 @@ export default function QualitiesPage() {
       isLoading={isLoading}
       error={error as Error | null}
       search={search}
-      onSearchChange={(v) => {
-        setSearch(v);
-        setPage(1);
-      }}
+      onSearchChange={setSearch}
       selectedSource={sourceFilter}
-      onSourceChange={(v) => {
-        setSourceFilter(v);
-        setPage(1);
-      }}
+      onSourceChange={setSource}
       page={page}
       onPageChange={setPage}
       totalPages={totalPages}
@@ -72,8 +66,8 @@ export default function QualitiesPage() {
             value={typeFilter}
             label="Type"
             onChange={(e: SelectChangeEvent<number | ''>) => {
-              setTypeFilter(e.target.value as number | '');
-              setPage(1);
+              const val = e.target.value as number | '';
+              setExtraParam('type', val !== '' ? String(val) : null);
             }}
           >
             <MenuItem value="">All Types</MenuItem>

@@ -1,7 +1,8 @@
-import { useState, useMemo } from 'react';
+import { useMemo } from 'react';
 import { Box, Chip, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
 import type { SelectChangeEvent } from '@mui/material';
 import { usePrayers } from '../../hooks/usePrayers';
+import { useReferenceFilters } from '../../hooks/useReferenceFilters';
 import { ITEMS_PER_PAGE } from '../../utils/gameData';
 import ReferencePageLayout from '../../components/reference/ReferencePageLayout';
 import SourceChips from '../../components/reference/SourceChips';
@@ -13,10 +14,9 @@ function extractDeity(description: string): string | null {
 
 export default function PrayersPage() {
   const { data: prayers, isLoading, error } = usePrayers();
-  const [search, setSearch] = useState('');
-  const [deityFilter, setDeityFilter] = useState('');
-  const [sourceFilter, setSourceFilter] = useState<string | null>(null);
-  const [page, setPage] = useState(1);
+  const { search, source: sourceFilter, page, searchParams, setSearch, setSource, setPage, setExtraParam } = useReferenceFilters();
+
+  const deityFilter = searchParams.get('deity') ?? '';
 
   const deities = useMemo(() => {
     if (!prayers) return [] as string[];
@@ -45,8 +45,6 @@ export default function PrayersPage() {
   const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
   const paged = filtered.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
 
-  const resetPage = () => setPage(1);
-
   return (
     <ReferencePageLayout
       title="Prayers"
@@ -54,9 +52,9 @@ export default function PrayersPage() {
       isLoading={isLoading}
       error={error as Error | null}
       search={search}
-      onSearchChange={(v) => { setSearch(v); resetPage(); }}
+      onSearchChange={setSearch}
       selectedSource={sourceFilter}
-      onSourceChange={(v) => { setSourceFilter(v); resetPage(); }}
+      onSourceChange={setSource}
       page={page}
       onPageChange={setPage}
       totalPages={totalPages}
@@ -69,8 +67,7 @@ export default function PrayersPage() {
             value={deityFilter}
             label="Deity"
             onChange={(e: SelectChangeEvent) => {
-              setDeityFilter(e.target.value);
-              resetPage();
+              setExtraParam('deity', e.target.value || null);
             }}
           >
             <MenuItem value="">All Deities</MenuItem>

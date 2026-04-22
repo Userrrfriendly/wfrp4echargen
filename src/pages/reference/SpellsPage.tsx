@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useMemo } from 'react';
 import {
   Box,
   Chip,
@@ -10,6 +10,7 @@ import {
 } from '@mui/material';
 import type { SelectChangeEvent } from '@mui/material';
 import { useSpells } from '../../hooks/useSpells';
+import { useReferenceFilters } from '../../hooks/useReferenceFilters';
 import {
   ITEMS_PER_PAGE,
   MAGIC_LORES,
@@ -21,11 +22,10 @@ import SourceChips from '../../components/reference/SourceChips';
 
 export default function SpellsPage() {
   const { data: spells, isLoading, error } = useSpells();
-  const [search, setSearch] = useState('');
-  const [typeFilter, setTypeFilter] = useState<number | ''>('');
-  const [loreFilter, setLoreFilter] = useState<number | ''>('');
-  const [sourceFilter, setSourceFilter] = useState<string | null>(null);
-  const [page, setPage] = useState(1);
+  const { search, source: sourceFilter, page, searchParams, setSearch, setSource, setPage, setExtraParam } = useReferenceFilters();
+
+  const typeFilter: number | '' = searchParams.has('type') ? Number(searchParams.get('type')) : '';
+  const loreFilter: number | '' = searchParams.has('lore') ? Number(searchParams.get('lore')) : '';
 
   const availableLores = useMemo(() => {
     if (!spells) return [] as number[];
@@ -68,8 +68,6 @@ export default function SpellsPage() {
     page * ITEMS_PER_PAGE,
   );
 
-  const resetPage = () => setPage(1);
-
   return (
     <ReferencePageLayout
       title="Spells"
@@ -77,15 +75,9 @@ export default function SpellsPage() {
       isLoading={isLoading}
       error={error as Error | null}
       search={search}
-      onSearchChange={(v) => {
-        setSearch(v);
-        resetPage();
-      }}
+      onSearchChange={setSearch}
       selectedSource={sourceFilter}
-      onSourceChange={(v) => {
-        setSourceFilter(v);
-        resetPage();
-      }}
+      onSourceChange={setSource}
       page={page}
       onPageChange={setPage}
       totalPages={totalPages}
@@ -99,8 +91,8 @@ export default function SpellsPage() {
               value={typeFilter}
               label="Type"
               onChange={(e: SelectChangeEvent<number | ''>) => {
-                setTypeFilter(e.target.value as number | '');
-                resetPage();
+                const val = e.target.value as number | '';
+                setExtraParam('type', val !== '' ? String(val) : null);
               }}
             >
               <MenuItem value="">All Types</MenuItem>
@@ -117,8 +109,8 @@ export default function SpellsPage() {
               value={loreFilter}
               label="Lore"
               onChange={(e: SelectChangeEvent<number | ''>) => {
-                setLoreFilter(e.target.value as number | '');
-                resetPage();
+                const val = e.target.value as number | '';
+                setExtraParam('lore', val !== '' ? String(val) : null);
               }}
             >
               <MenuItem value="">All Lores</MenuItem>

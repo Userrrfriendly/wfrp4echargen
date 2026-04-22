@@ -1,8 +1,9 @@
-import { useState, useMemo } from 'react';
+import { useMemo } from 'react';
 import { Box, Chip, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
 import type { SelectChangeEvent } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useCareers } from '../../hooks/useCareers';
+import { useReferenceFilters } from '../../hooks/useReferenceFilters';
 import { CAREER_CLASSES, ITEMS_PER_PAGE, SPECIES } from '../../utils/gameData';
 import ReferencePageLayout from '../../components/reference/ReferencePageLayout';
 import SourceChips from '../../components/reference/SourceChips';
@@ -10,11 +11,10 @@ import SourceChips from '../../components/reference/SourceChips';
 export default function CareersPage() {
   const navigate = useNavigate();
   const { data: careers, isLoading, error } = useCareers();
-  const [search, setSearch] = useState('');
-  const [classFilter, setClassFilter] = useState<number | ''>('');
-  const [speciesFilter, setSpeciesFilter] = useState<number | ''>('');
-  const [sourceFilter, setSourceFilter] = useState<string | null>(null);
-  const [page, setPage] = useState(1);
+  const { search, source: sourceFilter, page, searchParams, setSearch, setSource, setPage, setExtraParam } = useReferenceFilters();
+
+  const classFilter: number | '' = searchParams.has('class') ? Number(searchParams.get('class')) : '';
+  const speciesFilter: number | '' = searchParams.has('species') ? Number(searchParams.get('species')) : '';
 
   const filtered = useMemo(() => {
     if (!careers) return [];
@@ -35,8 +35,6 @@ export default function CareersPage() {
   const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
   const paged = filtered.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
 
-  const resetPage = () => setPage(1);
-
   return (
     <ReferencePageLayout
       title="Careers"
@@ -44,9 +42,9 @@ export default function CareersPage() {
       isLoading={isLoading}
       error={error as Error | null}
       search={search}
-      onSearchChange={(v) => { setSearch(v); resetPage(); }}
+      onSearchChange={setSearch}
       selectedSource={sourceFilter}
-      onSourceChange={(v) => { setSourceFilter(v); resetPage(); }}
+      onSourceChange={setSource}
       page={page}
       onPageChange={setPage}
       totalPages={totalPages}
@@ -61,8 +59,8 @@ export default function CareersPage() {
               value={classFilter}
               label="Class"
               onChange={(e: SelectChangeEvent<number | ''>) => {
-                setClassFilter(e.target.value as number | '');
-                resetPage();
+                const val = e.target.value as number | '';
+                setExtraParam('class', val !== '' ? String(val) : null);
               }}
             >
               <MenuItem value="">All Classes</MenuItem>
@@ -77,8 +75,8 @@ export default function CareersPage() {
               value={speciesFilter}
               label="Species"
               onChange={(e: SelectChangeEvent<number | ''>) => {
-                setSpeciesFilter(e.target.value as number | '');
-                resetPage();
+                const val = e.target.value as number | '';
+                setExtraParam('species', val !== '' ? String(val) : null);
               }}
             >
               <MenuItem value="">All Species</MenuItem>

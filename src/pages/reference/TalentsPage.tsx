@@ -1,8 +1,9 @@
-import { useState, useMemo } from 'react';
+import { useMemo } from 'react';
 import { Box, Chip, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import type { EntityModifiers } from '../../types';
 import { useTalents } from '../../hooks/useTalents';
+import { useReferenceFilters } from '../../hooks/useReferenceFilters';
 import { ATTRIBUTES, ITEMS_PER_PAGE } from '../../utils/gameData';
 
 function resolveMaxRank(attribute: number, maxRank: number): string | null {
@@ -27,9 +28,7 @@ import SourceChips from '../../components/reference/SourceChips';
 export default function TalentsPage() {
   const navigate = useNavigate();
   const { data: talents, isLoading, error } = useTalents();
-  const [search, setSearch] = useState('');
-  const [sourceFilter, setSourceFilter] = useState<string | null>(null);
-  const [page, setPage] = useState(1);
+  const { search, source: sourceFilter, page, setSearch, setSource, setPage } = useReferenceFilters();
 
   const filtered = useMemo(() => {
     if (!talents) return [];
@@ -63,15 +62,9 @@ export default function TalentsPage() {
       isLoading={isLoading}
       error={error as Error | null}
       search={search}
-      onSearchChange={(v) => {
-        setSearch(v);
-        setPage(1);
-      }}
+      onSearchChange={setSearch}
       selectedSource={sourceFilter}
-      onSourceChange={(v) => {
-        setSourceFilter(v);
-        setPage(1);
-      }}
+      onSourceChange={setSource}
       page={page}
       onPageChange={setPage}
       totalPages={totalPages}
