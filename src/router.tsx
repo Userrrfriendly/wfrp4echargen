@@ -28,30 +28,88 @@ export const router = createBrowserRouter([
     // resolve the matched route module before it can render. HydrateFallback
     // fills that window — without it the page is blank and the console warns.
     HydrateFallback: () => (
-      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100vh',
+        }}
+      >
         <CircularProgress />
       </Box>
     ),
     children: [
       { index: true, element: <Navigate to="/reference/careers" replace /> },
-      { path: 'reference/careers', lazy: () => lazy(() => import('./pages/reference/CareersPage')) },
-      { path: 'reference/careers/:id', lazy: () => lazy(() => import('./pages/reference/CareerDetailPage')) },
-      { path: 'reference/skills', lazy: () => lazy(() => import('./pages/reference/SkillsPage')) },
-      { path: 'reference/skills/:id', lazy: () => lazy(() => import('./pages/reference/SkillDetailPage')) },
-      { path: 'reference/talents', lazy: () => lazy(() => import('./pages/reference/TalentsPage')) },
-      { path: 'reference/talents/:id', lazy: () => lazy(() => import('./pages/reference/TalentDetailPage')) },
-      { path: 'reference/trappings', lazy: () => lazy(() => import('./pages/reference/TrappingsPage')) },
-      { path: 'reference/spells', lazy: () => lazy(() => import('./pages/reference/SpellsPage')) },
-      { path: 'reference/prayers', lazy: () => lazy(() => import('./pages/reference/PrayersPage')) },
-      { path: 'reference/qualities', lazy: () => lazy(() => import('./pages/reference/QualitiesPage')) },
-      { path: 'reference/mutations', lazy: () => lazy(() => import('./pages/reference/MutationsPage')) },
-      { path: 'characters', lazy: () => lazy(() => import('./pages/characters/CharactersPage')) },
-      { path: 'characters/new', lazy: () => lazy(() => import('./pages/characters/CharacterCreationPage')) },
-      { path: 'characters/:id', lazy: () => lazy(() => import('./pages/characters/CharacterSheetPage')) },
+      {
+        path: 'reference/careers',
+        lazy: () => lazy(() => import('./pages/reference/CareersPage')),
+      },
+      {
+        path: 'reference/careers/:id',
+        lazy: () => lazy(() => import('./pages/reference/CareerDetailPage')),
+      },
+      {
+        path: 'reference/skills',
+        lazy: () => lazy(() => import('./pages/reference/SkillsPage')),
+      },
+      {
+        path: 'reference/skills/:id',
+        lazy: () => lazy(() => import('./pages/reference/SkillDetailPage')),
+      },
+      {
+        path: 'reference/talents',
+        lazy: () => lazy(() => import('./pages/reference/TalentsPage')),
+      },
+      {
+        path: 'reference/talents/:id',
+        lazy: () => lazy(() => import('./pages/reference/TalentDetailPage')),
+      },
+      {
+        path: 'reference/trappings',
+        lazy: () => lazy(() => import('./pages/reference/TrappingsPage')),
+      },
+      {
+        path: 'reference/spells',
+        lazy: () => lazy(() => import('./pages/reference/SpellsPage')),
+      },
+      {
+        path: 'reference/prayers',
+        lazy: () => lazy(() => import('./pages/reference/PrayersPage')),
+      },
+      {
+        path: 'reference/qualities',
+        lazy: () => lazy(() => import('./pages/reference/QualitiesPage')),
+      },
+      {
+        path: 'reference/mutations',
+        lazy: () => lazy(() => import('./pages/reference/MutationsPage')),
+      },
+      {
+        path: 'characters',
+        lazy: () => lazy(() => import('./pages/characters/CharactersPage')),
+      },
+      {
+        path: 'characters/new',
+        lazy: () =>
+          lazy(() => import('./pages/characters/CharacterCreationPage')),
+      },
+      {
+        path: 'characters/:id',
+        lazy: () => lazy(() => import('./pages/characters/CharacterSheetPage')),
+      },
       { path: 'dice', lazy: () => lazy(() => import('./pages/DicePage')) },
-      { path: 'settings', lazy: () => lazy(() => import('./pages/SettingsPage')) },
+      {
+        path: 'settings',
+        lazy: () => lazy(() => import('./pages/SettingsPage')),
+      },
       ...(import.meta.env.DEV
-        ? [{ path: 'theme-preview', lazy: () => lazy(() => import('./pages/ThemePreviewPage')) }]
+        ? [
+            {
+              path: 'theme-preview',
+              lazy: () => lazy(() => import('./pages/ThemePreviewPage')),
+            },
+          ]
         : []),
       { path: '*', element: <NotFoundPage /> },
     ],

@@ -1,5 +1,11 @@
 import type { MouseEvent } from 'react';
-import { Box, Divider, ToggleButton, ToggleButtonGroup, Typography } from '@mui/material';
+import {
+  Box,
+  Divider,
+  ToggleButton,
+  ToggleButtonGroup,
+  Typography,
+} from '@mui/material';
 import { useUiStore } from '../stores/uiStore';
 import type { ThemeMode } from '../stores/uiStore';
 

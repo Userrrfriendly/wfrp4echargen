@@ -76,7 +76,9 @@ export default function TalentDetailPage() {
         <Typography variant="body1" gutterBottom>
           Talent not found.
         </Typography>
-        <Button onClick={() => navigate(-1)}><ArrowBackRounded fontSize="small" /> Back</Button>
+        <Button onClick={() => navigate(-1)}>
+          <ArrowBackRounded fontSize="small" /> Back
+        </Button>
       </Box>
     );
   }

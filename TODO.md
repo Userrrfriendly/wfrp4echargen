@@ -6,14 +6,9 @@
 
 ---- Active ----
 
-1. order VC
-2. - at careerDetails search for slayer, select brother of grimnir, go back, the search is gone (UiStore?)
-
 ---
 
 -in the career Details lots of changes...
-
-- at careerDetails you need to put the level next to the title
 
 - at careerDetails BIG BULLET should go
 - The mutations have stat bonus/penalty chip BUT THE TALENTS DONT HAVE IT

@@ -57,7 +57,9 @@ export default function SkillDetailPage() {
         <Typography variant="body1" gutterBottom>
           Skill not found.
         </Typography>
-        <Button onClick={() => navigate(-1)}><ArrowBackRounded fontSize="small" /> Back</Button>
+        <Button onClick={() => navigate(-1)}>
+          <ArrowBackRounded fontSize="small" /> Back
+        </Button>
       </Box>
     );
   }
