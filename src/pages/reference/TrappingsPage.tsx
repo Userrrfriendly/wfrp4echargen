@@ -22,12 +22,13 @@ import {
 } from '../../utils/gameData';
 import ReferencePageLayout from '../../components/reference/ReferencePageLayout';
 import SourceChips from '../../components/reference/SourceChips';
+import ThemedTooltip from '../../components/common/ThemedTooltip';
 import type { Trapping } from '../../types';
 
 const CURRENCY_COLORS = {
-  GC: '#c8960c', // gold crown
-  SS: '#a8a9b4', // silver shilling
-  BP: '#b87333', // brass penny
+  GC: 'gold', // gold crown
+  SS: 'silver', // silver shilling
+  BP: '#983719', // brass penny
 } as const;
 
 function PriceDisplay({ brass }: { brass: number }) {
@@ -36,10 +37,18 @@ function PriceDisplay({ brass }: { brass: number }) {
   const bp = brass % 12;
 
   const parts = [
-    gold > 0 && { value: gold, unit: 'GC' as const },
-    silver > 0 && { value: silver, unit: 'SS' as const },
-    bp > 0 && { value: bp, unit: 'BP' as const },
-  ].filter(Boolean) as { value: number; unit: keyof typeof CURRENCY_COLORS }[];
+    gold > 0 && { value: gold, unit: 'GC', unitLong: 'Gold Crown' as const },
+    silver > 0 && {
+      value: silver,
+      unit: 'SS',
+      unitLong: 'Silver Shilling' as const,
+    },
+    bp > 0 && { value: bp, unit: 'BP', unitLong: 'Brass Penny' as const },
+  ].filter(Boolean) as {
+    value: number;
+    unit: keyof typeof CURRENCY_COLORS;
+    unitLong: string;
+  }[];
 
   if (parts.length === 0) {
     return (
@@ -49,19 +58,64 @@ function PriceDisplay({ brass }: { brass: number }) {
     );
   }
 
-  return (
-    <Box component="span" sx={{ display: 'flex', gap: 0.5, alignItems: 'center' }}>
+  const currencyParts = (
+    <Box component="span" sx={{ display: 'flex', gap: 0.75 }}>
       {parts.map(({ value, unit }) => (
-        <Typography
-          key={unit}
-          component="span"
-          variant="body1"
-          sx={{ color: CURRENCY_COLORS[unit], fontWeight: 500 }}
-        >
-          {value}{unit}
-        </Typography>
+        <Box key={unit} component="span" sx={{ color: CURRENCY_COLORS[unit] }}>
+          {value}
+          {unit}
+        </Box>
       ))}
     </Box>
+  );
+
+  return (
+    <ThemedTooltip
+      title={
+        <Box sx={{ p: 1 }}>
+          <Typography
+            variant="body1"
+            sx={{
+              display: 'block',
+            }}
+          >
+            Price:
+          </Typography>
+
+          <Box>
+            {parts.map(({ value, unitLong }) => (
+              <Typography key={unitLong} variant="body2" sx={{}}>
+                {value} {unitLong}
+              </Typography>
+            ))}
+          </Box>
+          {parts.some((p) => p.unit === 'GC' || p.unit === 'SS') && (
+            <Typography
+              variant="body2"
+              sx={{
+                display: 'block',
+                fontWeight: 600,
+                fontSize: '1rem',
+              }}
+            >
+              ({brass} BP)
+            </Typography>
+          )}
+        </Box>
+      }
+    >
+      <Chip
+        size="small"
+        label={currencyParts}
+        sx={{
+          typography: 'diablo',
+          fontWeight: 600,
+          fontSize: '1rem',
+          backgroundColor: 'black',
+          borderWidth: 2,
+        }}
+      />
+    </ThemedTooltip>
   );
 }
 
@@ -153,9 +207,20 @@ function TrappingStats({ item }: { item: Trapping }) {
 
 export default function TrappingsPage() {
   const { data: trappings, isLoading, error } = useTrappings();
-  const { search, source: sourceFilter, page, searchParams, setSearch, setSource, setPage, setExtraParam } = useReferenceFilters();
+  const {
+    search,
+    source: sourceFilter,
+    page,
+    searchParams,
+    setSearch,
+    setSource,
+    setPage,
+    setExtraParam,
+  } = useReferenceFilters();
 
-  const typeFilter: number | '' = searchParams.has('type') ? Number(searchParams.get('type')) : '';
+  const typeFilter: number | '' = searchParams.has('type')
+    ? Number(searchParams.get('type'))
+    : '';
 
   const filtered = useMemo(() => {
     if (!trappings) return [];
@@ -248,7 +313,7 @@ export default function TrappingsPage() {
               }
               size="small"
               variant="outlined"
-              sx={{ opacity: 0.95 }}
+              sx={{ borderWidth: 2, opacity: 0.95 }}
             />
             {item.object.availability !== undefined && (
               <Chip
@@ -258,7 +323,7 @@ export default function TrappingsPage() {
                 }
                 size="small"
                 variant="outlined"
-                sx={{ opacity: 0.95 }}
+                sx={{ borderWidth: 2, opacity: 0.95 }}
               />
             )}
             <SourceChips source={item.object.source} />

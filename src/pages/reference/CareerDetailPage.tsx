@@ -54,7 +54,7 @@ function Section({
         color="text.secondary"
         sx={{ letterSpacing: 1, flexShrink: 0 }}
       >
-        {title ? title + ' ● ' : ''}
+        {title ? title + ': ' : ''}
       </Typography>
       <Box sx={{ mt: { xs: 0.5, md: 0 }, minWidth: 0, flex: { md: 1 } }}>
         {children}
@@ -71,7 +71,13 @@ interface LevelPanelProps {
   previousAttributes: number[];
 }
 
-function LevelPanel({ level, index, skillMap, talentMap, previousAttributes }: LevelPanelProps) {
+function LevelPanel({
+  level,
+  index,
+  skillMap,
+  talentMap,
+  previousAttributes,
+}: LevelPanelProps) {
   const navigate = useNavigate();
   return (
     <Box sx={{ py: 2 }}>
@@ -85,10 +91,11 @@ function LevelPanel({ level, index, skillMap, talentMap, previousAttributes }: L
         }}
       >
         <Typography variant="h5">
-          {level.name || `Level ${index + 1}`}
+          {`Level ${index + 1}`}
+          {level.name ? ` / ${level.name} /` : ''}
         </Typography>
-        <Typography variant="body1" color="text.secondary">
-          {' ●  Status: '}
+        <Typography variant="h5" color="text.secondary">
+          {'Status: '}
           {STATUS_TIERS[level.status] ?? `Tier ${level.status}`}{' '}
           {level.standing > 0 ? level.standing : ''}
         </Typography>
@@ -99,7 +106,11 @@ function LevelPanel({ level, index, skillMap, talentMap, previousAttributes }: L
           {ALL_CHAR_INDICES.map((idx) => {
             const active = level.attributes.includes(idx);
             const inherited = !active && previousAttributes.includes(idx);
-            const color = active ? 'primary' : inherited ? 'success' : 'default';
+            const color = active
+              ? 'success'
+              : inherited
+                ? 'primary'
+                : 'default';
             return (
               <Chip
                 key={idx}
@@ -107,7 +118,11 @@ function LevelPanel({ level, index, skillMap, talentMap, previousAttributes }: L
                 size="small"
                 color={color}
                 variant="outlined"
-                sx={{ opacity: 0.95 }}
+                sx={{
+                  opacity: 0.95,
+                  borderWidth: 2,
+                  fontWeight: active ? 'bold' : 'default',
+                }}
               />
             );
           })}
@@ -143,7 +158,7 @@ function LevelPanel({ level, index, skillMap, talentMap, previousAttributes }: L
                     size="small"
                     variant="outlined"
                     onClick={() => navigate(`/reference/skills/${id}`)}
-                    sx={{ opacity: 0.95, cursor: 'pointer' }}
+                    sx={{ opacity: 0.95, borderWidth: 2, cursor: 'pointer' }}
                   />
                 </ThemedTooltip>
               );
@@ -182,7 +197,7 @@ function LevelPanel({ level, index, skillMap, talentMap, previousAttributes }: L
                     size="small"
                     variant="outlined"
                     onClick={() => navigate(`/reference/talents/${id}`)}
-                    sx={{ opacity: 0.95, cursor: 'pointer' }}
+                    sx={{ opacity: 0.95, borderWidth: 2, cursor: 'pointer' }}
                   />
                 </ThemedTooltip>
               );
@@ -252,10 +267,7 @@ export default function CareerDetailPage() {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
       <Box sx={{ flexShrink: 0 }}>
-        <Button
-          onClick={() => navigate(-1)}
-          sx={{ mb: 2, px: 0 }}
-        >
+        <Button onClick={() => navigate(-1)} sx={{ mb: 2, px: 0 }}>
           <ArrowBackRounded fontSize="small" /> Back
         </Button>
 
@@ -286,6 +298,7 @@ export default function CareerDetailPage() {
                 label={SPECIES[s] ?? `Species ${s}`}
                 size="small"
                 variant="outlined"
+                sx={{ borderWidth: 2, opacity: 0.95 }}
               />
             ))}
           </Box>
@@ -295,7 +308,7 @@ export default function CareerDetailPage() {
               color="text.secondary"
               sx={{ fontStyle: 'italic' }}
             >
-              {'● ' + data.description}
+              {data.description}
             </Typography>
           )}
         </Box>
@@ -311,7 +324,9 @@ export default function CareerDetailPage() {
               index={i}
               skillMap={skillMap}
               talentMap={talentMap}
-              previousAttributes={levels.slice(0, i).flatMap((l) => l.attributes)}
+              previousAttributes={levels
+                .slice(0, i)
+                .flatMap((l) => l.attributes)}
             />
             {i < levels.length - 1 && <Divider sx={{ my: 1 }} />}
           </Box>
