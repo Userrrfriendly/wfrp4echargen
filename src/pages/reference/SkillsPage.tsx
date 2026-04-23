@@ -19,9 +19,20 @@ import SourceChips from '../../components/reference/SourceChips';
 export default function SkillsPage() {
   const navigate = useNavigate();
   const { data: skills, isLoading, error } = useSkills();
-  const { search, source: sourceFilter, page, searchParams, setSearch, setSource, setPage, setExtraParam } = useReferenceFilters();
+  const {
+    search,
+    source: sourceFilter,
+    page,
+    searchParams,
+    setSearch,
+    setSource,
+    setPage,
+    setExtraParam,
+  } = useReferenceFilters();
 
-  const typeFilter: number | '' = searchParams.has('type') ? Number(searchParams.get('type')) : '';
+  const typeFilter: number | '' = searchParams.has('type')
+    ? Number(searchParams.get('type'))
+    : '';
 
   const filtered = useMemo(() => {
     if (!skills) return [];
@@ -103,7 +114,7 @@ export default function SkillsPage() {
                 label="Group"
                 size="small"
                 variant="outlined"
-                sx={{ opacity: 0.95 }}
+                sx={{ borderWidth: 2, opacity: 0.95 }}
               />
             )}
           </Box>
@@ -123,7 +134,7 @@ export default function SkillsPage() {
               }
               size="small"
               variant="outlined"
-              sx={{ opacity: 0.95 }}
+              sx={{ borderWidth: 2, opacity: 0.95 }}
             />
             <SourceChips source={skill.object.source} />
           </Box>

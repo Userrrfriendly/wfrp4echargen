@@ -7,7 +7,8 @@ import { useReferenceFilters } from '../../hooks/useReferenceFilters';
 import { ATTRIBUTES, ITEMS_PER_PAGE } from '../../utils/gameData';
 
 function resolveMaxRank(attribute: number, maxRank: number): string | null {
-  if (attribute > 0) return `${ATTRIBUTES[attribute] ?? `Attr ${attribute}`} Bonus`;
+  if (attribute > 0)
+    return `${ATTRIBUTES[attribute] ?? `Attr ${attribute}`} Bonus`;
   if (maxRank === 0) return null;
   if (maxRank >= 99) return '∞';
   return String(maxRank);
@@ -28,7 +29,14 @@ import SourceChips from '../../components/reference/SourceChips';
 export default function TalentsPage() {
   const navigate = useNavigate();
   const { data: talents, isLoading, error } = useTalents();
-  const { search, source: sourceFilter, page, setSearch, setSource, setPage } = useReferenceFilters();
+  const {
+    search,
+    source: sourceFilter,
+    page,
+    setSearch,
+    setSource,
+    setPage,
+  } = useReferenceFilters();
 
   const filtered = useMemo(() => {
     if (!talents) return [];
@@ -89,7 +97,7 @@ export default function TalentsPage() {
                 label="Group"
                 size="small"
                 variant="outlined"
-                sx={{ opacity: 0.95 }}
+                sx={{ borderWidth: 2, opacity: 0.95 }}
               />
             )}
           </Box>
@@ -103,13 +111,17 @@ export default function TalentsPage() {
             }}
           >
             {(() => {
-              const label = resolveMaxRank(talent.object.attribute, talent.object.maxRank);
+              const label = resolveMaxRank(
+                talent.object.attribute,
+                talent.object.maxRank,
+              );
               return label ? (
                 <Chip
                   label={`Max rank: ${label}`}
                   size="small"
                   color="primary"
                   variant="outlined"
+                  sx={{ borderWidth: 2, opacity: 0.95 }}
                 />
               ) : null;
             })()}
@@ -118,7 +130,7 @@ export default function TalentsPage() {
                 label={talent.object.tests}
                 size="small"
                 variant="outlined"
-                sx={{ opacity: 0.95 }}
+                sx={{ borderWidth: 2, opacity: 0.95 }}
               />
             )}
             {(() => {
@@ -128,7 +140,7 @@ export default function TalentsPage() {
                   label={modLabel}
                   size="small"
                   variant="outlined"
-                  sx={{ opacity: 0.95 }}
+                  sx={{ borderWidth: 2, opacity: 0.95 }}
                 />
               ) : null;
             })()}

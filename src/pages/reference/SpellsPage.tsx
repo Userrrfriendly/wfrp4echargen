@@ -22,10 +22,23 @@ import SourceChips from '../../components/reference/SourceChips';
 
 export default function SpellsPage() {
   const { data: spells, isLoading, error } = useSpells();
-  const { search, source: sourceFilter, page, searchParams, setSearch, setSource, setPage, setExtraParam } = useReferenceFilters();
+  const {
+    search,
+    source: sourceFilter,
+    page,
+    searchParams,
+    setSearch,
+    setSource,
+    setPage,
+    setExtraParam,
+  } = useReferenceFilters();
 
-  const typeFilter: number | '' = searchParams.has('type') ? Number(searchParams.get('type')) : '';
-  const loreFilter: number | '' = searchParams.has('lore') ? Number(searchParams.get('lore')) : '';
+  const typeFilter: number | '' = searchParams.has('type')
+    ? Number(searchParams.get('type'))
+    : '';
+  const loreFilter: number | '' = searchParams.has('lore')
+    ? Number(searchParams.get('lore'))
+    : '';
 
   const availableLores = useMemo(() => {
     if (!spells) return [] as number[];
@@ -149,7 +162,7 @@ export default function SpellsPage() {
                 .join(' ● ')}
               size="small"
               variant="outlined"
-              sx={{ opacity: 0.95 }}
+              sx={{ borderWidth: 2, opacity: 0.95 }}
             />
             <SourceChips source={spell.object.source} />
           </Box>

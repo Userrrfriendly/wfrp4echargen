@@ -1,5 +1,13 @@
 import { useMemo } from 'react';
-import { Box, Chip, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
+import {
+  Box,
+  Chip,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  Typography,
+} from '@mui/material';
 import type { SelectChangeEvent } from '@mui/material';
 import { usePrayers } from '../../hooks/usePrayers';
 import { useReferenceFilters } from '../../hooks/useReferenceFilters';
@@ -14,7 +22,16 @@ function extractDeity(description: string): string | null {
 
 export default function PrayersPage() {
   const { data: prayers, isLoading, error } = usePrayers();
-  const { search, source: sourceFilter, page, searchParams, setSearch, setSource, setPage, setExtraParam } = useReferenceFilters();
+  const {
+    search,
+    source: sourceFilter,
+    page,
+    searchParams,
+    setSearch,
+    setSource,
+    setPage,
+    setExtraParam,
+  } = useReferenceFilters();
 
   const deityFilter = searchParams.get('deity') ?? '';
 
@@ -32,10 +49,17 @@ export default function PrayersPage() {
     if (!prayers) return [];
     return prayers
       .filter((p) => {
-        if (search && !p.object.name.toLowerCase().includes(search.toLowerCase()))
+        if (
+          search &&
+          !p.object.name.toLowerCase().includes(search.toLowerCase())
+        )
           return false;
-        if (deityFilter && extractDeity(p.object.description) !== deityFilter) return false;
-        if (sourceFilter && !Object.keys(p.object.source).includes(sourceFilter))
+        if (deityFilter && extractDeity(p.object.description) !== deityFilter)
+          return false;
+        if (
+          sourceFilter &&
+          !Object.keys(p.object.source).includes(sourceFilter)
+        )
           return false;
         return true;
       })
@@ -43,7 +67,10 @@ export default function PrayersPage() {
   }, [prayers, search, deityFilter, sourceFilter]);
 
   const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
-  const paged = filtered.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
+  const paged = filtered.slice(
+    (page - 1) * ITEMS_PER_PAGE,
+    page * ITEMS_PER_PAGE,
+  );
 
   return (
     <ReferencePageLayout
@@ -72,7 +99,9 @@ export default function PrayersPage() {
           >
             <MenuItem value="">All Deities</MenuItem>
             {deities.map((d) => (
-              <MenuItem key={d} value={d}>{d}</MenuItem>
+              <MenuItem key={d} value={d}>
+                {d}
+              </MenuItem>
             ))}
           </Select>
         </FormControl>
@@ -94,12 +123,18 @@ export default function PrayersPage() {
               }}
             >
               {deity && (
-                <Chip label={deity} size="small" color="secondary" variant="outlined" />
+                <Chip
+                  label={deity}
+                  size="small"
+                  color="secondary"
+                  variant="outlined"
+                  sx={{ borderWidth: 2, opacity: 0.95 }}
+                />
               )}
               <SourceChips source={prayer.object.source} />
               <Typography variant="caption" color="text.secondary">
-                Range: {prayer.object.range} · Target: {prayer.object.target} · Duration:{' '}
-                {prayer.object.duration}
+                Range: {prayer.object.range} · Target: {prayer.object.target} ·
+                Duration: {prayer.object.duration}
               </Typography>
             </Box>
           </Box>

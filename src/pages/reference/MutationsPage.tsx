@@ -31,9 +31,20 @@ function formatModifiers(modifiers: EntityModifiers): string | null {
 
 export default function MutationsPage() {
   const { data: mutations, isLoading, error } = useMutations();
-  const { search, source: sourceFilter, page, searchParams, setSearch, setSource, setPage, setExtraParam } = useReferenceFilters();
+  const {
+    search,
+    source: sourceFilter,
+    page,
+    searchParams,
+    setSearch,
+    setSource,
+    setPage,
+    setExtraParam,
+  } = useReferenceFilters();
 
-  const typeFilter: number | '' = searchParams.has('type') ? Number(searchParams.get('type')) : '';
+  const typeFilter: number | '' = searchParams.has('type')
+    ? Number(searchParams.get('type'))
+    : '';
 
   const filtered = useMemo(() => {
     if (!mutations) return [];
@@ -112,13 +123,14 @@ export default function MutationsPage() {
                 size="small"
                 color={mutation.object.type === 0 ? 'primary' : 'secondary'}
                 variant="outlined"
+                sx={{ borderWidth: 2, opacity: 0.95 }}
               />
               {modLabel && (
                 <Chip
                   label={modLabel}
                   size="small"
                   variant="outlined"
-                  sx={{ opacity: 0.95 }}
+                  sx={{ borderWidth: 2, opacity: 0.95 }}
                 />
               )}
               <SourceChips source={mutation.object.source} />

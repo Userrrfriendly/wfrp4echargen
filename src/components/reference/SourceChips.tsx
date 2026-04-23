@@ -25,7 +25,7 @@ export default function SourceChips({ source }: SourceChipsProps) {
       label={label}
       size="small"
       variant="outlined"
-      sx={{ opacity: 0.95, borderColor: 'warning.light' }}
+      sx={{ opacity: 0.95, borderColor: 'warning.light', borderWidth: 2 }}
     />
   );
 }

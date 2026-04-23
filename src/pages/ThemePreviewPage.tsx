@@ -137,6 +137,7 @@ export default function ThemePreviewPage() {
           sx={{
             fontFamily: 'monospace',
             '& .MuiChip-label': { opacity: 0.95 },
+            borderWidth: 2,
           }}
         />
       </Typography>
@@ -283,6 +284,7 @@ export default function ThemePreviewPage() {
                     variant="outlined"
                     sx={{
                       fontFamily: 'monospace',
+                      borderWidth: 2,
                       '& .MuiChip-label': { opacity: 0.95 },
                     }}
                   />
@@ -335,6 +337,7 @@ export default function ThemePreviewPage() {
                     color="primary"
                     sx={{
                       fontFamily: 'monospace',
+                      borderWidth: 2,
                       '& .MuiChip-label': { opacity: 0.95 },
                     }}
                   />

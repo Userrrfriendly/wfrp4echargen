@@ -1,5 +1,13 @@
 import { useMemo } from 'react';
-import { Box, Chip, FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
+import {
+  Box,
+  Chip,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  Typography,
+} from '@mui/material';
 import type { SelectChangeEvent } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useCareers } from '../../hooks/useCareers';
@@ -11,21 +19,43 @@ import SourceChips from '../../components/reference/SourceChips';
 export default function CareersPage() {
   const navigate = useNavigate();
   const { data: careers, isLoading, error } = useCareers();
-  const { search, source: sourceFilter, page, searchParams, setSearch, setSource, setPage, setExtraParam } = useReferenceFilters();
+  const {
+    search,
+    source: sourceFilter,
+    page,
+    searchParams,
+    setSearch,
+    setSource,
+    setPage,
+    setExtraParam,
+  } = useReferenceFilters();
 
-  const classFilter: number | '' = searchParams.has('class') ? Number(searchParams.get('class')) : '';
-  const speciesFilter: number | '' = searchParams.has('species') ? Number(searchParams.get('species')) : '';
+  const classFilter: number | '' = searchParams.has('class')
+    ? Number(searchParams.get('class'))
+    : '';
+  const speciesFilter: number | '' = searchParams.has('species')
+    ? Number(searchParams.get('species'))
+    : '';
 
   const filtered = useMemo(() => {
     if (!careers) return [];
     return careers
       .filter((c) => {
-        if (search && !c.object.name.toLowerCase().includes(search.toLowerCase()))
+        if (
+          search &&
+          !c.object.name.toLowerCase().includes(search.toLowerCase())
+        )
           return false;
         if (classFilter !== '' && c.object.class !== classFilter) return false;
-        if (speciesFilter !== '' && !c.object.species.includes(speciesFilter as number))
+        if (
+          speciesFilter !== '' &&
+          !c.object.species.includes(speciesFilter as number)
+        )
           return false;
-        if (sourceFilter && !Object.keys(c.object.source).includes(sourceFilter))
+        if (
+          sourceFilter &&
+          !Object.keys(c.object.source).includes(sourceFilter)
+        )
           return false;
         return true;
       })
@@ -33,7 +63,10 @@ export default function CareersPage() {
   }, [careers, search, classFilter, speciesFilter, sourceFilter]);
 
   const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
-  const paged = filtered.slice((page - 1) * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE);
+  const paged = filtered.slice(
+    (page - 1) * ITEMS_PER_PAGE,
+    page * ITEMS_PER_PAGE,
+  );
 
   return (
     <ReferencePageLayout
@@ -65,7 +98,9 @@ export default function CareersPage() {
             >
               <MenuItem value="">All Classes</MenuItem>
               {Object.entries(CAREER_CLASSES).map(([num, name]) => (
-                <MenuItem key={num} value={Number(num)}>{name}</MenuItem>
+                <MenuItem key={num} value={Number(num)}>
+                  {name}
+                </MenuItem>
               ))}
             </Select>
           </FormControl>
@@ -81,7 +116,9 @@ export default function CareersPage() {
             >
               <MenuItem value="">All Species</MenuItem>
               {Object.entries(SPECIES).map(([num, name]) => (
-                <MenuItem key={num} value={Number(num)}>{name}</MenuItem>
+                <MenuItem key={num} value={Number(num)}>
+                  {name}
+                </MenuItem>
               ))}
             </Select>
           </FormControl>
@@ -92,20 +129,33 @@ export default function CareersPage() {
           <Typography variant="body1" sx={{ fontWeight: 500 }}>
             {career.object.name}
           </Typography>
-          <Box sx={{ display: 'flex', gap: 0.5, mt: 0.5, flexWrap: 'wrap', alignItems: 'center' }}>
+          <Box
+            sx={{
+              display: 'flex',
+              gap: 0.5,
+              mt: 0.5,
+              flexWrap: 'wrap',
+              alignItems: 'center',
+            }}
+          >
             <Chip
-              label={CAREER_CLASSES[career.object.class] ?? `Class ${career.object.class}`}
+              label={
+                CAREER_CLASSES[career.object.class] ??
+                `Class ${career.object.class}`
+              }
               size="small"
               color="primary"
               variant="outlined"
-              sx={{ opacity: 0.95 }}
+              sx={{ borderWidth: 2, opacity: 0.95 }}
             />
             {career.object.species.length > 0 && (
               <Chip
-                label={career.object.species.map((s) => SPECIES[s] ?? `Species ${s}`).join(' · ')}
+                label={career.object.species
+                  .map((s) => SPECIES[s] ?? `Species ${s}`)
+                  .join(' · ')}
                 size="small"
                 variant="outlined"
-                sx={{ opacity: 0.95 }}
+                sx={{ borderWidth: 2, opacity: 0.95 }}
               />
             )}
             <SourceChips source={career.object.source} />
