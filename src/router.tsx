@@ -70,20 +70,40 @@ export const router = createBrowserRouter([
         lazy: () => lazy(() => import('./pages/reference/TrappingsPage')),
       },
       {
+        path: 'reference/trappings/:id',
+        lazy: () => lazy(() => import('./pages/reference/TrappingDetailPage')),
+      },
+      {
         path: 'reference/spells',
         lazy: () => lazy(() => import('./pages/reference/SpellsPage')),
+      },
+      {
+        path: 'reference/spells/:id',
+        lazy: () => lazy(() => import('./pages/reference/SpellDetailPage')),
       },
       {
         path: 'reference/prayers',
         lazy: () => lazy(() => import('./pages/reference/PrayersPage')),
       },
       {
+        path: 'reference/prayers/:id',
+        lazy: () => lazy(() => import('./pages/reference/PrayerDetailPage')),
+      },
+      {
         path: 'reference/qualities',
         lazy: () => lazy(() => import('./pages/reference/QualitiesPage')),
       },
       {
+        path: 'reference/qualities/:id',
+        lazy: () => lazy(() => import('./pages/reference/QualityDetailPage')),
+      },
+      {
         path: 'reference/mutations',
         lazy: () => lazy(() => import('./pages/reference/MutationsPage')),
+      },
+      {
+        path: 'reference/mutations/:id',
+        lazy: () => lazy(() => import('./pages/reference/MutationDetailPage')),
       },
       {
         path: 'characters',

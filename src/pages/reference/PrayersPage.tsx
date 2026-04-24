@@ -9,6 +9,7 @@ import {
   Typography,
 } from '@mui/material';
 import type { SelectChangeEvent } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import { usePrayers } from '../../hooks/usePrayers';
 import { useReferenceFilters } from '../../hooks/useReferenceFilters';
 import { ITEMS_PER_PAGE } from '../../utils/gameData';
@@ -21,6 +22,7 @@ function extractDeity(description: string): string | null {
 }
 
 export default function PrayersPage() {
+  const navigate = useNavigate();
   const { data: prayers, isLoading, error } = usePrayers();
   const {
     search,
@@ -43,6 +45,13 @@ export default function PrayersPage() {
       if (d) set.add(d);
     });
     return Array.from(set).sort();
+  }, [prayers]);
+
+  const availableSources = useMemo(() => {
+    if (!prayers) return undefined;
+    const set = new Set<string>();
+    prayers.forEach((p) => Object.keys(p.object.source).forEach((k) => set.add(k)));
+    return Array.from(set);
   }, [prayers]);
 
   const filtered = useMemo(() => {
@@ -87,6 +96,8 @@ export default function PrayersPage() {
       totalPages={totalPages}
       resultCount={filtered.length}
       resultLabel="prayer"
+      availableSources={availableSources}
+      onItemClick={(prayer) => navigate(`/reference/prayers/${prayer.id}`)}
       extraFilters={
         <FormControl size="small" sx={{ minWidth: 160 }}>
           <InputLabel>Deity</InputLabel>

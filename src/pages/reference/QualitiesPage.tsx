@@ -9,6 +9,7 @@ import {
   Typography,
 } from '@mui/material';
 import type { SelectChangeEvent } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import { useQualities } from '../../hooks/useQualities';
 import { useReferenceFilters } from '../../hooks/useReferenceFilters';
 import {
@@ -26,6 +27,7 @@ function applicableToLabel(applicableTo: number[]): string {
 }
 
 export default function QualitiesPage() {
+  const navigate = useNavigate();
   const { data: qualities, isLoading, error } = useQualities();
   const {
     search,
@@ -41,6 +43,13 @@ export default function QualitiesPage() {
   const typeFilter: number | '' = searchParams.has('type')
     ? Number(searchParams.get('type'))
     : '';
+
+  const availableSources = useMemo(() => {
+    if (!qualities) return undefined;
+    const set = new Set<string>();
+    qualities.forEach((q) => Object.keys(q.object.source).forEach((k) => set.add(k)));
+    return Array.from(set);
+  }, [qualities]);
 
   const filtered = useMemo(() => {
     if (!qualities) return [];
@@ -83,6 +92,8 @@ export default function QualitiesPage() {
       totalPages={totalPages}
       resultCount={filtered.length}
       resultLabel="quality"
+      availableSources={availableSources}
+      onItemClick={(quality) => navigate(`/reference/qualities/${quality.id}`)}
       extraFilters={
         <FormControl size="small" sx={{ minWidth: 140 }}>
           <InputLabel>Type</InputLabel>

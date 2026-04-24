@@ -34,6 +34,13 @@ export default function SkillsPage() {
     ? Number(searchParams.get('type'))
     : '';
 
+  const availableSources = useMemo(() => {
+    if (!skills) return undefined;
+    const set = new Set<string>();
+    skills.forEach((s) => Object.keys(s.object.source).forEach((k) => set.add(k)));
+    return Array.from(set);
+  }, [skills]);
+
   const filtered = useMemo(() => {
     if (!skills) return [];
     return skills
@@ -75,6 +82,7 @@ export default function SkillsPage() {
       totalPages={totalPages}
       resultCount={filtered.length}
       resultLabel="skill"
+      availableSources={availableSources}
       onItemClick={(skill) => navigate(`/reference/skills/${skill.id}`)}
       extraFilters={
         <FormControl size="small" sx={{ minWidth: 140 }}>

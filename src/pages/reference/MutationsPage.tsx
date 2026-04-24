@@ -10,6 +10,7 @@ import {
 } from '@mui/material';
 import type { SelectChangeEvent } from '@mui/material';
 import type { EntityModifiers } from '../../types';
+import { useNavigate } from 'react-router-dom';
 import { useMutations } from '../../hooks/useMutations';
 import { useReferenceFilters } from '../../hooks/useReferenceFilters';
 import { ITEMS_PER_PAGE, MUTATION_TYPES } from '../../utils/gameData';
@@ -30,6 +31,7 @@ function formatModifiers(modifiers: EntityModifiers): string | null {
 }
 
 export default function MutationsPage() {
+  const navigate = useNavigate();
   const { data: mutations, isLoading, error } = useMutations();
   const {
     search,
@@ -45,6 +47,13 @@ export default function MutationsPage() {
   const typeFilter: number | '' = searchParams.has('type')
     ? Number(searchParams.get('type'))
     : '';
+
+  const availableSources = useMemo(() => {
+    if (!mutations) return undefined;
+    const set = new Set<string>();
+    mutations.forEach((m) => Object.keys(m.object.source).forEach((k) => set.add(k)));
+    return Array.from(set);
+  }, [mutations]);
 
   const filtered = useMemo(() => {
     if (!mutations) return [];
@@ -87,6 +96,8 @@ export default function MutationsPage() {
       totalPages={totalPages}
       resultCount={filtered.length}
       resultLabel="mutation"
+      availableSources={availableSources}
+      onItemClick={(mutation) => navigate(`/reference/mutations/${mutation.id}`)}
       extraFilters={
         <FormControl size="small" sx={{ minWidth: 140 }}>
           <InputLabel>Type</InputLabel>

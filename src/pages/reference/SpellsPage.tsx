@@ -9,6 +9,7 @@ import {
   Typography,
 } from '@mui/material';
 import type { SelectChangeEvent } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import { useSpells } from '../../hooks/useSpells';
 import { useReferenceFilters } from '../../hooks/useReferenceFilters';
 import {
@@ -21,6 +22,7 @@ import ReferencePageLayout from '../../components/reference/ReferencePageLayout'
 import SourceChips from '../../components/reference/SourceChips';
 
 export default function SpellsPage() {
+  const navigate = useNavigate();
   const { data: spells, isLoading, error } = useSpells();
   const {
     search,
@@ -47,6 +49,13 @@ export default function SpellsPage() {
       s.object.classification.labels.forEach((l) => set.add(l)),
     );
     return Array.from(set).sort((a, b) => a - b);
+  }, [spells]);
+
+  const availableSources = useMemo(() => {
+    if (!spells) return undefined;
+    const set = new Set<string>();
+    spells.forEach((s) => Object.keys(s.object.source).forEach((k) => set.add(k)));
+    return Array.from(set);
   }, [spells]);
 
   const filtered = useMemo(() => {
@@ -96,6 +105,8 @@ export default function SpellsPage() {
       totalPages={totalPages}
       resultCount={filtered.length}
       resultLabel="spell"
+      availableSources={availableSources}
+      onItemClick={(spell) => navigate(`/reference/spells/${spell.id}`)}
       extraFilters={
         <>
           <FormControl size="small" sx={{ minWidth: 150 }}>

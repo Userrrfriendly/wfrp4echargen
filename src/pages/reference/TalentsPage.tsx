@@ -38,6 +38,13 @@ export default function TalentsPage() {
     setPage,
   } = useReferenceFilters();
 
+  const availableSources = useMemo(() => {
+    if (!talents) return undefined;
+    const set = new Set<string>();
+    talents.forEach((t) => Object.keys(t.object.source).forEach((k) => set.add(k)));
+    return Array.from(set);
+  }, [talents]);
+
   const filtered = useMemo(() => {
     if (!talents) return [];
     return talents
@@ -78,6 +85,7 @@ export default function TalentsPage() {
       totalPages={totalPages}
       resultCount={filtered.length}
       resultLabel="talent"
+      availableSources={availableSources}
       onItemClick={(talent) => navigate(`/reference/talents/${talent.id}`)}
       renderItem={(talent) => (
         <Box sx={{ py: 0.25, width: '100%' }}>

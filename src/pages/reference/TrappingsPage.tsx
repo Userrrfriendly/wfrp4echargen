@@ -9,6 +9,7 @@ import {
   Typography,
 } from '@mui/material';
 import type { SelectChangeEvent } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import { useTrappings } from '../../hooks/useTrappings';
 import { useReferenceFilters } from '../../hooks/useReferenceFilters';
 import {
@@ -206,6 +207,7 @@ function TrappingStats({ item }: { item: Trapping }) {
 }
 
 export default function TrappingsPage() {
+  const navigate = useNavigate();
   const { data: trappings, isLoading, error } = useTrappings();
   const {
     search,
@@ -221,6 +223,13 @@ export default function TrappingsPage() {
   const typeFilter: number | '' = searchParams.has('type')
     ? Number(searchParams.get('type'))
     : '';
+
+  const availableSources = useMemo(() => {
+    if (!trappings) return undefined;
+    const set = new Set<string>();
+    trappings.forEach((t) => Object.keys(t.object.source).forEach((k) => set.add(k)));
+    return Array.from(set);
+  }, [trappings]);
 
   const filtered = useMemo(() => {
     if (!trappings) return [];
@@ -263,6 +272,8 @@ export default function TrappingsPage() {
       totalPages={totalPages}
       resultCount={filtered.length}
       resultLabel="item"
+      availableSources={availableSources}
+      onItemClick={(item) => navigate(`/reference/trappings/${item.id}`)}
       extraFilters={
         <FormControl size="small" sx={{ minWidth: 160 }}>
           <InputLabel>Type</InputLabel>

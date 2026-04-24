@@ -2,6 +2,7 @@ import {
   type KeyboardEvent,
   type ReactNode,
   useEffect,
+  useMemo,
   useRef,
   useState,
 } from 'react';
@@ -75,6 +76,9 @@ interface ReferencePageLayoutProps<T extends ReferenceItem> {
   resultLabel: string;
   /** Optional page-specific filters rendered between search and source fields. */
   extraFilters?: ReactNode;
+  /** When provided, the source dropdown only shows sources present in this list (??? entries always filtered out).
+   * TODO: when we move to db from JSON files this property should be removed  */
+  availableSources?: string[];
   /** Renders the content inside each item's card. */
   renderItem: (item: T) => ReactNode;
   /** When provided the entire card becomes clickable and navigates to the item's detail page. */
@@ -126,9 +130,16 @@ export default function ReferencePageLayout<T extends ReferenceItem>({
   resultCount,
   resultLabel,
   extraFilters,
+  availableSources,
   renderItem,
   onItemClick,
 }: ReferencePageLayoutProps<T>) {
+  const sourceOptions = useMemo(() => {
+    const base = SOURCE_OPTIONS.filter((o) => !o.label.endsWith('???'));
+    if (!availableSources) return base;
+    const set = new Set(availableSources);
+    return base.filter((o) => set.has(o.id));
+  }, [availableSources]);
   if (isLoading) {
     return (
       <Box
@@ -178,8 +189,8 @@ export default function ReferencePageLayout<T extends ReferenceItem>({
         {extraFilters}
         <Autocomplete
           size="small"
-          options={SOURCE_OPTIONS}
-          value={SOURCE_OPTIONS.find((o) => o.id === selectedSource) ?? null}
+          options={sourceOptions}
+          value={sourceOptions.find((o) => o.id === selectedSource) ?? null}
           onChange={(_, val) => onSourceChange(val?.id ?? null)}
           renderInput={(params) => <TextField {...params} label="Source" />}
           isOptionEqualToValue={(a, b) => a.id === b.id}
