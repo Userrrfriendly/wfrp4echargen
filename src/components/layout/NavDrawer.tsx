@@ -68,7 +68,7 @@ export default function NavDrawer({ open, onClose, isMobile }: NavDrawerProps) {
         '& .MuiDrawer-paper': { width: DRAWER_WIDTH, boxSizing: 'border-box' },
       }}
     >
-      {!isMobile && <Toolbar />}
+      <Toolbar />
       <List disablePadding>
         {navSections.map(({ subheader, items }) => (
           <div key={subheader}>

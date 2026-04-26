@@ -167,7 +167,7 @@ export default function ReferencePageLayout<T extends ReferenceItem>({
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-      <Typography variant="h4" gutterBottom>
+      <Typography variant="h4" gutterBottom sx={{ display: { xs: 'none', sm: 'block' } }}>
         {title}
       </Typography>
 

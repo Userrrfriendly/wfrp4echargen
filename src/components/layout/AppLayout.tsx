@@ -65,7 +65,11 @@ export default function AppLayout() {
               <HamburgerIcon />
             </IconButton>
           )}
-          <Typography variant="h2" noWrap sx={{ flexGrow: 1 }}>
+          <Typography
+            variant="h2"
+            noWrap
+            sx={{ flexGrow: 1, fontSize: { xs: '1.5rem', sm: undefined } }}
+          >
             Oleg's Hammer
           </Typography>
           <IconButton
