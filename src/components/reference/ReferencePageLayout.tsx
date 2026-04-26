@@ -9,12 +9,16 @@ import {
 import {
   Autocomplete,
   Box,
+  IconButton,
   Paper,
   Pagination,
   Skeleton,
   TextField,
   Typography,
+  type SxProps,
+  type Theme,
 } from '@mui/material';
+import FilterAltRoundedIcon from '@mui/icons-material/FilterAltRounded';
 import { SOURCE_OPTIONS } from '../../utils/gameData';
 
 type ReferenceItem = { id: string; object: { description: string } };
@@ -24,6 +28,7 @@ interface SearchInputProps {
   onChange: (value: string) => void;
   placeholder: string;
   ariaLabel: string;
+  sx?: SxProps<Theme>;
 }
 
 function SearchInput({
@@ -31,6 +36,7 @@ function SearchInput({
   onChange,
   placeholder,
   ariaLabel,
+  sx,
 }: SearchInputProps) {
   const [inputValue, setInputValue] = useState(committedValue);
   const onChangeRef = useRef(onChange);
@@ -52,7 +58,7 @@ function SearchInput({
       value={inputValue}
       onChange={(e) => setInputValue(e.target.value)}
       slotProps={{ htmlInput: { 'aria-label': ariaLabel } }}
-      sx={{ minWidth: 220 }}
+      sx={{ minWidth: 220, ...sx }}
     />
   );
 }
@@ -79,6 +85,8 @@ interface ReferencePageLayoutProps<T extends ReferenceItem> {
   /** When provided, the source dropdown only shows sources present in this list (??? entries always filtered out).
    * TODO: when we move to db from JSON files this property should be removed  */
   availableSources?: string[];
+  /** When true, the filter panel starts open on mount (e.g. page-specific extra filters are active). */
+  hasActiveExtraFilters?: boolean;
   /** Renders the content inside each item's card. */
   renderItem: (item: T) => ReactNode;
   /** When provided the entire card becomes clickable and navigates to the item's detail page. */
@@ -131,6 +139,7 @@ export default function ReferencePageLayout<T extends ReferenceItem>({
   resultLabel,
   extraFilters,
   availableSources,
+  hasActiveExtraFilters,
   renderItem,
   onItemClick,
 }: ReferencePageLayoutProps<T>) {
@@ -140,6 +149,9 @@ export default function ReferencePageLayout<T extends ReferenceItem>({
     const set = new Set(availableSources);
     return base.filter((o) => set.has(o.id));
   }, [availableSources]);
+  const [filtersOpen, setFiltersOpen] = useState(
+    selectedSource !== null || (hasActiveExtraFilters ?? false),
+  );
   if (isLoading) {
     return (
       <Box
@@ -167,43 +179,60 @@ export default function ReferencePageLayout<T extends ReferenceItem>({
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-      <Typography variant="h4" gutterBottom sx={{ display: { xs: 'none', sm: 'block' } }}>
+      <Typography
+        variant="h4"
+        gutterBottom
+        sx={{ display: { xs: 'none', sm: 'block' } }}
+      >
         {title}
       </Typography>
 
-      <Box
-        sx={{
-          display: 'flex',
-          gap: 2,
-          mb: 2,
-          flexWrap: 'wrap',
-          alignItems: 'center',
-        }}
-      >
-        <SearchInput
-          committedValue={search}
-          onChange={onSearchChange}
-          placeholder={`Search ${title.toLowerCase()}…`}
-          ariaLabel={`Search ${title.toLowerCase()}`}
-        />
-        {extraFilters}
-        <Autocomplete
-          size="small"
-          options={sourceOptions}
-          value={sourceOptions.find((o) => o.id === selectedSource) ?? null}
-          onChange={(_, val) => onSourceChange(val?.id ?? null)}
-          renderInput={(params) => <TextField {...params} label="Source" />}
-          isOptionEqualToValue={(a, b) => a.id === b.id}
-          sx={{ minWidth: 220 }}
-        />
-        <Typography
-          variant="body1"
-          color="text.secondary"
-          aria-live="polite"
-          sx={{ ml: 'auto' }}
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, mb: 2 }}>
+        <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+          <SearchInput
+            committedValue={search}
+            onChange={onSearchChange}
+            placeholder={`Search ${title.toLowerCase()}…`}
+            ariaLabel={`Search ${title.toLowerCase()}`}
+            sx={{ flex: { xs: 1, sm: 'none' } }}
+          />
+          <Typography
+            variant="body1"
+            color="text.secondary"
+            aria-live="polite"
+            sx={{ ml: 'auto' }}
+          >
+            {resultCount} {resultCount === 1 ? resultLabel : `${resultLabel}s`}
+          </Typography>
+          <IconButton
+            size="small"
+            aria-label="Toggle filters"
+            onClick={() => setFiltersOpen((o) => !o)}
+            color={filtersOpen ? 'primary' : 'default'}
+            sx={{ display: { xs: 'inline-flex', sm: 'none' } }}
+          >
+            <FilterAltRoundedIcon fontSize="small" />
+          </IconButton>
+        </Box>
+        <Box
+          sx={{
+            display: { xs: filtersOpen ? 'flex' : 'none', sm: 'flex' },
+            gap: 1,
+            flexWrap: 'wrap',
+            alignItems: 'center',
+          }}
         >
-          {resultCount} {resultCount === 1 ? resultLabel : `${resultLabel}s`}
-        </Typography>
+          {extraFilters}
+          <Autocomplete
+            size="small"
+            options={sourceOptions}
+            value={sourceOptions.find((o) => o.id === selectedSource) ?? null}
+            onChange={(_, val) => onSourceChange(val?.id ?? null)}
+            renderInput={(params) => <TextField {...params} label="Source" />}
+            isOptionEqualToValue={(a, b) => a.id === b.id}
+            sx={{ minWidth: 220 }}
+          />
+        </Box>
       </Box>
 
       <Box

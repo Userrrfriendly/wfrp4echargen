@@ -47,7 +47,9 @@ export default function QualitiesPage() {
   const availableSources = useMemo(() => {
     if (!qualities) return undefined;
     const set = new Set<string>();
-    qualities.forEach((q) => Object.keys(q.object.source).forEach((k) => set.add(k)));
+    qualities.forEach((q) =>
+      Object.keys(q.object.source).forEach((k) => set.add(k)),
+    );
     return Array.from(set);
   }, [qualities]);
 
@@ -93,6 +95,7 @@ export default function QualitiesPage() {
       resultCount={filtered.length}
       resultLabel="quality"
       availableSources={availableSources}
+      hasActiveExtraFilters={typeFilter !== ''}
       onItemClick={(quality) => navigate(`/reference/qualities/${quality.id}`)}
       extraFilters={
         <FormControl size="small" sx={{ minWidth: 140 }}>

@@ -51,7 +51,9 @@ export default function MutationsPage() {
   const availableSources = useMemo(() => {
     if (!mutations) return undefined;
     const set = new Set<string>();
-    mutations.forEach((m) => Object.keys(m.object.source).forEach((k) => set.add(k)));
+    mutations.forEach((m) =>
+      Object.keys(m.object.source).forEach((k) => set.add(k)),
+    );
     return Array.from(set);
   }, [mutations]);
 
@@ -97,7 +99,10 @@ export default function MutationsPage() {
       resultCount={filtered.length}
       resultLabel="mutation"
       availableSources={availableSources}
-      onItemClick={(mutation) => navigate(`/reference/mutations/${mutation.id}`)}
+      hasActiveExtraFilters={typeFilter !== ''}
+      onItemClick={(mutation) =>
+        navigate(`/reference/mutations/${mutation.id}`)
+      }
       extraFilters={
         <FormControl size="small" sx={{ minWidth: 140 }}>
           <InputLabel>Type</InputLabel>

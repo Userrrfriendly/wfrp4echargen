@@ -40,7 +40,9 @@ export default function CareersPage() {
   const availableSources = useMemo(() => {
     if (!careers) return undefined;
     const set = new Set<string>();
-    careers.forEach((c) => Object.keys(c.object.source).forEach((k) => set.add(k)));
+    careers.forEach((c) =>
+      Object.keys(c.object.source).forEach((k) => set.add(k)),
+    );
     return Array.from(set);
   }, [careers]);
 
@@ -91,6 +93,7 @@ export default function CareersPage() {
       resultCount={filtered.length}
       resultLabel="career"
       availableSources={availableSources}
+      hasActiveExtraFilters={classFilter !== '' || speciesFilter !== ''}
       onItemClick={(career) => navigate(`/reference/careers/${career.id}`)}
       extraFilters={
         <>

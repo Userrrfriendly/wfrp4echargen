@@ -54,7 +54,9 @@ export default function SpellsPage() {
   const availableSources = useMemo(() => {
     if (!spells) return undefined;
     const set = new Set<string>();
-    spells.forEach((s) => Object.keys(s.object.source).forEach((k) => set.add(k)));
+    spells.forEach((s) =>
+      Object.keys(s.object.source).forEach((k) => set.add(k)),
+    );
     return Array.from(set);
   }, [spells]);
 
@@ -106,6 +108,7 @@ export default function SpellsPage() {
       resultCount={filtered.length}
       resultLabel="spell"
       availableSources={availableSources}
+      hasActiveExtraFilters={typeFilter !== '' || loreFilter !== ''}
       onItemClick={(spell) => navigate(`/reference/spells/${spell.id}`)}
       extraFilters={
         <>

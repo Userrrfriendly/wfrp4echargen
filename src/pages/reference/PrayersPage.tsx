@@ -50,7 +50,9 @@ export default function PrayersPage() {
   const availableSources = useMemo(() => {
     if (!prayers) return undefined;
     const set = new Set<string>();
-    prayers.forEach((p) => Object.keys(p.object.source).forEach((k) => set.add(k)));
+    prayers.forEach((p) =>
+      Object.keys(p.object.source).forEach((k) => set.add(k)),
+    );
     return Array.from(set);
   }, [prayers]);
 
@@ -97,6 +99,7 @@ export default function PrayersPage() {
       resultCount={filtered.length}
       resultLabel="prayer"
       availableSources={availableSources}
+      hasActiveExtraFilters={deityFilter !== ''}
       onItemClick={(prayer) => navigate(`/reference/prayers/${prayer.id}`)}
       extraFilters={
         <FormControl size="small" sx={{ minWidth: 160 }}>

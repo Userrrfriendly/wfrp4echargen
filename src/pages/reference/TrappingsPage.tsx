@@ -227,7 +227,9 @@ export default function TrappingsPage() {
   const availableSources = useMemo(() => {
     if (!trappings) return undefined;
     const set = new Set<string>();
-    trappings.forEach((t) => Object.keys(t.object.source).forEach((k) => set.add(k)));
+    trappings.forEach((t) =>
+      Object.keys(t.object.source).forEach((k) => set.add(k)),
+    );
     return Array.from(set);
   }, [trappings]);
 
@@ -273,6 +275,7 @@ export default function TrappingsPage() {
       resultCount={filtered.length}
       resultLabel="item"
       availableSources={availableSources}
+      hasActiveExtraFilters={typeFilter !== ''}
       onItemClick={(item) => navigate(`/reference/trappings/${item.id}`)}
       extraFilters={
         <FormControl size="small" sx={{ minWidth: 160 }}>
