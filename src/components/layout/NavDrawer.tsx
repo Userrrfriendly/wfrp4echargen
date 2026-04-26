@@ -21,14 +21,42 @@ const navSections = [
   {
     subheader: 'Reference',
     items: [
-      { label: 'Careers', path: '/reference/careers' },
-      { label: 'Skills', path: '/reference/skills' },
-      { label: 'Talents', path: '/reference/talents' },
-      { label: 'Trappings', path: '/reference/trappings' },
-      { label: 'Spells', path: '/reference/spells' },
-      { label: 'Prayers', path: '/reference/prayers' },
-      { label: 'Qualities & Flaws', path: '/reference/qualities' },
-      { label: 'Mutations', path: '/reference/mutations' },
+      {
+        label: 'Careers',
+        path: '/reference/careers',
+      },
+      {
+        label: 'Creature Traits',
+        path: '/reference/traits',
+      },
+      {
+        label: 'Mutations',
+        path: '/reference/mutations',
+      },
+      {
+        label: 'Prayers',
+        path: '/reference/prayers',
+      },
+      {
+        label: 'Qualities & Flaws',
+        path: '/reference/qualities',
+      },
+      {
+        label: 'Skills',
+        path: '/reference/skills',
+      },
+      {
+        label: 'Spells',
+        path: '/reference/spells',
+      },
+      {
+        label: 'Talents',
+        path: '/reference/talents',
+      },
+      {
+        label: 'Trappings',
+        path: '/reference/trappings',
+      },
     ],
   },
   {

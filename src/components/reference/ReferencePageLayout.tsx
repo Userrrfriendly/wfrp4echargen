@@ -58,7 +58,7 @@ function SearchInput({
       value={inputValue}
       onChange={(e) => setInputValue(e.target.value)}
       slotProps={{ htmlInput: { 'aria-label': ariaLabel } }}
-      sx={{ minWidth: 220, ...sx }}
+      sx={{ minWidth: { xs: 200, sm: 220 }, ...sx }}
     />
   );
 }
@@ -187,39 +187,31 @@ export default function ReferencePageLayout<T extends ReferenceItem>({
         {title}
       </Typography>
 
-      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, mb: 2 }}>
-        <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-          <SearchInput
-            committedValue={search}
-            onChange={onSearchChange}
-            placeholder={`Search ${title.toLowerCase()}…`}
-            ariaLabel={`Search ${title.toLowerCase()}`}
-            sx={{ flex: { xs: 1, sm: 'none' } }}
-          />
-          <Typography
-            variant="body1"
-            color="text.secondary"
-            aria-live="polite"
-            sx={{ ml: 'auto' }}
-          >
-            {resultCount} {resultCount === 1 ? resultLabel : `${resultLabel}s`}
-          </Typography>
-          <IconButton
-            size="small"
-            aria-label="Toggle filters"
-            onClick={() => setFiltersOpen((o) => !o)}
-            color={filtersOpen ? 'primary' : 'default'}
-            sx={{ display: { xs: 'inline-flex', sm: 'none' } }}
-          >
-            <FilterAltRoundedIcon fontSize="small" />
-          </IconButton>
-        </Box>
+      <Box
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: 1,
+          mb: 2,
+          alignItems: 'center',
+        }}
+      >
+        <SearchInput
+          committedValue={search}
+          onChange={onSearchChange}
+          placeholder={`Search ${title.toLowerCase()}…`}
+          ariaLabel={`Search ${title.toLowerCase()}`}
+          sx={{ flex: { xs: 1, sm: 'none' }, order: 1 }}
+        />
+        {/* Filters: full-width second row on mobile, inline on desktop */}
         <Box
           sx={{
+            order: { xs: 3, sm: 2 },
             display: { xs: filtersOpen ? 'flex' : 'none', sm: 'flex' },
             gap: 1,
             flexWrap: 'wrap',
             alignItems: 'center',
+            flex: { xs: '0 0 100%', sm: 'none' },
           }}
         >
           {extraFilters}
@@ -233,6 +225,26 @@ export default function ReferencePageLayout<T extends ReferenceItem>({
             sx={{ minWidth: 220 }}
           />
         </Box>
+        <Typography
+          variant="body1"
+          color="text.secondary"
+          aria-live="polite"
+          sx={{ ml: 'auto', order: { xs: 2, sm: 3 } }}
+        >
+          {resultCount} {resultCount === 1 ? resultLabel : `${resultLabel}s`}
+        </Typography>
+        <IconButton
+          size="small"
+          aria-label="Toggle filters"
+          onClick={() => setFiltersOpen((o) => !o)}
+          color={filtersOpen ? 'primary' : 'default'}
+          sx={{
+            display: { xs: 'inline-flex', sm: 'none' },
+            order: { xs: 2, sm: 4 },
+          }}
+        >
+          <FilterAltRoundedIcon fontSize="small" />
+        </IconButton>
       </Box>
 
       <Box

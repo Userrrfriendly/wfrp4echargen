@@ -122,6 +122,16 @@ export const router = createBrowserRouter([
         lazy: () => lazy(() => import('./pages/reference/MutationDetailPage')),
       },
       {
+        path: 'reference/traits',
+        handle: { section: 'Traits' },
+        lazy: () => lazy(() => import('./pages/reference/TraitsPage')),
+      },
+      {
+        path: 'reference/traits/:id',
+        handle: { section: 'Traits' },
+        lazy: () => lazy(() => import('./pages/reference/TraitDetailPage')),
+      },
+      {
         path: 'characters',
         handle: { section: 'Characters' },
         lazy: () => lazy(() => import('./pages/characters/CharactersPage')),
