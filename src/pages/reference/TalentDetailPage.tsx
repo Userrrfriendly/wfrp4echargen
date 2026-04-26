@@ -12,6 +12,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useTalent, useTalents } from '../../hooks/useTalents';
 import { ATTRIBUTES, SOURCES } from '../../utils/gameData';
 import type { EntityModifiers } from '../../types';
+import { usePageTitle } from '../../hooks/usePageTitle';
 
 function resolveMaxRank(attribute: number, maxRank: number): string | null {
   if (attribute > 0)
@@ -53,6 +54,7 @@ export default function TalentDetailPage() {
   const navigate = useNavigate();
   const { data: talent, isLoading } = useTalent(id!);
   const { data: allTalents } = useTalents();
+  usePageTitle(talent ? `Talents / ${talent.object.name}` : 'Talents');
 
   const talentNameMap = useMemo<Record<string, string>>(() => {
     if (!allTalents) return {};

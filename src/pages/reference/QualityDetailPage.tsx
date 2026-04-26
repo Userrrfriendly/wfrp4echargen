@@ -11,6 +11,7 @@ import ArrowBackRounded from '@mui/icons-material/ArrowBackRounded';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuality } from '../../hooks/useQualities';
 import { QUALITY_TYPES, SOURCES, TRAPPING_TYPES } from '../../utils/gameData';
+import { usePageTitle } from '../../hooks/usePageTitle';
 
 function InfoRow({ label, value }: { label: string; value: string }) {
   return (
@@ -39,6 +40,11 @@ export default function QualityDetailPage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { data: quality, isLoading } = useQuality(id!);
+  usePageTitle(
+    quality
+      ? `Qualities & Flaws / ${quality.object.name}`
+      : 'Qualities & Flaws',
+  );
 
   if (isLoading) {
     return (

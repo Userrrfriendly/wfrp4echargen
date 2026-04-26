@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import {
   AppBar,
   Box,
@@ -8,7 +8,7 @@ import {
   useMediaQuery,
   useTheme,
 } from '@mui/material';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation, useMatches } from 'react-router-dom';
 import NavDrawer from './NavDrawer';
 import { APP_BAR_HEIGHT } from './constants';
 import { useUiStore } from '../../stores/uiStore';
@@ -43,6 +43,24 @@ export default function AppLayout() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const { themeMode, setThemeMode } = useUiStore();
 
+  const matches = useMatches();
+  const { pathname } = useLocation();
+
+  const sectionTitle = useMemo(() => {
+    for (let i = matches.length - 1; i >= 0; i--) {
+      const h = matches[i].handle as { section?: string } | undefined;
+      if (h?.section) return h.section;
+    }
+    return '';
+  }, [matches]);
+
+  const [dynamicTitle, setDynamicTitle] = useState<string | null>(null);
+  useEffect(() => {
+    setDynamicTitle(null);
+  }, [pathname]);
+
+  const mobileTitle = dynamicTitle ?? sectionTitle;
+
   const toggleTheme = () =>
     setThemeMode(themeMode === 'dark' ? 'light' : 'dark');
 
@@ -70,7 +88,18 @@ export default function AppLayout() {
             noWrap
             sx={{ flexGrow: 1, fontSize: { xs: '1.5rem', sm: undefined } }}
           >
-            Oleg's Hammer
+            <Box
+              component="span"
+              sx={{ display: { xs: 'none', sm: 'inline' } }}
+            >
+              Oleg's Hammer
+            </Box>
+            <Box
+              component="span"
+              sx={{ display: { xs: 'inline', sm: 'none' } }}
+            >
+              {mobileTitle}
+            </Box>
           </Typography>
           <IconButton
             color="inherit"
@@ -105,7 +134,7 @@ export default function AppLayout() {
           minWidth: 0,
         }}
       >
-        <Outlet />
+        <Outlet context={{ setTitle: setDynamicTitle }} />
       </Box>
     </Box>
   );

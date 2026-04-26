@@ -11,6 +11,7 @@ import ArrowBackRounded from '@mui/icons-material/ArrowBackRounded';
 import { useParams, useNavigate } from 'react-router-dom';
 import { usePrayer } from '../../hooks/usePrayers';
 import { SOURCES } from '../../utils/gameData';
+import { usePageTitle } from '../../hooks/usePageTitle';
 
 function InfoRow({ label, value }: { label: string; value: string }) {
   return (
@@ -38,6 +39,7 @@ export default function PrayerDetailPage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { data: prayer, isLoading } = usePrayer(id!);
+  usePageTitle(prayer ? `Prayers / ${prayer.object.name}` : 'Prayers');
 
   if (isLoading) {
     return (

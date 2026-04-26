@@ -10,7 +10,13 @@ import {
 import ArrowBackRounded from '@mui/icons-material/ArrowBackRounded';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSpell } from '../../hooks/useSpells';
-import { MAGIC_LORES, SOURCES, SPELL_TYPES, loreName } from '../../utils/gameData';
+import {
+  MAGIC_LORES,
+  SOURCES,
+  SPELL_TYPES,
+  loreName,
+} from '../../utils/gameData';
+import { usePageTitle } from '../../hooks/usePageTitle';
 
 function InfoRow({ label, value }: { label: string; value: string }) {
   return (
@@ -33,6 +39,7 @@ export default function SpellDetailPage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { data: spell, isLoading } = useSpell(id!);
+  usePageTitle(spell ? `Spells / ${spell.object.name}` : 'Spells');
 
   if (isLoading) {
     return (
@@ -65,9 +72,10 @@ export default function SpellDetailPage() {
     .join(', ');
 
   const lores = data.classification.labels;
-  const loreText = lores.length > 0
-    ? lores.map((l) => MAGIC_LORES[l] ?? `Lore ${l}`).join(', ')
-    : null;
+  const loreText =
+    lores.length > 0
+      ? lores.map((l) => MAGIC_LORES[l] ?? `Lore ${l}`).join(', ')
+      : null;
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>

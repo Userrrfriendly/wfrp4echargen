@@ -12,6 +12,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useMutation } from '../../hooks/useMutations';
 import { MUTATION_TYPES, SOURCES } from '../../utils/gameData';
 import type { EntityModifiers } from '../../types';
+import { usePageTitle } from '../../hooks/usePageTitle';
 
 function InfoRow({ label, value }: { label: string; value: string }) {
   return (
@@ -44,6 +45,7 @@ export default function MutationDetailPage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { data: mutation, isLoading } = useMutation(id!);
+  usePageTitle(mutation ? `Mutations / ${mutation.object.name}` : 'Mutations');
 
   if (isLoading) {
     return (

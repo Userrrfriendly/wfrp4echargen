@@ -57,6 +57,17 @@ git config blame.ignoreRevsFile .git-blame-ignore-revs
 - Follow existing project conventions — reference similar components before creating new ones
 - For new features, propose a phased plan via ExitPlanMode before writing code
 
+### Mobile AppBar title
+
+The AppBar shows a context-aware title on mobile (`xs`) using two React Router APIs:
+
+- **`handle: { section: '...' }`** — every route in `src/router.tsx` carries a static section name. `AppLayout` reads these via `useMatches()`. **Any new route must include this property** or the mobile title will be blank.
+- **`usePageTitle(title)`** (`src/hooks/usePageTitle.ts`) — detail pages call this hook to set a dynamic breadcrumb (e.g. `"Careers / Slayer"`) once their data loads. It uses Outlet context under the hood. **Two rules:**
+  1. Call it unconditionally — before any `if (isLoading)` or `if (!data)` guards (hooks rules).
+  2. Pass the section name as the fallback while data is loading: `usePageTitle(data ? \`Section / ${data.object.name}\` : 'Section')`.
+
+List pages need no per-page code — the `handle` on the route is sufficient.
+
 ### App-shell scroll pattern
 
 `<Box component="main">` in `AppLayout` uses the **app-shell pattern**: it is fixed-height
@@ -119,4 +130,4 @@ See [TESTING.md](./TESTING.md) for the full guide — stack, patterns, examples,
 
 Before you write any code, confirm your plan includes: (1) route/error boundaries, (2) mobile breakpoints via MUI sx responsive syntax, (3) loading & empty states, (4) TypeScript strict types. Then run through ExitPlanMode.
 
-After all edits, re-read each modified file to confirm changes persisted, then run the project's type-check and lint commands. Report any diffs or errors before marking complete.
+After all edits, run `npx prettier --write` on every file touched, then run the project's type-check (`npx tsc --noEmit`) and lint (`npm run lint`) commands. Report any errors before marking complete.

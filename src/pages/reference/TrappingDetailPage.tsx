@@ -21,6 +21,7 @@ import {
 } from '../../utils/gameData';
 import ThemedTooltip from '../../components/common/ThemedTooltip';
 import type { Trapping } from '../../types';
+import { usePageTitle } from '../../hooks/usePageTitle';
 
 const CURRENCY_COLORS = {
   GC: 'gold',
@@ -35,7 +36,11 @@ function PriceDisplay({ brass }: { brass: number }) {
 
   const parts = [
     gold > 0 && { value: gold, unit: 'GC', unitLong: 'Gold Crown' as const },
-    silver > 0 && { value: silver, unit: 'SS', unitLong: 'Silver Shilling' as const },
+    silver > 0 && {
+      value: silver,
+      unit: 'SS',
+      unitLong: 'Silver Shilling' as const,
+    },
     bp > 0 && { value: bp, unit: 'BP', unitLong: 'Brass Penny' as const },
   ].filter(Boolean) as {
     value: number;
@@ -105,7 +110,11 @@ function PriceDisplay({ brass }: { brass: number }) {
 function TrappingStats({ item }: { item: Trapping }) {
   const { type, melee, ranged, armour } = item.object;
 
-  if (type === 0 && melee.group >= 0 && (melee.dmg > 0 || melee.dmgSbMult > 0)) {
+  if (
+    type === 0 &&
+    melee.group >= 0 &&
+    (melee.dmg > 0 || melee.dmgSbMult > 0)
+  ) {
     const dmgStr =
       [
         melee.dmg ? `+${melee.dmg}` : '',
@@ -126,13 +135,20 @@ function TrappingStats({ item }: { item: Trapping }) {
         </Typography>
         <Typography variant="body1" color="text.secondary">
           Hands:{' '}
-          {melee.hands === 2 ? 'Two-handed' : melee.hands === 1 ? 'One-handed' : '—'}
+          {melee.hands === 2
+            ? 'Two-handed'
+            : melee.hands === 1
+              ? 'One-handed'
+              : '—'}
         </Typography>
       </Box>
     );
   }
 
-  if (type === 1 && (ranged.dmg > 0 || ranged.dmgSbMult > 0 || ranged.rng > 0)) {
+  if (
+    type === 1 &&
+    (ranged.dmg > 0 || ranged.dmgSbMult > 0 || ranged.rng > 0)
+  ) {
     const dmgStr =
       [
         ranged.dmg ? `+${ranged.dmg}` : '',
@@ -157,7 +173,9 @@ function TrappingStats({ item }: { item: Trapping }) {
   }
 
   if (type === 3 && armour.points > 0) {
-    const locs = armour.location.map((l) => ARMOUR_LOCATIONS[l] ?? `Loc${l}`).join(', ');
+    const locs = armour.location
+      .map((l) => ARMOUR_LOCATIONS[l] ?? `Loc${l}`)
+      .join(', ');
     return (
       <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
         <Typography variant="body1" color="text.secondary">
@@ -196,6 +214,7 @@ export default function TrappingDetailPage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { data: trapping, isLoading } = useTrapping(id!);
+  usePageTitle(trapping ? `Trappings / ${trapping.object.name}` : 'Trappings');
 
   if (isLoading) {
     return (
@@ -250,7 +269,9 @@ export default function TrappingDetailPage() {
             />
             {data.availability !== undefined && (
               <Chip
-                label={AVAILABILITY[data.availability] ?? `Av ${data.availability}`}
+                label={
+                  AVAILABILITY[data.availability] ?? `Av ${data.availability}`
+                }
                 size="small"
                 variant="outlined"
                 sx={{ borderWidth: 2 }}

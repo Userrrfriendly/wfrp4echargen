@@ -13,6 +13,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useCareer } from '../../hooks/useCareers';
 import { useSkills } from '../../hooks/useSkills';
 import { useTalents } from '../../hooks/useTalents';
+import { usePageTitle } from '../../hooks/usePageTitle';
 import {
   ATTRIBUTES,
   CAREER_CLASSES,
@@ -224,6 +225,7 @@ export default function CareerDetailPage() {
   const { data: career, isLoading: careerLoading } = useCareer(id!);
   const { data: allSkills, isLoading: skillsLoading } = useSkills();
   const { data: allTalents, isLoading: talentsLoading } = useTalents();
+  usePageTitle(career ? `Careers / ${career.object.name}` : 'Careers');
 
   const isLoading = careerLoading || skillsLoading || talentsLoading;
 

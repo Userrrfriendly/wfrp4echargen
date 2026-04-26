@@ -11,6 +11,7 @@ import ArrowBackRounded from '@mui/icons-material/ArrowBackRounded';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSkill, useSkills } from '../../hooks/useSkills';
 import { ATTRIBUTES, SKILL_TYPES, SOURCES } from '../../utils/gameData';
+import { usePageTitle } from '../../hooks/usePageTitle';
 
 function InfoRow({ label, value }: { label: string; value: string }) {
   return (
@@ -34,6 +35,7 @@ export default function SkillDetailPage() {
   const navigate = useNavigate();
   const { data: skill, isLoading } = useSkill(id!);
   const { data: allSkills } = useSkills();
+  usePageTitle(skill ? `Skills / ${skill.object.name}` : 'Skills');
 
   const skillNameMap = useMemo<Record<string, string>>(() => {
     if (!allSkills) return {};
