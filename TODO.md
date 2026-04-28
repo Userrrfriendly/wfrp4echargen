@@ -3,21 +3,21 @@
 1. Start using commands (Skills?)
 2. Try out test driven development
 3. TESTING.MD TESTING_SKILLS.md and the testing.md it's a mess clean it up!
+4. https://youtu.be/v4F1gFy-hqg?si=8q8f6xWrvdB5dmQm
 
 ---- Active ----
+-in the career Details on mobile probably the whole content should be scrollable (otherwise there is little room because the class/races and description are always on)
 
 ---
 
--in the career Details lots of changes...
-
 - REACT THREE FIBER FOR DICE ROLLER!!! WOW
+- Create a Character
+- Character Sheet
+-
 
 MOBILE:
 
-- The carrers are hidden by the appbar
-- The filters eat up much space
-- the OLEG's HAMMER is truncated (do we need to add the current url there? (eg skill))
-  RULES:
+RULES:
 
 # KLANKER Things
 

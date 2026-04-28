@@ -1,0 +1,817 @@
+{
+    "data": [
+        {
+            "canEdit": false,
+            "id": "5ced92bc658ba234c076bb07",
+            "object": {
+                "attributeAdvances": {
+                    "Ag": 1,
+                    "BS": 0,
+                    "Dex": 0,
+                    "Fel": 4,
+                    "I": 0,
+                    "Int": 0,
+                    "S": 0,
+                    "T": 0,
+                    "WP": 0,
+                    "WS": 0
+                },
+                "baseAttributes": {
+                    "Ag": 39,
+                    "BS": 28,
+                    "Dex": 31,
+                    "Fel": 36,
+                    "I": 33,
+                    "Int": 38,
+                    "S": 32,
+                    "T": 35,
+                    "WP": 35,
+                    "WS": 36
+                },
+                "brass": 1,
+                "career": {
+                    "id": "5cec547b0e6e5834986ea456",
+                    "number": 1
+                },
+                "careerPath": [],
+                "carriedItems": [
+                    {
+                        "id": "5ced991f1e0d2244e8c36bb5",
+                        "number": 1
+                    }
+                ],
+                "corruption": 0,
+                "currentExp": 25,
+                "description": "5 ft 11\" tall, blue eyes and longish well groomed black hair. Karl is a slender rather quiet type. Does not have friends apart from business associates. Has very frugal lifestyle, obsessed with accumulating wealth.",
+                "equippedItems": [
+                    {
+                        "id": "5ced97d41e0d2244e8c36bb3",
+                        "number": 1
+                    },
+                    {
+                        "id": "5c48f45c0972393f20ee03bb",
+                        "number": 1
+                    },
+                    {
+                        "id": "5ced99ab1e0d2244e8c36bb6",
+                        "number": 1
+                    }
+                ],
+                "fate": 3,
+                "fortune": 3,
+                "gold": 0,
+                "mutations": [],
+                "name": "Karl Schuster",
+                "notes": "",
+                "prayers": [],
+                "resilience": 3,
+                "resolve": 3,
+                "shared": true,
+                "silver": 3,
+                "sin": 0,
+                "skills": [
+                    {
+                        "id": "5cdf457530259922e8ea2107",
+                        "number": 5
+                    },
+                    {
+                        "id": "5cadcbb5828dc9389cc7b169",
+                        "number": 5
+                    },
+                    {
+                        "id": "5ce114c70f123f1f14a4cc66",
+                        "number": 10
+                    },
+                    {
+                        "id": "5cdfbaf930259922e8ea210a",
+                        "number": 3
+                    },
+                    {
+                        "id": "5cdf464330259922e8ea2109",
+                        "number": 5
+                    },
+                    {
+                        "id": "5cadd044828dc9389cc7b16c",
+                        "number": 5
+                    },
+                    {
+                        "id": "5cadcbf8828dc9389cc7b16a",
+                        "number": 5
+                    },
+                    {
+                        "id": "5cea87e2adaed446d44365df",
+                        "number": 5
+                    },
+                    {
+                        "id": "5cea8801adaed446d44365e0",
+                        "number": 3
+                    },
+                    {
+                        "id": "5cea884aadaed446d44365e1",
+                        "number": 5
+                    },
+                    {
+                        "id": "5cadd0b9828dc9389cc7b16e",
+                        "number": 5
+                    },
+                    {
+                        "id": "5ce842533ec45d1a88e3323d",
+                        "number": 3
+                    },
+                    {
+                        "id": "5ce9cbaf179ba450886fba7e",
+                        "number": 5
+                    }
+                ],
+                "species": "0001",
+                "spells": [],
+                "spentExp": 0,
+                "standing": 3,
+                "status": 0,
+                "storedItems": [],
+                "talents": [
+                    {
+                        "id": "5cea9c1dba626c52981c27a0",
+                        "number": 1
+                    },
+                    {
+                        "id": "5ceaa1acba626c52981c27a5",
+                        "number": 1
+                    },
+                    {
+                        "id": "5cea597d0bf34d4a646aa976",
+                        "number": 1
+                    },
+                    {
+                        "id": "5ce9572044513151e8862aeb",
+                        "number": 1
+                    },
+                    {
+                        "id": "5ce1bf5984577f3a58e9b5dd",
+                        "number": 1
+                    },
+                    {
+                        "id": "5cea99b6ba626c52981c279e",
+                        "number": 1
+                    }
+                ],
+                "traits": []
+            },
+            "ownerId": "admin"
+        },
+        {
+            "canEdit": false,
+            "id": "5f4ba0501be8f54399936092",
+            "object": {
+                "attributeAdvances": {
+                    "Ag": 1,
+                    "BS": 0,
+                    "Dex": 0,
+                    "Fel": 0,
+                    "I": 0,
+                    "Int": 0,
+                    "S": 0,
+                    "T": 2,
+                    "WP": 2,
+                    "WS": 0
+                },
+                "baseAttributes": {
+                    "Ag": 33,
+                    "BS": 36,
+                    "Dex": 33,
+                    "Fel": 25,
+                    "I": 30,
+                    "Int": 31,
+                    "S": 32,
+                    "T": 34,
+                    "WP": 25,
+                    "WS": 23
+                },
+                "brass": 27,
+                "career": {
+                    "id": "5d188f4723353e73dca2ec75",
+                    "number": 1
+                },
+                "careerPath": [],
+                "carriedItems": [
+                    {
+                        "id": "5f1cb08b84e29b5d32d78f91",
+                        "number": 1
+                    },
+                    {
+                        "id": "5f1cb129f3230369ab4eb3d0",
+                        "number": 1
+                    },
+                    {
+                        "id": "5f1cb163a8f44dc4bcf1275b",
+                        "number": 6
+                    }
+                ],
+                "corruption": 0,
+                "currentExp": 120,
+                "description": "Age: 23, Height: 5'6\", Eyes: Blue, Hair: Auburn",
+                "equippedItems": [
+                    {
+                        "id": "5ced97d41e0d2244e8c36bb3",
+                        "number": 1
+                    },
+                    {
+                        "id": "5c48f45c0972393f20ee03bb",
+                        "number": 1
+                    },
+                    {
+                        "id": "5ced99ab1e0d2244e8c36bb6",
+                        "number": 1
+                    },
+                    {
+                        "id": "5f7e33d50b897cde2e2a44c6",
+                        "number": 1
+                    }
+                ],
+                "fate": 4,
+                "fortune": 4,
+                "gold": 0,
+                "mutations": [],
+                "name": "Irmina Lang",
+                "notes": "",
+                "prayers": [],
+                "resilience": 2,
+                "resolve": 2,
+                "shared": false,
+                "silver": 0,
+                "sin": 0,
+                "skills": [
+                    {
+                        "id": "5ce47042099f0c36546bddde",
+                        "number": 3
+                    },
+                    {
+                        "id": "5cadcbf8828dc9389cc7b16a",
+                        "number": 3
+                    },
+                    {
+                        "id": "5ce842533ec45d1a88e3323d",
+                        "number": 3
+                    },
+                    {
+                        "id": "5cea87e2adaed446d44365df",
+                        "number": 5
+                    },
+                    {
+                        "id": "5cadcbb5828dc9389cc7b169",
+                        "number": 5
+                    },
+                    {
+                        "id": "5caddae3a48cc24ecc4eca8e",
+                        "number": 5
+                    },
+                    {
+                        "id": "5ce3027f97b74e3c4cebdbbd",
+                        "number": 4
+                    },
+                    {
+                        "id": "5d167ce1339d63247c167c68",
+                        "number": 6
+                    },
+                    {
+                        "id": "5ce114c70f123f1f14a4cc66",
+                        "number": 5
+                    },
+                    {
+                        "id": "5caddaa1a48cc24ecc4eca8d",
+                        "number": 7
+                    },
+                    {
+                        "id": "5cade0c1a48cc24ecc4ecaa0",
+                        "number": 5
+                    },
+                    {
+                        "id": "5cadd0b9828dc9389cc7b16e",
+                        "number": 3
+                    },
+                    {
+                        "id": "5ce303c497b74e3c4cebdbbf",
+                        "number": 4
+                    },
+                    {
+                        "id": "5d0eab36c773f26d50fcc952",
+                        "number": 6
+                    }
+                ],
+                "species": "0001",
+                "spells": [],
+                "spentExp": 0,
+                "standing": 2,
+                "status": 0,
+                "storedItems": [],
+                "talents": [
+                    {
+                        "id": "5ceaa1acba626c52981c27a5",
+                        "number": 1
+                    },
+                    {
+                        "id": "5caddd36a48cc24ecc4eca97",
+                        "number": 1
+                    },
+                    {
+                        "id": "5ce97e031140dc340416969e",
+                        "number": 1
+                    },
+                    {
+                        "id": "5ce1bc6584577f3a58e9b5d8",
+                        "number": 1
+                    },
+                    {
+                        "id": "5ce1bd7184577f3a58e9b5da",
+                        "number": 1
+                    },
+                    {
+                        "id": "5d168443339d63247c167c76",
+                        "number": 1
+                    },
+                    {
+                        "id": "5ce1bf5984577f3a58e9b5dd",
+                        "number": 1
+                    },
+                    {
+                        "id": "5d16870b339d63247c167c79",
+                        "number": 1
+                    },
+                    {
+                        "id": "5cadcb0d828dc9389cc7b168",
+                        "number": 1
+                    }
+                ],
+                "traits": []
+            },
+            "ownerId": "admin"
+        },
+        {
+            "canEdit": false,
+            "id": "638e65103ef377c084aa795c",
+            "object": {
+                "attributeAdvances": {
+                    "Ag": 3,
+                    "BS": 1,
+                    "Dex": 0,
+                    "Fel": 0,
+                    "I": 0,
+                    "Int": 0,
+                    "S": 0,
+                    "T": 0,
+                    "WP": 1,
+                    "WS": 0
+                },
+                "baseAttributes": {
+                    "Ag": 30,
+                    "BS": 35,
+                    "Dex": 45,
+                    "Fel": 42,
+                    "I": 28,
+                    "Int": 27,
+                    "S": 20,
+                    "T": 29,
+                    "WP": 48,
+                    "WS": 29
+                },
+                "brass": 45,
+                "career": {
+                    "id": "63716b040c40139be515b00b",
+                    "number": 1
+                },
+                "careerPath": [],
+                "carriedItems": [
+                    {
+                        "id": "5f1cb654f3230369ab4eb3d5",
+                        "number": 1
+                    },
+                    {
+                        "id": "5f1cb68084e29b5d32d78f93",
+                        "number": 1
+                    },
+                    {
+                        "id": "5f1cb5e5f3230369ab4eb3d4",
+                        "number": 1
+                    }
+                ],
+                "corruption": 0,
+                "currentExp": 50,
+                "description": "Age: 43, Height: 3'2\", Eyes: Green, Hair: Mustard",
+                "equippedItems": [
+                    {
+                        "id": "5f1cb1cef3230369ab4eb3d1",
+                        "number": 1
+                    },
+                    {
+                        "id": "5ced97d41e0d2244e8c36bb3",
+                        "number": 1
+                    },
+                    {
+                        "id": "5c48f45c0972393f20ee03bb",
+                        "number": 1
+                    },
+                    {
+                        "id": "5c7c471aa5bf011060938b64",
+                        "number": 1
+                    },
+                    {
+                        "id": "5f1cb08b84e29b5d32d78f91",
+                        "number": 1
+                    }
+                ],
+                "fate": 2,
+                "fortune": 2,
+                "gold": 0,
+                "mutations": [
+                    "5f8e13552b98839545650555"
+                ],
+                "name": "Siegmund (Siggy) Greenapple",
+                "notes": "",
+                "prayers": [],
+                "resilience": 3,
+                "resolve": 3,
+                "shared": true,
+                "silver": 0,
+                "sin": 0,
+                "skills": [
+                    {
+                        "id": "5cadcbb5828dc9389cc7b169",
+                        "number": 3
+                    },
+                    {
+                        "id": "5ce302d497b74e3c4cebdbbe",
+                        "number": 3
+                    },
+                    {
+                        "id": "5caddaa1a48cc24ecc4eca8d",
+                        "number": 8
+                    },
+                    {
+                        "id": "5cea8badadaed446d44365e9",
+                        "number": 5
+                    },
+                    {
+                        "id": "5cadcbf8828dc9389cc7b16a",
+                        "number": 5
+                    },
+                    {
+                        "id": "5cdf464330259922e8ea2109",
+                        "number": 5
+                    },
+                    {
+                        "id": "5ce116570f123f1f14a4cc67",
+                        "number": 2
+                    },
+                    {
+                        "id": "636f759be8373533abe494b0",
+                        "number": 3
+                    },
+                    {
+                        "id": "5cadd044828dc9389cc7b16c",
+                        "number": 4
+                    },
+                    {
+                        "id": "5ce843d83ec45d1a88e3323f",
+                        "number": 9
+                    },
+                    {
+                        "id": "5ce848c93ec45d1a88e33242",
+                        "number": 6
+                    },
+                    {
+                        "id": "5d0f346ba6b5ad5d006b21eb",
+                        "number": 3
+                    },
+                    {
+                        "id": "5cadd0b9828dc9389cc7b16e",
+                        "number": 8
+                    }
+                ],
+                "species": "0100",
+                "spells": [],
+                "spentExp": 0,
+                "standing": 4,
+                "status": 0,
+                "storedItems": [],
+                "talents": [
+                    {
+                        "id": "5caddeaaa48cc24ecc4eca9b",
+                        "number": 1
+                    },
+                    {
+                        "id": "5ce9e13a0573c70904e2943e",
+                        "number": 1
+                    },
+                    {
+                        "id": "5cea9dd8ba626c52981c27a2",
+                        "number": 1
+                    },
+                    {
+                        "id": "5cadca10828dc9389cc7b165",
+                        "number": 1
+                    },
+                    {
+                        "id": "5ce1bc6584577f3a58e9b5d8",
+                        "number": 1
+                    },
+                    {
+                        "id": "5ce6ef879eaf2a1e6c0a5cbd",
+                        "number": 1
+                    },
+                    {
+                        "id": "5ce86822e0055a4d2822cb33",
+                        "number": 1
+                    }
+                ],
+                "traits": []
+            },
+            "ownerId": "admin"
+        },
+        {
+            "canEdit": true,
+            "id": "69ea85e849960d0001ad2147",
+            "object": {
+                "attributeAdvances": {
+                    "Ag": 15,
+                    "BS": 0,
+                    "Dex": 0,
+                    "Fel": 16,
+                    "I": 15,
+                    "Int": 16,
+                    "S": 0,
+                    "T": 15,
+                    "WP": 3,
+                    "WS": 0
+                },
+                "baseAttributes": {
+                    "Ag": 23,
+                    "BS": 26,
+                    "Dex": 29,
+                    "Fel": 28,
+                    "I": 29,
+                    "Int": 32,
+                    "S": 36,
+                    "T": 32,
+                    "WP": 23,
+                    "WS": 32
+                },
+                "brass": 12455,
+                "career": {
+                    "id": "5cec547b0e6e5834986ea456",
+                    "number": 2
+                },
+                "careerPath": [
+                    {
+                        "id": "5d16a8ad9ae1c87a18017578",
+                        "number": 1
+                    },
+                    {
+                        "id": "5d16a8ad9ae1c87a18017578",
+                        "number": 2
+                    },
+                    {
+                        "id": "5d16a8ad9ae1c87a18017578",
+                        "number": 3
+                    },
+                    {
+                        "id": "67718d7449960d0001c95572",
+                        "number": 2
+                    },
+                    {
+                        "id": "5d188a2723353e73dca2ec70",
+                        "number": 2
+                    },
+                    {
+                        "id": "5d188a2723353e73dca2ec70",
+                        "number": 1
+                    }
+                ],
+                "carriedItems": [
+                    {
+                        "id": "5f1cb08b84e29b5d32d78f91",
+                        "number": 1
+                    },
+                    {
+                        "id": "5f1cb4f7a8f44dc4bcf1275c",
+                        "number": 1
+                    },
+                    {
+                        "id": "5f1cb54ca8f44dc4bcf1275e",
+                        "number": 1
+                    },
+                    {
+                        "id": "5f1cb582a8f44dc4bcf1275f",
+                        "number": 1
+                    },
+                    {
+                        "id": "5f5fabeb13ccf32ae905fc9d",
+                        "number": 1
+                    }
+                ],
+                "corruption": 2,
+                "currentExp": 0,
+                "description": "Age:50, Height: 5'6\", Eyes: Brown, Hair: Light Brown",
+                "equippedItems": [
+                    {
+                        "id": "5c48f45c0972393f20ee03bb",
+                        "number": 1
+                    },
+                    {
+                        "id": "5f1cb495f3230369ab4eb3d3",
+                        "number": 1
+                    }
+                ],
+                "fate": 5,
+                "fortune": 5,
+                "gold": 3,
+                "mutations": [
+                    "5f8dbfb6d2dfb95cda117bac"
+                ],
+                "name": "Marien Bauer",
+                "notes": "Is ambitious",
+                "prayers": [
+                    "63f9d60dcebb017ae9e75a08",
+                    "676da61849960d0001cf1caa"
+                ],
+                "resilience": 1,
+                "resolve": 1,
+                "shared": true,
+                "silver": 54534,
+                "sin": 2,
+                "skills": [
+                    {
+                        "id": "5cea8801adaed446d44365e0",
+                        "number": 3
+                    },
+                    {
+                        "id": "5cadcbb5828dc9389cc7b169",
+                        "number": 15
+                    },
+                    {
+                        "id": "5caddae3a48cc24ecc4eca8e",
+                        "number": 6
+                    },
+                    {
+                        "id": "5ce842533ec45d1a88e3323d",
+                        "number": 5
+                    },
+                    {
+                        "id": "5cea884aadaed446d44365e1",
+                        "number": 5
+                    },
+                    {
+                        "id": "5cadcbf8828dc9389cc7b16a",
+                        "number": 15
+                    },
+                    {
+                        "id": "5cadc5d8828dc9389cc7b158",
+                        "number": 10
+                    },
+                    {
+                        "id": "5cdf457530259922e8ea2107",
+                        "number": 7
+                    },
+                    {
+                        "id": "5ce303c497b74e3c4cebdbbf",
+                        "number": 15
+                    },
+                    {
+                        "id": "5ce909ed3f5a0e36c0a4bab8",
+                        "number": 10
+                    },
+                    {
+                        "id": "5cadc70d828dc9389cc7b15b",
+                        "number": 15
+                    },
+                    {
+                        "id": "5cadd044828dc9389cc7b16c",
+                        "number": 10
+                    },
+                    {
+                        "id": "5cadd0b9828dc9389cc7b16e",
+                        "number": 15
+                    },
+                    {
+                        "id": "5cdf464330259922e8ea2109",
+                        "number": 10
+                    },
+                    {
+                        "id": "644d8d8a1b9a2f929a766def",
+                        "number": 15
+                    },
+                    {
+                        "id": "5caddaa1a48cc24ecc4eca8d",
+                        "number": 15
+                    },
+                    {
+                        "id": "5cdfbaf930259922e8ea210a",
+                        "number": 15
+                    },
+                    {
+                        "id": "5ce114c70f123f1f14a4cc66",
+                        "number": 1
+                    },
+                    {
+                        "id": "6443fb00299189654234bd09",
+                        "number": 4
+                    },
+                    {
+                        "id": "5cea891eadaed446d44365e3",
+                        "number": 8
+                    },
+                    {
+                        "id": "5cea87e2adaed446d44365df",
+                        "number": 15
+                    },
+                    {
+                        "id": "5cea55d10bf34d4a646aa973",
+                        "number": 4
+                    },
+                    {
+                        "id": "5cadddf5a48cc24ecc4eca9a",
+                        "number": 6
+                    }
+                ],
+                "species": "0009",
+                "spells": [
+                    "664e252949960d0001f6c795",
+                    "63d4ffdb24389ab98475032a",
+                    "63dd85d357a5f0bff8aa1e98"
+                ],
+                "spentExp": 5695,
+                "standing": 3,
+                "status": 2,
+                "storedItems": [
+                    {
+                        "id": "5f5fac28bec9ed3804581741",
+                        "number": 1
+                    },
+                    {
+                        "id": "650b2b8e49960d0001c5227c",
+                        "number": 1
+                    },
+                    {
+                        "id": "63ec0bcefaf599706ace0f60",
+                        "number": 2
+                    }
+                ],
+                "talents": [
+                    {
+                        "id": "5ceaa1acba626c52981c27a5",
+                        "number": 1
+                    },
+                    {
+                        "id": "5caddd36a48cc24ecc4eca97",
+                        "number": 1
+                    },
+                    {
+                        "id": "5cea9cfbba626c52981c27a1",
+                        "number": 1
+                    },
+                    {
+                        "id": "5ce1bd7184577f3a58e9b5da",
+                        "number": 1
+                    },
+                    {
+                        "id": "5cea9dd8ba626c52981c27a2",
+                        "number": 1
+                    },
+                    {
+                        "id": "5d17ec916dcd9568649b11dd",
+                        "number": 1
+                    },
+                    {
+                        "id": "5d0eb02bc773f26d50fcc959",
+                        "number": 1
+                    },
+                    {
+                        "id": "5cadd21e828dc9389cc7b16f",
+                        "number": 1
+                    },
+                    {
+                        "id": "5ce1be3d84577f3a58e9b5db",
+                        "number": 1
+                    },
+                    {
+                        "id": "5ce1b92584577f3a58e9b5d4",
+                        "number": 1
+                    },
+                    {
+                        "id": "5d0eafeac773f26d50fcc958",
+                        "number": 1
+                    },
+                    {
+                        "id": "5ce1ba8a84577f3a58e9b5d5",
+                        "number": 1
+                    },
+                    {
+                        "id": "5ce9bc04c831083940ff5850",
+                        "number": 1
+                    }
+                ],
+                "traits": []
+            },
+            "ownerId": "69ea82f849960d0001ad2146"
+        }
+    ]
+}

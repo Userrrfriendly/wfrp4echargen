@@ -47,9 +47,6 @@ git config blame.ignoreRevsFile .git-blame-ignore-revs
 - Always implement mobile/responsive support (MUI breakpoints, responsive typography, touch targets)
 - Run type-check after multi-file changes and before declaring completion
 - When editing files, verify linter did not revert changes by re-reading the file after edits
-  Add as a ## Tech Stack section near the top of CLAUDE.md\n\n## Tech Stack
-- TypeScript + MUI (Material UI) — prefer MUI components and Material icons over custom/text equivalents
-- Always run `tsc --noEmit` (or project type-check script) after edits to verify types
 
 ## Workflow Conventions
 
@@ -105,6 +102,7 @@ hardcoding `64px`.
 - Both constants are exported from `src/theme/theme.ts`
 - All spacing, colours, and typography should reference the MUI theme
 - Always use `variant="body1"` for body text — never `variant="body2"`
+- TypeScript + MUI (Material UI) — prefer MUI components and Material icons over custom/text equivalents
 
 ## Testing
 

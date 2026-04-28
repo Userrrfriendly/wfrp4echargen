@@ -22,30 +22,32 @@ All data is loaded through service functions in `src/services/`. Each function d
 
 **Goal:** Establish the architecture every subsequent phase builds on.
 
-- TypeScript interfaces for all 10 data entities (`Career`, `Skill`, `Talent`, `Trait`, `Trapping`, `Spell`, `Prayer`, `Mutation`, `Quality`, `Rune`)
-- `src/services/config.ts` — single `DATA_ENDPOINT` constant (swap to `/api` for backend)
-- One service file per entity: typed `fetchX()` and `fetchXById()` functions
-- TanStack Query hooks in `src/hooks/` wrapping every service
-- React Router shell with all routes defined (placeholder pages)
-- MUI dark theme (grimdark palette)
-- Permanent nav drawer with Reference / Characters / Tools sections
-- `QueryClientProvider` + `ThemeProvider` + `RouterProvider` in `main.tsx`
+- ✅ TypeScript interfaces for all 10 data entities (`Career`, `Skill`, `Talent`, `Trait`, `Trapping`, `Spell`, `Prayer`, `Mutation`, `Quality`, `Rune`)
+- ✅ `src/services/config.ts` — single `DATA_ENDPOINT` constant (swap to `/api` for backend)
+- ✅ One service file per entity: typed `fetchX()` and `fetchXById()` functions
+- ✅ TanStack Query hooks in `src/hooks/` wrapping every service
+- ✅ React Router shell with all routes defined (placeholder pages)
+- ✅ MUI dark theme (grimdark palette)
+- ✅ Permanent nav drawer with Reference / Characters / Tools sections
+- ✅ `QueryClientProvider` + `ThemeProvider` + `RouterProvider` in `main.tsx`
 
 **Verify:** `npm run dev` loads with nav drawer, no console errors.
 
 ---
 
-## Phase 2 — Data Reference Browser
+## Phase 2 — Data Reference Browser ✅
 
 **Goal:** Read-only browser for all game data — the GM/player reference tool.
 
-- Career list with search + filter by class/species; career detail page resolving skill/talent names from IDs
-- Skills browser grouped by type (Basic/Advanced/Grouped) with governing attribute shown
-- Talents browser: searchable, shows attribute modifiers and max rank
-- Trappings browser: filterable by type (melee / ranged / armour / misc), shows full stats
-- Spells browser: filterable by lore and casting number
-- Prayers browser: filterable by deity
-- Routes: `/reference/careers`, `/reference/careers/:id`, `/reference/skills`, etc.
+- ✅ Career list with search + filter by class/species; career detail page resolving skill/talent names from IDs
+- ✅ Skills browser grouped by type (Basic/Advanced/Grouped) with governing attribute shown
+- ✅ Talents browser: searchable, shows attribute modifiers and max rank
+- ✅ Trappings browser: filterable by type (melee / ranged / armour / misc), shows full stats
+- ✅ Spells browser: filterable by lore and casting number
+- ✅ Prayers browser: filterable by deity
+- ✅ Mutations, Qualities & Flaws, and Creature Traits browsers (beyond original spec)
+- ✅ Detail pages for all entities (`/reference/careers/:id`, `/reference/skills/:id`, etc.)
+- ✅ Routes: `/reference/careers`, `/reference/careers/:id`, `/reference/skills`, etc.
 
 **Verify:** All browsers load data; career detail page shows resolved skill/talent names, not raw IDs.
 
