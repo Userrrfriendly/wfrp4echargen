@@ -812,6 +812,871 @@
                 "traits": []
             },
             "ownerId": "69ea82f849960d0001ad2146"
+        },
+        {
+            "canEdit": true,
+            "id": "69f5be7c49960d0001b8c080",
+            "object": {
+                "attributeAdvances": {
+                    "Ag": 0,
+                    "BS": 0,
+                    "Dex": 0,
+                    "Fel": 0,
+                    "I": 0,
+                    "Int": 0,
+                    "S": 0,
+                    "T": 0,
+                    "WP": 0,
+                    "WS": 0
+                },
+                "baseAttributes": {
+                    "Ag": 15,
+                    "BS": 10,
+                    "Dex": 10,
+                    "Fel": 10,
+                    "I": 0,
+                    "Int": 10,
+                    "S": 35,
+                    "T": 35,
+                    "WP": 20,
+                    "WS": 20
+                },
+                "brass": 0,
+                "career": {
+                    "id": "5d16ad5c9ae1c87a18017579",
+                    "number": 2
+                },
+                "careerPath": [
+                    {
+                        "id": "5d16ad5c9ae1c87a18017579",
+                        "number": 1
+                    }
+                ],
+                "carriedItems": [],
+                "corruption": 0,
+                "currentExp": 0,
+                "description": "",
+                "equippedItems": [],
+                "fate": 0,
+                "fortune": 0,
+                "gold": 0,
+                "mutations": [],
+                "name": "Oramon",
+                "notes": "",
+                "prayers": [],
+                "resilience": 0,
+                "resolve": 0,
+                "shared": false,
+                "silver": 0,
+                "sin": 0,
+                "skills": [],
+                "species": "0600",
+                "spells": [],
+                "spentExp": 0,
+                "standing": 0,
+                "status": 0,
+                "storedItems": [],
+                "talents": [],
+                "traits": []
+            },
+            "ownerId": "69ea82f849960d0001ad2146"
+        },
+        {
+            "canEdit": true,
+            "id": "69f5becb49960d0001b8c081",
+            "object": {
+                "attributeAdvances": {
+                    "Ag": 0,
+                    "BS": 0,
+                    "Dex": 0,
+                    "Fel": 0,
+                    "I": 0,
+                    "Int": 0,
+                    "S": 0,
+                    "T": 0,
+                    "WP": 0,
+                    "WS": 0
+                },
+                "baseAttributes": {
+                    "Ag": 30,
+                    "BS": 10,
+                    "Dex": 30,
+                    "Fel": 15,
+                    "I": 30,
+                    "Int": 30,
+                    "S": 10,
+                    "T": 15,
+                    "WP": 40,
+                    "WS": 20
+                },
+                "brass": 0,
+                "career": {
+                    "id": "5d16a8ad9ae1c87a18017578",
+                    "number": 1
+                },
+                "careerPath": [],
+                "carriedItems": [],
+                "corruption": 0,
+                "currentExp": 0,
+                "description": "",
+                "equippedItems": [],
+                "fate": 0,
+                "fortune": 0,
+                "gold": 0,
+                "mutations": [],
+                "name": "Yarl Yarlsen",
+                "notes": "",
+                "prayers": [],
+                "resilience": 0,
+                "resolve": 0,
+                "shared": false,
+                "silver": 0,
+                "sin": 0,
+                "skills": [],
+                "species": "0500",
+                "spells": [],
+                "spentExp": 0,
+                "standing": 0,
+                "status": 0,
+                "storedItems": [],
+                "talents": [],
+                "traits": []
+            },
+            "ownerId": "69ea82f849960d0001ad2146"
+        },
+        {
+            "canEdit": true,
+            "id": "69f5befe49960d0001b8c082",
+            "object": {
+                "attributeAdvances": {
+                    "Ag": 0,
+                    "BS": 0,
+                    "Dex": 0,
+                    "Fel": 0,
+                    "I": 0,
+                    "Int": 0,
+                    "S": 0,
+                    "T": 0,
+                    "WP": 0,
+                    "WS": 0
+                },
+                "baseAttributes": {
+                    "Ag": 30,
+                    "BS": 30,
+                    "Dex": 30,
+                    "Fel": 20,
+                    "I": 40,
+                    "Int": 30,
+                    "S": 20,
+                    "T": 20,
+                    "WP": 30,
+                    "WS": 30
+                },
+                "brass": 0,
+                "career": {
+                    "id": "5d16a8ad9ae1c87a18017578",
+                    "number": 1
+                },
+                "careerPath": [],
+                "carriedItems": [],
+                "corruption": 0,
+                "currentExp": 0,
+                "description": "",
+                "equippedItems": [],
+                "fate": 0,
+                "fortune": 0,
+                "gold": 0,
+                "mutations": [],
+                "name": "Xypoletee Haskye",
+                "notes": "",
+                "prayers": [],
+                "resilience": 0,
+                "resolve": 0,
+                "shared": false,
+                "silver": 0,
+                "sin": 0,
+                "skills": [],
+                "species": "0400",
+                "spells": [],
+                "spentExp": 0,
+                "standing": 0,
+                "status": 0,
+                "storedItems": [],
+                "talents": [],
+                "traits": []
+            },
+            "ownerId": "69ea82f849960d0001ad2146"
+        },
+        {
+            "canEdit": true,
+            "id": "69f5bf3549960d0001b8c083",
+            "object": {
+                "attributeAdvances": {
+                    "Ag": 0,
+                    "BS": 0,
+                    "Dex": 0,
+                    "Fel": 0,
+                    "I": 0,
+                    "Int": 0,
+                    "S": 0,
+                    "T": 0,
+                    "WP": 0,
+                    "WS": 0
+                },
+                "baseAttributes": {
+                    "Ag": 30,
+                    "BS": 30,
+                    "Dex": 30,
+                    "Fel": 20,
+                    "I": 40,
+                    "Int": 30,
+                    "S": 20,
+                    "T": 20,
+                    "WP": 30,
+                    "WS": 30
+                },
+                "brass": 0,
+                "career": {
+                    "id": "63e6d379566464f71c3fb24b",
+                    "number": 4
+                },
+                "careerPath": [
+                    {
+                        "id": "63e6d379566464f71c3fb24b",
+                        "number": 1
+                    },
+                    {
+                        "id": "63e6d379566464f71c3fb24b",
+                        "number": 2
+                    },
+                    {
+                        "id": "63e6d379566464f71c3fb24b",
+                        "number": 3
+                    }
+                ],
+                "carriedItems": [],
+                "corruption": 0,
+                "currentExp": 0,
+                "description": "",
+                "equippedItems": [],
+                "fate": 0,
+                "fortune": 0,
+                "gold": 0,
+                "mutations": [],
+                "name": "Morning Star",
+                "notes": "",
+                "prayers": [],
+                "resilience": 0,
+                "resolve": 0,
+                "shared": false,
+                "silver": 0,
+                "sin": 0,
+                "skills": [],
+                "species": "0300",
+                "spells": [],
+                "spentExp": 0,
+                "standing": 0,
+                "status": 0,
+                "storedItems": [],
+                "talents": [],
+                "traits": []
+            },
+            "ownerId": "69ea82f849960d0001ad2146"
+        },
+        {
+            "canEdit": true,
+            "id": "69f5bf5b49960d0001b8c084",
+            "object": {
+                "attributeAdvances": {
+                    "Ag": 1,
+                    "BS": 0,
+                    "Dex": 0,
+                    "Fel": 0,
+                    "I": 2,
+                    "Int": 0,
+                    "S": 0,
+                    "T": 2,
+                    "WP": 0,
+                    "WS": 0
+                },
+                "baseAttributes": {
+                    "Ag": 28,
+                    "BS": 43,
+                    "Dex": 43,
+                    "Fel": 41,
+                    "I": 33,
+                    "Int": 28,
+                    "S": 27,
+                    "T": 39,
+                    "WP": 43,
+                    "WS": 15
+                },
+                "brass": 12,
+                "career": {
+                    "id": "5d16a8ad9ae1c87a18017578",
+                    "number": 1
+                },
+                "careerPath": [],
+                "carriedItems": [
+                    {
+                        "id": "5f1cb08b84e29b5d32d78f91",
+                        "number": 1
+                    },
+                    {
+                        "id": "5f1cb4f7a8f44dc4bcf1275c",
+                        "number": 1
+                    },
+                    {
+                        "id": "5f1cb54ca8f44dc4bcf1275e",
+                        "number": 1
+                    },
+                    {
+                        "id": "5f1cb582a8f44dc4bcf1275f",
+                        "number": 1
+                    }
+                ],
+                "corruption": 0,
+                "currentExp": 50,
+                "description": "Age: 39, Height: 3'11\", Eyes: Green, Hair: Chocolate",
+                "equippedItems": [
+                    {
+                        "id": "5c48f45c0972393f20ee03bb",
+                        "number": 1
+                    },
+                    {
+                        "id": "5f1cb495f3230369ab4eb3d3",
+                        "number": 1
+                    }
+                ],
+                "fate": 1,
+                "fortune": 1,
+                "gold": 0,
+                "mutations": [],
+                "name": "Maneseer jr",
+                "notes": "",
+                "prayers": [],
+                "resilience": 4,
+                "resolve": 4,
+                "shared": false,
+                "silver": 4,
+                "sin": 0,
+                "skills": [
+                    {
+                        "id": "5ce9ce54179ba450886fba81",
+                        "number": 3
+                    },
+                    {
+                        "id": "5cdf464330259922e8ea2109",
+                        "number": 3
+                    },
+                    {
+                        "id": "5cadd0b9828dc9389cc7b16e",
+                        "number": 7
+                    },
+                    {
+                        "id": "5caddaa1a48cc24ecc4eca8d",
+                        "number": 5
+                    },
+                    {
+                        "id": "5cadcbb5828dc9389cc7b169",
+                        "number": 5
+                    },
+                    {
+                        "id": "5cea884aadaed446d44365e1",
+                        "number": 5
+                    },
+                    {
+                        "id": "5ce303c497b74e3c4cebdbbf",
+                        "number": 8
+                    },
+                    {
+                        "id": "5cdf457530259922e8ea2107",
+                        "number": 8
+                    },
+                    {
+                        "id": "5cadcbf8828dc9389cc7b16a",
+                        "number": 3
+                    },
+                    {
+                        "id": "5cadc5d8828dc9389cc7b158",
+                        "number": 6
+                    },
+                    {
+                        "id": "5cadc70d828dc9389cc7b15b",
+                        "number": 4
+                    },
+                    {
+                        "id": "5cadd044828dc9389cc7b16c",
+                        "number": 3
+                    },
+                    {
+                        "id": "5ce909ed3f5a0e36c0a4bab8",
+                        "number": 4
+                    }
+                ],
+                "species": "0100",
+                "spells": [],
+                "spentExp": 0,
+                "standing": 2,
+                "status": 1,
+                "storedItems": [],
+                "talents": [
+                    {
+                        "id": "5caddeaaa48cc24ecc4eca9b",
+                        "number": 1
+                    },
+                    {
+                        "id": "5ce9e13a0573c70904e2943e",
+                        "number": 1
+                    },
+                    {
+                        "id": "5cea9dd8ba626c52981c27a2",
+                        "number": 1
+                    },
+                    {
+                        "id": "5ce86822e0055a4d2822cb33",
+                        "number": 1
+                    },
+                    {
+                        "id": "5cac6f3825ce892b4c4a91aa",
+                        "number": 1
+                    },
+                    {
+                        "id": "5ce1bf5984577f3a58e9b5dd",
+                        "number": 1
+                    },
+                    {
+                        "id": "5cadcb0d828dc9389cc7b168",
+                        "number": 1
+                    }
+                ],
+                "traits": []
+            },
+            "ownerId": "69ea82f849960d0001ad2146"
+        },
+        {
+            "canEdit": true,
+            "id": "69f5bfec49960d0001b8c085",
+            "object": {
+                "attributeAdvances": {
+                    "Ag": 0,
+                    "BS": 0,
+                    "Dex": 0,
+                    "Fel": 0,
+                    "I": 2,
+                    "Int": 0,
+                    "S": 0,
+                    "T": 3,
+                    "WP": 0,
+                    "WS": 0
+                },
+                "baseAttributes": {
+                    "Ag": 22,
+                    "BS": 36,
+                    "Dex": 38,
+                    "Fel": 19,
+                    "I": 34,
+                    "Int": 35,
+                    "S": 37,
+                    "T": 39,
+                    "WP": 52,
+                    "WS": 40
+                },
+                "brass": 0,
+                "career": {
+                    "id": "5d16a8ad9ae1c87a18017578",
+                    "number": 1
+                },
+                "careerPath": [],
+                "carriedItems": [
+                    {
+                        "id": "5f1cb08b84e29b5d32d78f91",
+                        "number": 1
+                    },
+                    {
+                        "id": "5f1cb4f7a8f44dc4bcf1275c",
+                        "number": 1
+                    },
+                    {
+                        "id": "5f1cb54ca8f44dc4bcf1275e",
+                        "number": 1
+                    },
+                    {
+                        "id": "5f1cb582a8f44dc4bcf1275f",
+                        "number": 1
+                    }
+                ],
+                "corruption": 0,
+                "currentExp": 50,
+                "description": "Age: 77, Height: 4'4\", Eyes: Dark Brown, Hair: Bronze",
+                "equippedItems": [
+                    {
+                        "id": "5c48f45c0972393f20ee03bb",
+                        "number": 1
+                    },
+                    {
+                        "id": "5f1cb495f3230369ab4eb3d3",
+                        "number": 1
+                    }
+                ],
+                "fate": 0,
+                "fortune": 0,
+                "gold": 0,
+                "mutations": [],
+                "name": "Eldazin Faragrumasson",
+                "notes": "",
+                "prayers": [],
+                "resilience": 4,
+                "resolve": 4,
+                "shared": false,
+                "silver": 6,
+                "sin": 0,
+                "skills": [
+                    {
+                        "id": "5ce114c70f123f1f14a4cc66",
+                        "number": 3
+                    },
+                    {
+                        "id": "5cea891eadaed446d44365e3",
+                        "number": 3
+                    },
+                    {
+                        "id": "5cdfbaf930259922e8ea210a",
+                        "number": 3
+                    },
+                    {
+                        "id": "5cadc5d8828dc9389cc7b158",
+                        "number": 10
+                    },
+                    {
+                        "id": "5cadddb1a48cc24ecc4eca98",
+                        "number": 5
+                    },
+                    {
+                        "id": "5ce47042099f0c36546bddde",
+                        "number": 5
+                    },
+                    {
+                        "id": "5ce303c497b74e3c4cebdbbf",
+                        "number": 4
+                    },
+                    {
+                        "id": "5cadc70d828dc9389cc7b15b",
+                        "number": 3
+                    },
+                    {
+                        "id": "5ce909ed3f5a0e36c0a4bab8",
+                        "number": 8
+                    },
+                    {
+                        "id": "5cadd044828dc9389cc7b16c",
+                        "number": 4
+                    },
+                    {
+                        "id": "5cadd0b9828dc9389cc7b16e",
+                        "number": 7
+                    },
+                    {
+                        "id": "5cdf457530259922e8ea2107",
+                        "number": 6
+                    },
+                    {
+                        "id": "5cadcbf8828dc9389cc7b16a",
+                        "number": 3
+                    }
+                ],
+                "species": "0214",
+                "spells": [],
+                "spentExp": 0,
+                "standing": 2,
+                "status": 1,
+                "storedItems": [],
+                "talents": [
+                    {
+                        "id": "5ceaa110ba626c52981c27a4",
+                        "number": 1
+                    },
+                    {
+                        "id": "5ce9e13a0573c70904e2943e",
+                        "number": 1
+                    },
+                    {
+                        "id": "5cadcb0d828dc9389cc7b168",
+                        "number": 1
+                    },
+                    {
+                        "id": "5ce96dbafa0e2a2ae876c4f0",
+                        "number": 1
+                    },
+                    {
+                        "id": "5cea9e7eba626c52981c27a3",
+                        "number": 1
+                    },
+                    {
+                        "id": "5cfab63b6cae6e5698164c48",
+                        "number": 1
+                    }
+                ],
+                "traits": []
+            },
+            "ownerId": "69ea82f849960d0001ad2146"
+        },
+        {
+            "canEdit": true,
+            "id": "69f5c02d49960d0001b8c086",
+            "object": {
+                "attributeAdvances": {
+                    "Ag": 0,
+                    "BS": 0,
+                    "Dex": 0,
+                    "Fel": 0,
+                    "I": 0,
+                    "Int": 0,
+                    "S": 0,
+                    "T": 0,
+                    "WP": 0,
+                    "WS": 0
+                },
+                "baseAttributes": {
+                    "Ag": 20,
+                    "BS": 20,
+                    "Dex": 20,
+                    "Fel": 20,
+                    "I": 20,
+                    "Int": 20,
+                    "S": 20,
+                    "T": 20,
+                    "WP": 20,
+                    "WS": 20
+                },
+                "brass": 0,
+                "career": {
+                    "id": "5d188f4723353e73dca2ec75",
+                    "number": 3
+                },
+                "careerPath": [
+                    {
+                        "id": "5d188f4723353e73dca2ec75",
+                        "number": 1
+                    },
+                    {
+                        "id": "5d188f4723353e73dca2ec75",
+                        "number": 2
+                    }
+                ],
+                "carriedItems": [],
+                "corruption": 0,
+                "currentExp": 0,
+                "description": "",
+                "equippedItems": [],
+                "fate": 0,
+                "fortune": 0,
+                "gold": 0,
+                "mutations": [],
+                "name": "Myrmidon Jr",
+                "notes": "",
+                "prayers": [],
+                "resilience": 0,
+                "resolve": 0,
+                "shared": false,
+                "silver": 0,
+                "sin": 0,
+                "skills": [],
+                "species": "0010",
+                "spells": [],
+                "spentExp": 0,
+                "standing": 0,
+                "status": 0,
+                "storedItems": [],
+                "talents": [],
+                "traits": []
+            },
+            "ownerId": "69ea82f849960d0001ad2146"
+        },
+        {
+            "canEdit": true,
+            "id": "69f5c05249960d0001b8c087",
+            "object": {
+                "attributeAdvances": {
+                    "Ag": 0,
+                    "BS": 0,
+                    "Dex": 0,
+                    "Fel": 0,
+                    "I": 0,
+                    "Int": 0,
+                    "S": 0,
+                    "T": 0,
+                    "WP": 0,
+                    "WS": 0
+                },
+                "baseAttributes": {
+                    "Ag": 20,
+                    "BS": 20,
+                    "Dex": 20,
+                    "Fel": 20,
+                    "I": 20,
+                    "Int": 20,
+                    "S": 20,
+                    "T": 20,
+                    "WP": 20,
+                    "WS": 20
+                },
+                "brass": 12,
+                "career": {
+                    "id": "5d18994523353e73dca2ec7b",
+                    "number": 4
+                },
+                "careerPath": [
+                    {
+                        "id": "5d18994523353e73dca2ec7b",
+                        "number": 1
+                    },
+                    {
+                        "id": "5d18994523353e73dca2ec7b",
+                        "number": 2
+                    },
+                    {
+                        "id": "5d18994523353e73dca2ec7b",
+                        "number": 3
+                    }
+                ],
+                "carriedItems": [
+                    {
+                        "id": "5f1cb08b84e29b5d32d78f91",
+                        "number": 1
+                    },
+                    {
+                        "id": "5f1cb129f3230369ab4eb3d0",
+                        "number": 1
+                    },
+                    {
+                        "id": "5f1cb163a8f44dc4bcf1275b",
+                        "number": 7
+                    }
+                ],
+                "corruption": 0,
+                "currentExp": 0,
+                "description": "",
+                "equippedItems": [
+                    {
+                        "id": "5c48f45c0972393f20ee03bb",
+                        "number": 1
+                    },
+                    {
+                        "id": "5ced97d41e0d2244e8c36bb3",
+                        "number": 1
+                    },
+                    {
+                        "id": "5ced99ab1e0d2244e8c36bb6",
+                        "number": 1
+                    }
+                ],
+                "fate": 3,
+                "fortune": 3,
+                "gold": 40,
+                "mutations": [
+                    "64e7d4ac49960d0001b76584",
+                    "64e7628549960d000150e9ee"
+                ],
+                "name": "Victor Holt Jr",
+                "notes": "",
+                "prayers": [],
+                "resilience": 3,
+                "resolve": 3,
+                "shared": false,
+                "silver": 2,
+                "sin": 0,
+                "skills": [
+                    {
+                        "id": "5cea87e2adaed446d44365df",
+                        "number": 5
+                    },
+                    {
+                        "id": "5caddae3a48cc24ecc4eca8e",
+                        "number": 3
+                    },
+                    {
+                        "id": "5cadd044828dc9389cc7b16c",
+                        "number": 3
+                    },
+                    {
+                        "id": "5cea8801adaed446d44365e0",
+                        "number": 5
+                    },
+                    {
+                        "id": "5cea884aadaed446d44365e1",
+                        "number": 5
+                    },
+                    {
+                        "id": "5ce114c70f123f1f14a4cc66",
+                        "number": 5
+                    },
+                    {
+                        "id": "5cadcbb5828dc9389cc7b169",
+                        "number": 3
+                    },
+                    {
+                        "id": "5ca91ce545b5ad53fc7b080e",
+                        "number": 3
+                    },
+                    {
+                        "id": "5ce47042099f0c36546bddde",
+                        "number": 5
+                    },
+                    {
+                        "id": "5cdfbaf930259922e8ea210a",
+                        "number": 5
+                    },
+                    {
+                        "id": "5ce842533ec45d1a88e3323d",
+                        "number": 5
+                    },
+                    {
+                        "id": "5d112abfa85de1596cf26210",
+                        "number": 20
+                    },
+                    {
+                        "id": "5d126c79a5009175446b700d",
+                        "number": 20
+                    }
+                ],
+                "species": "0001",
+                "spells": [
+                    "6664c20849960d0001d7d1ea",
+                    "63d67e5b3e2bd272a6d33a87",
+                    "64f4b41d49960d0001d69bdd",
+                    "64f4b3b949960d0001d69bdc",
+                    "63c2998734cf17dabd57881c"
+                ],
+                "spentExp": 0,
+                "standing": 2,
+                "status": 2,
+                "storedItems": [],
+                "talents": [
+                    {
+                        "id": "5ceaa1acba626c52981c27a5",
+                        "number": 1
+                    },
+                    {
+                        "id": "5ce1bf5984577f3a58e9b5dd",
+                        "number": 1
+                    },
+                    {
+                        "id": "6771b22449960d00019506cf",
+                        "number": 1
+                    },
+                    {
+                        "id": "5cebc9a1e1eba33c449de810",
+                        "number": 1
+                    },
+                    {
+                        "id": "5ce861e0e0055a4d2822cb2b",
+                        "number": 1
+                    }
+                ],
+                "traits": []
+            },
+            "ownerId": "69ea82f849960d0001ad2146"
         }
     ]
 }
