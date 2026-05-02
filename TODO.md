@@ -22,6 +22,7 @@
 # Bugs:
 
 - From Characters, go to talents -> click on a talent, when you press the back button navigation takes you to the first tab.
+- calcWounds at characterUtils has race problems with halflings (need to make subraces more scalable)
 
 # MOBILE:
 

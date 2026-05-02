@@ -21,6 +21,7 @@ import NotesTab from './tabs/NotesTab';
 interface CharacterSheetProps {
   character: Character;
   career: Career | undefined;
+  careerMap: Record<string, Career>;
   skills: Skill[];
   talents: Talent[];
   trappings: Trapping[];
@@ -39,9 +40,10 @@ const TABS = [
   'Notes',
 ] as const;
 
-export default function CharacterSheet({
+export default function TabbedCharacterSheet({
   character,
   career,
+  careerMap,
   skills,
   talents,
   trappings,
@@ -90,7 +92,13 @@ export default function CharacterSheet({
         {tab === 4 && (
           <MagicTab spells={spells} prayers={prayers} mutations={mutations} />
         )}
-        {tab === 5 && <NotesTab character={character} career={career} />}
+        {tab === 5 && (
+          <NotesTab
+            character={character}
+            career={career}
+            careerMap={careerMap}
+          />
+        )}
       </Box>
     </Box>
   );

@@ -145,7 +145,8 @@ export const router = createBrowserRouter([
       {
         path: 'characters/:id',
         handle: { section: 'Characters' },
-        lazy: () => lazy(() => import('./pages/characters/CharacterSheetPage')),
+        lazy: () =>
+          lazy(() => import('./pages/characters/CharacterTabViewPage')),
       },
       {
         path: 'dice',

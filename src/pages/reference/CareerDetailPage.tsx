@@ -21,17 +21,10 @@ import {
   SPECIES,
   STATUS_TIERS,
 } from '../../utils/gameData';
+import { resolveMaxRank } from '../../utils/characterUtils';
 import type { CareerLevelData, Skill, Talent } from '../../types';
 
 const ALL_CHAR_INDICES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-function resolveMaxRank(attribute: number, maxRank: number): string | null {
-  if (attribute > 0)
-    return `${ATTRIBUTES[attribute] ?? `Attr ${attribute}`} Bonus`;
-  if (maxRank === 0) return null;
-  if (maxRank >= 99) return '∞';
-  return String(maxRank);
-}
 
 function Section({
   title,
