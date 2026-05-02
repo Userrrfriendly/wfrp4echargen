@@ -6,16 +6,26 @@
 4. https://youtu.be/v4F1gFy-hqg?si=8q8f6xWrvdB5dmQm
 
 ---- Active ----
--in the career Details on mobile probably the whole content should be scrollable (otherwise there is little room because the class/races and description are always on)
+
+- View Character
+- in the career Details on mobile probably the whole content should be scrollable (otherwise there is little room because the class/races and description are always on)
 
 ---
+
+# FEATURES
 
 - REACT THREE FIBER FOR DICE ROLLER!!! WOW
 - Create a Character
 - Character Sheet
 -
 
-MOBILE:
+# Bugs:
+
+- From Characters, go to talents -> click on a talent, when you press the back button navigation takes you to the first tab.
+
+# MOBILE:
+
+- Attribute table has horizontal scrolling
 
 RULES:
 

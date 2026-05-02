@@ -201,6 +201,56 @@ export const SOURCE_OPTIONS = Object.entries(SOURCES).map(([id, label]) => ({
   label,
 }));
 
+//TODO: add the subspecies (e.g. Dwarf - Mountain, Dwarf - Hill, etc.)
+export const CHARACTER_SPECIES: Record<string, string> = {
+  '0001': 'Human',
+  '0214': 'Dwarf',
+  '0100': 'Halfling',
+  '0300': 'High Elf',
+  '0400': 'Wood Elf',
+  '0500': 'Gnome',
+  '0600': 'Ogre',
+};
+
+//TODO: check what about Ogres
+export const SPECIES_MOVEMENT: Record<string, number> = {
+  '0001': 4,
+  '0214': 3,
+  '0100': 3,
+  '0300': 5,
+  '0400': 5,
+  '0500': 3,
+  '0600': 6,
+};
+
+export const ATTRIBUTE_ORDER = [
+  'WS',
+  'BS',
+  'S',
+  'T',
+  'I',
+  'Ag',
+  'Dex',
+  'Int',
+  'WP',
+  'Fel',
+] as const;
+
+export type AttributeKey = (typeof ATTRIBUTE_ORDER)[number];
+
+export const ATTRIBUTE_LABELS: Record<AttributeKey, string> = {
+  WS: 'Weapon Skill',
+  BS: 'Ballistic Skill',
+  S: 'Strength',
+  T: 'Toughness',
+  I: 'Initiative',
+  Ag: 'Agility',
+  Dex: 'Dexterity',
+  Int: 'Intelligence',
+  WP: 'Willpower',
+  Fel: 'Fellowship',
+};
+
 export function loreName(labels: number[]): string {
   if (labels.length === 0) return '—';
   return labels.map((l) => MAGIC_LORES[l] ?? `Lore ${l}`).join(' / ');

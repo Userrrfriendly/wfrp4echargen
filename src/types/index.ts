@@ -231,3 +231,61 @@ export interface RuneData {
 }
 
 export type Rune = ApiEntity<RuneData>;
+
+// --- Character ---
+
+export interface CharacterCareerRef {
+  id: string;
+  number: number;
+}
+
+export interface CharacterItemRef {
+  id: string;
+  number: number;
+}
+
+export interface CharacterSkillRef {
+  id: string;
+  number: number; // advances
+}
+
+export interface CharacterTalentRef {
+  id: string;
+  number: number; // rank
+}
+
+export interface CharacterData {
+  name: string;
+  description: string;
+  notes: string;
+  species: string;
+  shared: boolean;
+  baseAttributes: AttributeModifiers;
+  attributeAdvances: AttributeModifiers;
+  career: CharacterCareerRef;
+  careerPath: CharacterCareerRef[];
+  skills: CharacterSkillRef[];
+  talents: CharacterTalentRef[];
+  traits: string[];
+  equippedItems: CharacterItemRef[];
+  carriedItems: CharacterItemRef[];
+  storedItems: CharacterItemRef[];
+  spells: string[];
+  prayers: string[];
+  mutations: string[];
+  brass: number;
+  silver: number;
+  gold: number;
+  fate: number;
+  fortune: number;
+  resilience: number;
+  resolve: number;
+  corruption: number;
+  sin: number;
+  status: number;
+  standing: number;
+  currentExp: number;
+  spentExp: number;
+}
+
+export type Character = ApiEntity<CharacterData>;
